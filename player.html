@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now Playing</title>
+    <!-- CSS (Wahi style jo pehle tha) -->
+    <style>
+        :root { --theme-color: #e74c3c; --dark-bg: #121212; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color: var(--dark-bg); color: #fff; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; box-sizing: border-box;}
+        /* Back button style */
+        .back-btn { position: absolute; top: 20px; left: 20px; font-size: 18px; color: white; text-decoration: none; background-color: rgba(0,0,0,0.5); padding: 8px 15px; border-radius: 5px; z-index: 1002; }
+        /* Player styles (Aapke purane code se) */
+        .popup-content { background-color: var(--dark-bg); padding: 25px; border-radius: 10px; position: relative; width: 100%; max-width: 900px; }
+        .aspect-ratio-box { position: relative; width: 100%; height: 0; padding-top: 56.25%; background-color: #000; border-radius: 5px; overflow: hidden; }
+        .aspect-ratio-box video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 4px solid rgba(255, 255, 255, 0.3); border-top: 4px solid var(--theme-color); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; z-index: 10; }
+        @keyframes spin { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        .controls-container { position: absolute; bottom: 0; left: 0; width: 100%; height: auto; z-index: 20; background-image: linear-gradient(to top, rgba(0,0,0,0.7), transparent); padding: 15px; box-sizing: border-box; display: flex; align-items: center; gap: 15px; opacity: 0; transition: opacity 0.3s; }
+        .aspect-ratio-box:hover .controls-container { opacity: 1; }
+        .control-btn { background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; }
+        .control-btn svg { width: 24px; height: 24px; fill: white; }
+        .timeline-container { flex-grow: 1; height: 8px; background-color: rgba(255, 255, 255, 0.3); border-radius: 4px; cursor: pointer; }
+        .timeline { height: 100%; background-color: var(--theme-color); border-radius: 4px; width: 0%; }
+        .time-display { font-size: 14px; min-width: 90px; }
+    </style>
+</head>
+<body>
+    
+    <div class="popup-content">
+        <a href="index.html" class="back-btn">&#8592; Back to Home</a>
+        <div id="popup-body">
+            <!-- Player content script se yahan aayega -->
+        </div>
+    </div>
+
+    <!-- === JAVASCRIPT LOGIC === -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // ==========================================================
+        // AAPKA PURANA SCRIPT (BINA KISI BADLAAV KE)
+        // ==========================================================
+        function openPopup(movie) {
+            const popupBody = document.getElementById('popup-body');
+            popupBody.innerHTML = `<h2>${movie.title}</h2><div class="aspect-ratio-box"><div class="loader"></div><video src="${movie.videoLink}"></video><div class="controls-container"><button class="control-btn" id="play-pause-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><button class="control-btn" id="rewind-btn"><svg viewBox="0 0 24 24"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg></button><button class="control-btn" id="forward-btn"><svg viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg></button><div class="timeline-container"><div class="timeline"></div></div><div class="time-display">00:00 / 00:00</div></div></div>`;
+            activatePlayerControls();
+        }
+
+        function activatePlayerControls() {
+            const popupBody = document.getElementById('popup-body');
+            const video = popupBody.querySelector('video'); if(!video) return;
+            const loader = popupBody.querySelector('.loader'); const playPauseBtn = popupBody.querySelector('#play-pause-btn'); const rewindBtn = popupBody.querySelector('#rewind-btn'); const forwardBtn = popupBody.querySelector('#forward-btn'); const timelineContainer = popupBody.querySelector('.timeline-container'); const timeline = popupBody.querySelector('.timeline'); const timeDisplay = popupBody.querySelector('.time-display'); const playIcon = `<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`; const pauseIcon = `<svg viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+            video.addEventListener('waiting', () => { loader.style.display = 'block'; }); video.addEventListener('canplay', () => { loader.style.display = 'none'; }); const togglePlay = () => video.paused ? video.play() : video.pause(); video.addEventListener('play', () => { playPauseBtn.innerHTML = pauseIcon; }); video.addEventListener('pause', () => { playPauseBtn.innerHTML = playIcon; }); playPauseBtn.addEventListener('click', togglePlay); video.addEventListener('click', togglePlay); rewindBtn.addEventListener('click', () => { video.currentTime -= 10; }); forwardBtn.addEventListener('click', () => { video.currentTime += 10; });
+            video.addEventListener('timeupdate', () => {
+                const progress = (video.currentTime / video.duration) * 100; timeline.style.width = `${progress}%`;
+                if (video.duration) { timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`; }
+            });
+            timelineContainer.addEventListener('click', (e) => { const rect = timelineContainer.getBoundingClientRect(); video.currentTime = ((e.clientX - rect.left) / rect.width) * video.duration; });
+            const formatTime = (s) => new Date(s * 1000).toISOString().substr(14, 5); // Corrected time format
+            video.play().catch(() => { playPauseBtn.innerHTML = playIcon; });
+        }
+        
+        // ==========================================================
+        // NAYA CODE JO PAGE LOAD HONE PAR CHALEGA
+        // ==========================================================
+        fetch('movies.json')
+            .then(response => {
+                if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
+                return response.json();
+            })
+            .then(movies => {
+                // 1. URL se movie ki ID nikalo (jaise ?id=5)
+                const urlParams = new URLSearchParams(window.location.search);
+                const movieId = urlParams.get('id');
+
+                if (movieId) {
+                    // 2. Sahi movie ko movies ki list mein se dhundho
+                    // Note: '==' use kar rahe hain taaki string "5" aur number 5 match ho jaaye
+                    const movie = movies.find(m => m.id == movieId);
+
+                    if (movie) {
+                        // 3. Agar movie mil gayi, toh aapka purana 'openPopup' function call kar do
+                        openPopup(movie);
+                    } else {
+                        document.getElementById('popup-body').innerHTML = `<h2>Error: Movie not found!</h2>`;
+                    }
+                } else {
+                    document.getElementById('popup-body').innerHTML = `<h2>Error: No movie ID provided.</h2>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error loading movies.json:', error);
+                document.getElementById('popup-body').innerHTML = `<h2 style="color: red;">Error: Could not load movie data.</h2>`;
+            });
+    });
+    </script>
+</body>
+</html>
