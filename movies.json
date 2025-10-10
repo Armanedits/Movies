@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "title": "KGF (Season 1)",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
@@ -7,6 +8,7 @@
     "category": "trending"
   },
   {
+    "id": 2,
     "title": "KGF (Season 2)",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
@@ -14,27 +16,54 @@
     "category": "trending"
   },
   {
-    "title": "KGF (Season 1)",
+    "id": 3,
+    "title": "KGF (Season 1) - Duplicate",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
     "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
     "category": "trending"
   },
   {
-    "title": "KGF (Season 1)",
+    "id": 4,
+    "title": "KGF (Season 1) - Duplicate 2",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
     "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
     "category": "trending"
   },
   {
-    "title": "KGF (Season 1)",
+    "id": 5,
+    "title": "KGF (Season 1) - Duplicate 3",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
     "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
     "category": "trending"
   },
   {
+    "id": 6,
+    "title": "Death Note (Season 1)",
+    "poster": "https://i.postimg.cc/tJcR3b3j/death-note.jpg",
+    "details": "BluRay [Hindi (DD2.0) & English] 1080p 720p & 480p [x264/ESubs] | [EP-16 Added]",
+    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
+    "category": "hollywood"
+  },
+  {
+    "id": 7,
+    "title": "Coolie (2025)",
+    "poster": "https://i.postimg.cc/k47v7p3V/coolie.jpg",
+    "details": "DS4K WEB-DL [Hindi (DD5.1) & Tamil] 4K 1080p 720p & 480p Dual Audio [x264/10Bit-HEVC] | Full Movie",
+    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
+    "category": "tollywood"
+  },
+  {
+    "id": 8,
+    "title": "War 2 (2025)",
+    "poster": "https://i.postimg.cc/PqgT59k3/war2.jpg",
+    "details": "DS4K WEB-DL [Hindi DD5.1] 4K 1080p 720p & 480p [x264/HEVC] | Full Movie",
+    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
+    "category": "bollywood"
+  }
+]  {
     "title": "Death Note (Season 1)",
     "poster": "https://i.postimg.cc/tJcR3b3j/death-note.jpg",
     "details": "BluRay [Hindi (DD2.0) & English] 1080p 720p & 480p [x264/ESubs] | [EP-16 Added]",
