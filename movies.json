@@ -5,7 +5,7 @@
     "poster": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRvHZlqsNFOhanqIx3WdC1PUt2-fCgZ9uMTRArEs7IwdcCkLfty",
     "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
     "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
-    "category": "trending","hindi"
+    "category": ["trending","hindi"]
   },
   {
     "id": 2,
