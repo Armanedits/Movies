@@ -86,8 +86,7 @@
         <div id="movie-grid"></div>
     </main>
 
-    <!-- === JAVASCRIPT LOGIC === -->
-    <script>
+<script>
     document.addEventListener('DOMContentLoaded', () => {
         fetch('movies.json')
             .then(response => {
@@ -103,7 +102,14 @@
                 function populateSlider(movieArray) {
                     const sliderTrack = document.querySelector('.slider-track');
                     if (!sliderTrack) return;
-                    const trendingMovies = movieArray.filter(movie => movie.category === 'trending');
+                    
+                    // === REPLACED CODE FOR SLIDER ===
+                    // This now checks for 'trending' inside an array as well as a simple string.
+                    const trendingMovies = movieArray.filter(movie => 
+                        (Array.isArray(movie.category) && movie.category.includes('trending')) || movie.category === 'trending'
+                    );
+                    // ================================
+
                     sliderTrack.innerHTML = '';
                     trendingMovies.forEach(movie => {
                         const slide = document.createElement('div');
@@ -163,11 +169,27 @@
                 document.addEventListener('click', () => { optionsDiv.classList.add('hide'); selectedDiv.classList.remove('select-arrow-active'); });
                 
                 // --- CATEGORY FILTER ---
+                // === REPLACED CODE FOR CATEGORY DROPDOWN ===
+                // This entire block is updated to handle both array and string categories.
                 originalSelect.addEventListener('change', (e) => {
                     const selectedCategory = e.target.value;
-                    const filteredMovies = (selectedCategory === 'all') ? movies : movies.filter(movie => movie.category === selectedCategory);
-                    displayMovies(filteredMovies);
+                    if (selectedCategory === 'all') {
+                        displayMovies(movies);
+                    } else {
+                        const filteredMovies = movies.filter(movie => {
+                            // Check if the movie's category is an array
+                            if (Array.isArray(movie.category)) {
+                                // If it is, check if the selected category is inside that array
+                                return movie.category.includes(selectedCategory);
+                            } else {
+                                // If it's not an array, do the old comparison
+                                return movie.category === selectedCategory;
+                            }
+                        });
+                        displayMovies(filteredMovies);
+                    }
                 });
+                // ===========================================
                 
                 // --- INITIALIZATION ---
                 populateSlider(movies);
@@ -178,6 +200,6 @@
                 document.querySelector('main.container').innerHTML = `<h2 style="color: red;">Error: Movies load nahi ho payi.</h2><p style="color: white;">Kripya 'movies.json' file aur hosting setup check karein.</p>`;
             });
     });
-    </script>
+</script>
 </body>
 </html>
