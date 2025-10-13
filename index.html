@@ -25,28 +25,17 @@
             margin: 0 auto;
             padding: 20px;
         }
-        header {
-            text-align: center;
-            padding: 20px 0;
-        }
-        header img.logo {
-            max-width: 180px;
-            margin-bottom: 20px;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-        }
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        header { text-align: center; padding: 20px 0; }
+        header img.logo { max-width: 180px; margin-bottom: 20px; }
+        header h1 { margin: 0; font-size: 36px; }
+        a { color: inherit; text-decoration: none; }
 
-        /* === SLIDER STYLES === */
+        /* === SLIDER STYLES (UPDATED) === */
         .slider-container { position: relative; width: 100%; margin: 0 auto 30px; overflow: hidden; border-radius: 8px; }
         .trending-slider { width: 100%; overflow: hidden; }
         .slider-track { display: flex; transition: transform 0.5s ease-in-out; }
         .slide { min-width: 100%; position: relative; cursor: pointer; }
+        .slide a { position: relative; display: block; } /* Featured badge ke liye zaroori */
         .slide img { width: 100%; height: auto; max-height: 400px; object-fit: cover; display: block; }
         .slide-title { position: absolute; bottom: 20px; left: 20px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 10px 15px; border-radius: 5px; font-size: 24px; font-weight: bold; }
         .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); border: none; color: white; padding: 10px; cursor: pointer; border-radius: 50%; z-index: 10; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
@@ -64,14 +53,13 @@
         .suggestion-item img { width: 40px; height: 60px; object-fit: cover; margin-right: 15px; border-radius: 4px; }
         .suggestion-item span { font-size: 16px; }
 
-        /* === CUSTOM DROPDOWN STYLES (UPDATED) === */
+        /* === CUSTOM DROPDOWN STYLES === */
         #category-filter { margin-bottom: 30px; }
         .custom-select-container { position: relative; font-size: 18px; }
         .select-selected { background-color: var(--light-bg); color: #fff; padding: 15px; border: 2px solid #555; border-radius: 8px; cursor: pointer; position: relative; transition: border-color 0.3s, box-shadow 0.3s; }
         .select-selected.select-arrow-active { border-radius: 8px 8px 0 0; border-color: var(--theme-color); box-shadow: 0 0 10px rgba(231, 76, 60, 0.5); }
         .select-selected::after { position: absolute; content: ""; top: 50%; right: 18px; transform: translateY(-50%); width: 0; height: 0; border: 7px solid transparent; border-color: var(--theme-color) transparent transparent transparent; }
         .select-selected.select-arrow-active::after { border-color: transparent transparent var(--theme-color) transparent; top: 40%; }
-        /* YAHAN BADLAV KIYA GAYA HAI: max-height aur overflow-y hata diya gaya hai */
         .select-items { position: absolute; background-color: #2a2a2a; top: 100%; left: 0; right: 0; z-index: 99; border-radius: 0 0 8px 8px; border: 2px solid var(--theme-color); border-top: none; }
         .hide { display: none; }
         .select-items div { color: #fff; padding: 12px 16px; cursor: pointer; border-bottom: 1px solid #444; transition: background-color 0.2s; }
@@ -80,31 +68,22 @@
 
         /* === MOVIE GRID (UPDATED) === */
         main h2 { font-size: 22px; font-weight: 600; margin-bottom: 20px; }
-        /* YAHAN BADLAV KIYA GAYA HAI: Ab 4 column dikhenge aur gap adjust kiya gaya hai */
-        #movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        .movie-card {
-            background-color: var(--card-text-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-            position: relative; /* Featured badge ke liye zaroori */
+        /* Mobile par 2 column */
+        #movie-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
+        /* Desktop par 4 column */
+        @media (min-width: 768px) {
+            #movie-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
+        .movie-card { background-color: var(--card-text-bg); border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; position: relative; }
         .movie-card:hover { transform: scale(1.05); }
-        /* YAHAN BADLAV KIYA GAYA HAI: object-fit: cover se image poora cover hogi */
-        .movie-card img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 2/3;
-            object-fit: cover;
-        }
+        .movie-card img { width: 100%; height: auto; aspect-ratio: 2/3; object-fit: cover; }
         .movie-info { padding: 12px; flex-grow: 1; }
         .movie-info h3 { margin: 0 0 8px 0; font-size: 16px; text-align: left; font-weight: 600; color: #fff; }
         .movie-info p { margin: 0; font-size: 12px; color: #aaa; line-height: 1.5; text-align: left; }
-        
-        /* === FEATURED BADGE (NEW) === */
+
+        /* === FEATURED BADGE === */
         .featured-badge {
             position: absolute;
             top: 10px;
@@ -141,12 +120,16 @@
                 </select>
             </div>
         </div>
-        <h2>🔥 Latest Releases</h2>
+        <!-- YAHAN BADLAV KIYA GAYA HAI: Heading ko ID di gayi hai -->
+        <h2 id="grid-title">🔥 Latest Releases</h2>
         <div id="movie-grid"></div>
     </main>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        // YAHAN BADLAV KIYA GAYA HAI: Slider interval ke liye variable banaya gaya hai
+        let sliderInterval;
+
         fetch('movies.json')
             .then(response => {
                 if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
@@ -156,13 +139,14 @@
                 const movieGrid = document.getElementById('movie-grid');
                 const searchInput = document.getElementById('searchInput');
                 const suggestionsBox = document.getElementById('suggestions-box');
+                const gridTitle = document.getElementById('grid-title'); // Title heading ko select kiya
 
-                // --- SLIDER LOGIC ---
+                // --- SLIDER LOGIC (UPDATED with AUTOPLAY and FEATURED BADGE) ---
                 function populateSlider(movieArray) {
                     const sliderTrack = document.querySelector('.slider-track');
                     if (!sliderTrack) return;
-                    
-                    const trendingMovies = movieArray.filter(movie => 
+
+                    const trendingMovies = movieArray.filter(movie =>
                         (Array.isArray(movie.category) && movie.category.includes('trending')) || movie.category === 'trending'
                     );
 
@@ -170,7 +154,13 @@
                     trendingMovies.forEach(movie => {
                         const slide = document.createElement('div');
                         slide.classList.add('slide');
-                        slide.innerHTML = `<a href="player.html?id=${movie.id}"><img src="${movie.poster}" alt="${movie.title}"><div class="slide-title">${movie.title}</div></a>`;
+                        // YAHAN BADLAV KIYA GAYA HAI: Featured badge add kiya gaya hai
+                        slide.innerHTML = `
+                            <a href="player.html?id=${movie.id}">
+                                <div class="featured-badge">Featured</div>
+                                <img src="${movie.poster}" alt="${movie.title}">
+                                <div class="slide-title">${movie.title}</div>
+                            </a>`;
                         sliderTrack.appendChild(slide);
                     });
 
@@ -180,19 +170,36 @@
                         prevBtn.style.display = 'flex';
                         nextBtn.style.display = 'flex';
                         let currentIndex = 0;
+                        const totalSlides = trendingMovies.length;
+
                         const updateSliderPosition = () => { sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`; };
-                        nextBtn.addEventListener('click', () => { currentIndex = (currentIndex + 1) % trendingMovies.length; updateSliderPosition(); });
-                        prevBtn.addEventListener('click', () => { currentIndex = (currentIndex - 1 + trendingMovies.length) % trendingMovies.length; updateSliderPosition(); });
+                        
+                        const goToNextSlide = () => {
+                            currentIndex = (currentIndex + 1) % totalSlides;
+                            updateSliderPosition();
+                        };
+
+                        nextBtn.addEventListener('click', () => { 
+                            goToNextSlide();
+                            clearInterval(sliderInterval); // Button click par interval rok do
+                        });
+                        prevBtn.addEventListener('click', () => {
+                            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                            updateSliderPosition();
+                            clearInterval(sliderInterval); // Button click par interval rok do
+                        });
+
+                        // YAHAN BADLAV KIYA GAYA HAI: Auto-slide animation shuru kiya gaya hai
+                        sliderInterval = setInterval(goToNextSlide, 4000); // Har 4 second mein slide change hogi
                     }
                 }
 
-                // --- MOVIE GRID (UPDATED with FEATURED BADGE) ---
+                // --- MOVIE GRID ---
                 function displayMovies(movieArray) {
                     movieGrid.innerHTML = '';
                     movieArray.forEach(movie => {
                         const movieLink = document.createElement('a');
                         movieLink.href = `player.html?id=${movie.id}`;
-                        // YAHAN BADLAV KIYA GAYA HAI: Featured badge add kiya gaya hai
                         movieLink.innerHTML = `
                             <div class="movie-card">
                                 <div class="featured-badge">Featured</div>
@@ -209,19 +216,26 @@
                 // --- SEARCH LOGIC ---
                 searchInput.addEventListener('input', (e) => {
                     const searchTerm = e.target.value.toLowerCase();
-                    const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
-                    displayMovies(filteredMovies);
-                    suggestionsBox.innerHTML = '';
-                    if (searchTerm.length > 0 && filteredMovies.length > 0) {
-                        filteredMovies.forEach(movie => {
-                            const item = document.createElement('div');
-                            item.classList.add('suggestion-item');
-                            item.innerHTML = `<img src="${movie.poster}" alt="${movie.title}"><span>${movie.title}</span>`;
-                            item.addEventListener('click', () => { window.location.href = `player.html?id=${movie.id}`; });
-                            suggestionsBox.appendChild(item);
-                        });
-                        suggestionsBox.style.display = 'block';
+                    if(searchTerm.length > 0) {
+                        const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
+                        displayMovies(filteredMovies);
+                        gridTitle.innerText = `Search Results for "${searchTerm}"`;
+                        suggestionsBox.innerHTML = '';
+                        if (filteredMovies.length > 0) {
+                            filteredMovies.slice(0, 5).forEach(movie => { // Sirf 5 suggestions dikhaye
+                                const item = document.createElement('div');
+                                item.classList.add('suggestion-item');
+                                item.innerHTML = `<img src="${movie.poster}" alt="${movie.title}"><span>${movie.title}</span>`;
+                                item.addEventListener('click', () => { window.location.href = `player.html?id=${movie.id}`; });
+                                suggestionsBox.appendChild(item);
+                            });
+                            suggestionsBox.style.display = 'block';
+                        } else {
+                            suggestionsBox.style.display = 'none';
+                        }
                     } else {
+                        displayMovies(movies); // Search khali hone par sab movies dikhaye
+                        gridTitle.innerHTML = '🔥 Latest Releases';
                         suggestionsBox.style.display = 'none';
                     }
                 });
@@ -232,24 +246,28 @@
                 customSelectContainer.appendChild(optionsDiv);
                 selectedDiv.addEventListener('click', (e) => { e.stopPropagation(); optionsDiv.classList.toggle('hide'); e.currentTarget.classList.toggle('select-arrow-active'); });
                 document.addEventListener('click', () => { optionsDiv.classList.add('hide'); selectedDiv.classList.remove('select-arrow-active'); });
-                
-                // --- CATEGORY FILTER ---
+
+                // --- CATEGORY FILTER (UPDATED with DYNAMIC TITLE) ---
                 originalSelect.addEventListener('change', (e) => {
-                    const selectedCategory = e.target.value;
-                    if (selectedCategory === 'all') {
+                    const selectedCategoryValue = e.target.value;
+                    const selectedCategoryText = e.target.options[e.target.selectedIndex].text;
+
+                    if (selectedCategoryValue === 'all') {
                         displayMovies(movies);
+                        gridTitle.innerHTML = '🔥 Latest Releases'; // Title ko wapas default kiya
                     } else {
                         const filteredMovies = movies.filter(movie => {
                             if (Array.isArray(movie.category)) {
-                                return movie.category.includes(selectedCategory);
+                                return movie.category.includes(selectedCategoryValue);
                             } else {
-                                return movie.category === selectedCategory;
+                                return movie.category === selectedCategoryValue;
                             }
                         });
                         displayMovies(filteredMovies);
+                        gridTitle.innerText = selectedCategoryText; // Title ko category ke naam se badla
                     }
                 });
-                
+
                 // --- INITIALIZATION ---
                 populateSlider(movies);
                 displayMovies(movies);
