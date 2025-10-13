@@ -1,10 +1,12 @@
 [
   {
-    "id": 1,
-    "title": "Kalki 2898 AD",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": "trending"
+  "id": 1,
+  "title": "Kalki 2898 AD",
+  "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+  "category": ["bollywood", "trending"],
+  "home_section": "trending",
+  "videoLink": "https://www.your-server.com/videos/kalki.mp4",
+  "details": "Yeh movie saal 2898 ki duniya mein set hai, jahan science fiction aur mythology milte hain."
   },
   {
     "id": 2,
