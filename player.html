@@ -77,7 +77,6 @@
     <div id="menu-overlay"></div>
     
     <main class="container">
-        <!-- 1. HTML UPDATE: Dono sections ko ek parent div mein daala -->
         <div id="movie-details-view">
             <div class="movie-info-container">
                 <img src="" alt="Movie Poster" id="main-poster" class="movie-poster-large">
@@ -96,7 +95,6 @@
             </div>
         </div>
 
-        <!-- Naye search results ke liye container (initially hidden) -->
         <div id="search-results-view" style="display: none;">
             <h2 id="search-results-title"></h2>
             <div id="search-results-grid" class="movie-grid"></div>
@@ -115,15 +113,13 @@
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-        let allMovies = []; // Saari movies yahan store hongi
+        let allMovies = []; 
 
-        // DOM Elements
         const movieDetailsView = document.getElementById('movie-details-view');
         const searchResultsView = document.getElementById('search-results-view');
         const searchResultsTitle = document.getElementById('search-results-title');
         const searchResultsGrid = document.getElementById('search-results-grid');
 
-        // --- POPUP FUNCTIONS ---
         const popup = document.getElementById('custom-popup');
         const popupMessage = document.getElementById('popup-message');
         const popupCloseBtn = document.getElementById('popup-close-btn');
@@ -132,7 +128,6 @@
         popupCloseBtn.addEventListener('click', hideCustomPopup);
         popup.addEventListener('click', (event) => { if (event.target === popup) { hideCustomPopup(); } });
 
-        // --- NAVIGATION BAR LOGIC ---
         const sideMenu = document.getElementById('side-menu');
         const menuBtn = document.getElementById('menu-btn');
         const overlay = document.getElementById('menu-overlay');
@@ -145,27 +140,24 @@
         overlay.addEventListener('click', () => { sideMenu.classList.remove('open'); overlay.style.display = 'none'; });
         searchIconBtn.addEventListener('click', () => navBar.classList.add('search-active'));
         
-        // Close search button ka naya logic
         closeSearchBtn.addEventListener('click', () => {
             navBar.classList.remove('search-active');
-            searchInput.value = ''; // Search bar khaali karo
-            showDetailsView(); // Details view wapas dikhao
+            searchInput.value = '';
+            showDetailsView();
         });
         
-        // --- 2. SEARCH LOGIC UPDATE (Live Search) ---
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase().trim();
             if (term) {
-                showSearchView(); // Search view dikhao
+                showSearchView();
                 const filteredMovies = allMovies.filter(m => m.title.toLowerCase().includes(term));
                 searchResultsTitle.textContent = `Results for "${term}"`;
                 displayMovies(filteredMovies, searchResultsGrid);
             } else {
-                showDetailsView(); // Agar search khaali hai toh details view dikhao
+                showDetailsView();
             }
         });
 
-        // Helper function to switch views
         function showDetailsView() {
             searchResultsView.style.display = 'none';
             movieDetailsView.style.display = 'block';
@@ -175,7 +167,6 @@
             searchResultsView.style.display = 'block';
         }
 
-        // Helper function to display movies in a grid
         function displayMovies(movieArray, gridElement) {
             gridElement.innerHTML = '';
             if (movieArray.length === 0) {
@@ -190,7 +181,6 @@
             });
         }
         
-        // Side menu setup (Home page par redirect karega)
         const categories = [ { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
         sideMenu.innerHTML = '';
         categories.forEach(cat => {
@@ -205,7 +195,7 @@
         fetch('movies.json')
             .then(response => response.json())
             .then(movies => {
-                allMovies = movies; // Saari movies ko global variable mein save karo
+                allMovies = movies;
                 
                 const urlParams = new URLSearchParams(window.location.search);
                 const movieId = urlParams.get('id');
@@ -214,14 +204,12 @@
                 const currentMovie = movies.find(m => m.id == movieId);
                 if (!currentMovie) { document.querySelector('main.container').innerHTML = `<h1>Error: Movie not found.</h1>`; return; }
 
-                // Page par details daalo
                 document.title = `Download: ${currentMovie.title}`;
                 document.getElementById('main-poster').src = currentMovie.poster;
                 document.getElementById('main-poster').alt = currentMovie.title;
                 document.getElementById('movie-title').textContent = currentMovie.title;
                 document.getElementById('movie-description').textContent = currentMovie.details || '';
 
-                // Cast list
                 const castContainer = document.getElementById('cast-list');
                 const castTitle = document.getElementById('cast-title');
                 castContainer.innerHTML = '';
@@ -237,27 +225,49 @@
                     castTitle.style.display = 'none';
                 }
 
-                // Download buttons
+                // =======================================================================
+                // === YAHAN SE CODE THEEK KIYA GAYA HAI (REPLACED AND UPGRADED CODE) ===
+                // =======================================================================
+
                 const downloadsContainer = document.getElementById('download-links');
                 downloadsContainer.innerHTML = '';
-                const qualities = { q480p: "480p", q720p: "720p", q1080p: "1080p" };
-                for (const key in qualities) {
-                    const link = currentMovie.downloadLinks ? currentMovie.downloadLinks[key] : null;
-                    const button = document.createElement('a');
-                    button.className = 'download-btn';
-                    if (link) {
-                        button.href = link;
-                        button.setAttribute('download', '');
-                    } else {
-                        button.href = '#';
-                        button.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            showCustomPopup('Sorry, this download link is not available yet!');
-                        });
-                    }
-                    button.innerHTML = `<svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> ${qualities[key]}`;
-                    downloadsContainer.appendChild(button);
+                const qualitiesToShow = ["480p", "720p", "1080p"];
+
+                if (currentMovie.downloadLinks && Array.isArray(currentMovie.downloadLinks)) {
+                    qualitiesToShow.forEach(qualityValue => {
+                        const linkObject = currentMovie.downloadLinks.find(item => item.quality === qualityValue);
+                        
+                        const button = document.createElement('a');
+                        button.className = 'download-btn';
+                        
+                        let buttonText = qualityValue; // Start with the basic quality text
+
+                        if (linkObject && linkObject.link) {
+                            button.href = linkObject.link;
+                            button.setAttribute('download', '');
+                            // Agar size bhi available hai to use text me jod do
+                            if (linkObject.size) {
+                                buttonText += ` (${linkObject.size})`;
+                            }
+                        } else {
+                            button.href = '#';
+                            button.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                showCustomPopup(`Sorry, the ${qualityValue} download link is not available yet!`);
+                            });
+                        }
+                        
+                        button.innerHTML = `<svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> ${buttonText}`;
+                        downloadsContainer.appendChild(button);
+                    });
+                } else {
+                    downloadsContainer.innerHTML = '<p>Download links are not available for this title.</p>';
                 }
+                
+                // =======================================================================
+                // === CODE REPLACEMENT ENDS HERE ===
+                // =======================================================================
+
 
                 // Related movies
                 let relatedMovies = [];
