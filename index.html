@@ -46,7 +46,14 @@
         .nav-left, .nav-right, .logo-container {
             flex: 1;
         }
-        .logo-container { text-align: center; }
+        /* LOGO ALIGNMENT FIX */
+        .logo-container { 
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%; /* Parent ki height le le */
+        }
         .logo-container a { display: inline-block; line-height: 0; }
         .nav-right { text-align: right; }
         header img.logo { max-width: 120px; vertical-align: middle; }
@@ -93,7 +100,7 @@
 
         /* === SLIDER === */
         .slider-container { position: relative; width: 100%; margin: 20px auto; overflow: hidden; border-radius: 8px; }
-        .slider-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .slider-track { display: flex; } /* No transition here, it's controlled by JS */
         .slide { min-width: 100%; padding: 0 5px; box-sizing: border-box; }
         .slide img { width: 100%; height: auto; max-height: 250px; object-fit: cover; border-radius: 8px; }
         .slide-title { position: absolute; bottom: 15px; left: 15px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 8px 12px; border-radius: 5px; font-size: 18px; }
@@ -117,7 +124,6 @@
                 <button class="icon-btn" id="menu-btn">&#9776;</button>
             </div>
             <div class="logo-container">
-                <!-- LOGO PAR HOME PAGE KA LINK ADD KIYA GAYA HAI -->
                 <a href="#" onclick="window.location.reload(); return false;">
                     <img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Logo" class="logo">
                 </a>
@@ -142,21 +148,16 @@
             <button class="icon-btn slider-btn" id="next-slide" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); z-index: 10; background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">&#10095;</button>
         </div>
         
-        <!-- YAHAN SE HOME PAGE KA NAYA STRUCTURE SHURU HOTA HAI -->
         <div id="home-page-content">
-            <!-- Section 1: Latest Releases (yahan saari movies aayengi) -->
             <h2 id="grid-title">🔥 Latest Releases</h2>
             <div id="movie-grid" class="movie-grid"></div>
 
-            <!-- Section 2: Trending -->
             <h2>🔥 Trending</h2>
             <div id="trending-grid" class="movie-grid"></div>
 
-            <!-- Section 3: Movies -->
             <h2>🎬 Movies</h2>
             <div id="movies-grid" class="movie-grid"></div>
 
-            <!-- Section 4: Webseries -->
             <h2>📺 Webseries</h2>
             <div id="webseries-grid" class="movie-grid"></div>
         </div>
@@ -164,7 +165,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Categories mein Trending aur Webseries add kiya gaya hai
+        // SIDE MENU FIX: Yahan categories update kar di gayi hain
         const categories = [
             { value: 'all', text: 'All Categories' },
             { value: 'trending', text: 'Trending' },
@@ -174,7 +175,7 @@
             { value: 'tollywood', text: 'Tollywood' }
         ];
         let sliderInterval;
-        let allMovies = []; // Sabhi movies ko store karne ke liye
+        let allMovies = [];
 
         // DOM Elements
         const movieGrid = document.getElementById('movie-grid');
@@ -183,23 +184,15 @@
         
         fetch('movies.json').then(res => res.json()).then(movies => {
             allMovies = movies;
-
-            // Home Page ko set karo
             setupHomePage(allMovies);
-            // Slider ko populate karo
             populateSlider(allMovies);
-            // Side Menu ko set karo
             setupSideMenu();
-
-            // Search functionality
             document.getElementById('searchInput').addEventListener('input', handleSearch);
-
         }).catch(error => {
             console.error('Error loading file:', error);
             document.querySelector('main.container').innerHTML = `<h2 style="color:red;">Error: Movies load nahi ho payi.</h2>`;
         });
         
-        // Side menu aur search bar ke buttons ke listeners
         const sideMenu = document.getElementById('side-menu');
         const menuBtn = document.getElementById('menu-btn');
         const overlay = document.getElementById('menu-overlay');
@@ -213,10 +206,7 @@
         closeSearchBtn.addEventListener('click', () => navBar.classList.remove('search-active'));
 
         function setupHomePage(movies) {
-            // Home page par sabse pehle saari movies dikhane ke liye (latest upar)
             displayMovies(movies.slice().reverse(), movieGrid);
-
-            // Neeche ke sections (Trending, etc.) ko populate karne ke liye
             displayMovies(movies.filter(m => m.home_section === 'trending'), document.getElementById('trending-grid'));
             displayMovies(movies.filter(m => m.home_section === 'movies'), document.getElementById('movies-grid'));
             displayMovies(movies.filter(m => m.home_section === 'webseries'), document.getElementById('webseries-grid'));
@@ -224,7 +214,7 @@
 
         function setupSideMenu() {
             const sideMenu = document.getElementById('side-menu');
-            sideMenu.innerHTML = ''; // Pehle se clear karo
+            sideMenu.innerHTML = '';
             categories.forEach(cat => {
                 const item = document.createElement('a');
                 item.href = '#'; item.className = 'category-item';
@@ -233,7 +223,6 @@
                 item.addEventListener('click', (e) => {
                     e.preventDefault();
                     const category = e.target.dataset.value;
-                    // Agar 'All Categories' select ho to page reload kardo ya home page dikha do
                     if (category === 'all') {
                         window.location.reload();
                     } else {
@@ -252,21 +241,16 @@
                 const filtered = allMovies.filter(m => m.title.toLowerCase().includes(term));
                 showFilteredResults(filtered, `Results for "${term}"`);
             } else {
-                // Agar search box khali ho to poora home page wapas dikha do
                 homePageContent.style.display = 'block';
-                // Latest Releases grid ko wapas aabadi do
                 displayMovies(allMovies.slice().reverse(), movieGrid);
                 gridTitle.innerHTML = '🔥 Latest Releases';
             }
         }
         
         function showFilteredResults(movieArray, title) {
-            // Home page ke baaki sections ko hide kar do
             document.getElementById('trending-grid').parentElement.style.display = 'none';
             document.getElementById('movies-grid').parentElement.style.display = 'none';
             document.getElementById('webseries-grid').parentElement.style.display = 'none';
-            
-            // Sirf main grid mein results dikhao
             gridTitle.textContent = title;
             displayMovies(movieArray, movieGrid);
         }
@@ -282,7 +266,7 @@
             });
         }
 
-        // SLIDER LOGIC
+        // SLIDER LOOP FIX: Naya aur behtar slider logic
         function populateSlider(movieArray) {
             const sliderTrack = document.querySelector('.slider-track');
             const sliderContainer = document.querySelector('.slider-container');
@@ -290,7 +274,10 @@
             const nextBtn = document.getElementById('next-slide');
             const trending = movieArray.filter(m => (Array.isArray(m.category) && m.category.includes('trending')) || m.category === 'trending');
 
-            if (!sliderTrack || trending.length === 0) { sliderContainer.style.display = 'none'; return; }
+            if (!sliderTrack || trending.length === 0) { 
+                sliderContainer.style.display = 'none'; 
+                return; 
+            }
             
             sliderTrack.innerHTML = '';
             trending.forEach(movie => {
@@ -300,37 +287,61 @@
                 sliderTrack.appendChild(slide);
             });
 
-            if (trending.length > 1) {
-                prevBtn.style.display = 'flex'; nextBtn.style.display = 'flex';
-                let currentIndex = 0;
+            if (trending.length > 1) { // Buttons aur cloning tabhi karo jab 1 se zyada slide ho
+                prevBtn.style.display = 'flex'; 
+                nextBtn.style.display = 'flex';
+                
                 const slides = Array.from(sliderTrack.children);
-                const slideWidth = slides[0].clientWidth; // Use clientWidth for better accuracy
+                const slideWidth = slides[0].offsetWidth;
                 
-                function moveTo(slideIndex) {
-                    if (slideIndex < 0 || slideIndex >= slides.length) return;
-                    sliderTrack.style.transform = `translateX(-${slideIndex * slideWidth}px)`;
-                    currentIndex = slideIndex;
-                }
-                
-                function moveToNext() {
-                    let nextIndex = currentIndex + 1;
-                    if (nextIndex >= slides.length) { nextIndex = 0; } // Loop back to start
-                    moveTo(nextIndex);
-                }
+                // Cloning strategy for infinite loop
+                const firstClone = slides[0].cloneNode(true);
+                const lastClone = slides[slides.length - 1].cloneNode(true);
+                sliderTrack.appendChild(firstClone);
+                sliderTrack.insertBefore(lastClone, slides[0]);
 
-                function moveToPrev() {
-                    let prevIndex = currentIndex - 1;
-                    if (prevIndex < 0) { prevIndex = slides.length - 1; } // Loop to end
-                    moveTo(prevIndex);
-                }
+                let currentIndex = 1; // Start from the real first slide
+                let isTransitioning = false;
+
+                const setSliderPosition = () => {
+                    sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                };
+                
+                sliderTrack.style.transition = 'none'; // Initial position without animation
+                setSliderPosition();
+
+                const moveTo = (direction) => {
+                    if (isTransitioning) return;
+                    isTransitioning = true;
+                    currentIndex += direction;
+                    sliderTrack.style.transition = 'transform 0.5s ease-in-out';
+                    setSliderPosition();
+                };
+
+                sliderTrack.addEventListener('transitionend', () => {
+                    isTransitioning = false;
+                    const allSlides = Array.from(sliderTrack.children);
+                    // Jump to real first slide from last clone
+                    if (currentIndex >= allSlides.length - 1) {
+                        sliderTrack.style.transition = 'none';
+                        currentIndex = 1;
+                        setSliderPosition();
+                    }
+                    // Jump to real last slide from first clone
+                    if (currentIndex <= 0) {
+                        sliderTrack.style.transition = 'none';
+                        currentIndex = allSlides.length - 2;
+                        setSliderPosition();
+                    }
+                });
 
                 const startSliderInterval = () => {
                     clearInterval(sliderInterval);
-                    sliderInterval = setInterval(moveToNext, 4000);
+                    sliderInterval = setInterval(() => moveTo(1), 4000);
                 };
 
-                nextBtn.addEventListener('click', () => { moveToNext(); startSliderInterval(); });
-                prevBtn.addEventListener('click', () => { moveToPrev(); startSliderInterval(); });
+                nextBtn.addEventListener('click', () => { moveTo(1); startSliderInterval(); });
+                prevBtn.addEventListener('click', () => { moveTo(-1); startSliderInterval(); });
                 
                 startSliderInterval();
             }
