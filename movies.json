@@ -99,10 +99,10 @@
   {
     "id": 9,
     "title": "Bhool Bhulaiyaa 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPrgGZofBmaASm6xVqQ0v0w8urbZFlAqSyLg&usqp=CAU",
     "category": ["bollywood", "trending"],
     "home_section": "trending",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+    "slide_poster": "https://i.ytimg.com/vi/6YMY62tMLUA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCf8TCoogMnzgNTDo2krYYrjr9TMg",
     "overlay_text": "HD",
     "downloadLinks": [
       { "quality": "480p", "size": "650 MB", "link": "https://your-server.com/download/bhool-bhulaiyaa-3/480p" },
