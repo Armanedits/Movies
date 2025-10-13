@@ -19,7 +19,7 @@
             background-color: var(--dark-bg);
             color: #fff;
             margin: 0;
-            overflow-x: hidden; /* Horizontal scrollbar ko rokne ke liye */
+            overflow-x: hidden;
         }
         .container {
             max-width: 1200px;
@@ -34,7 +34,7 @@
         /* === SLIDER STYLES === */
         .slider-container { position: relative; width: 100%; margin: 0 auto 30px; overflow: hidden; border-radius: 8px; }
         .trending-slider { width: 100%; overflow: hidden; }
-        .slider-track { display: flex; } /* Transition yahan se hatakar JS mein daal diya gaya hai */
+        .slider-track { display: flex; }
         .slide { min-width: 100%; position: relative; cursor: pointer; box-sizing: border-box; }
         .slide a { position: relative; display: block; }
         .slide img { width: 100%; height: auto; max-height: 400px; object-fit: cover; display: block; }
@@ -67,17 +67,21 @@
         .select-items div:last-child { border-bottom: none; }
         .select-items div:hover, .same-as-selected { background-color: var(--theme-color); }
 
-        /* === MOVIE GRID (UPDATED FOR 4 COLUMNS) === */
+        /* === MOVIE GRID (UPDATED FOR 4 COLUMNS - FINAL) === */
         main h2 { font-size: 22px; font-weight: 600; margin-bottom: 20px; }
-        /* YAHAN BADLAV KIYA GAYA HAI: Ab 4 column dikhenge aur yeh responsive bhi hai */
+        /* Mobile par default 2 column */
         #movie-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-top: 20px;
         }
-        @media (max-width: 480px) {
-            #movie-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        /* Desktop (badi screen) par hamesha 4 column */
+        @media (min-width: 768px) {
+            #movie-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
         }
         .movie-card { background-color: var(--card-text-bg); border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; position: relative; }
         .movie-card:hover { transform: scale(1.05); }
@@ -142,7 +146,7 @@
                 const suggestionsBox = document.getElementById('suggestions-box');
                 const gridTitle = document.getElementById('grid-title');
 
-                // --- SLIDER LOGIC (UPDATED with INFINITE LOOP) ---
+                // --- SLIDER LOGIC (UPDATED WITH AUTO-PLAY RESUME) ---
                 function populateSlider(movieArray) {
                     const sliderTrack = document.querySelector('.slider-track');
                     const prevBtn = document.getElementById('prev-slide');
@@ -159,12 +163,7 @@
                     trendingMovies.forEach(movie => {
                         const slide = document.createElement('div');
                         slide.classList.add('slide');
-                        slide.innerHTML = `
-                            <a href="player.html?id=${movie.id}">
-                                <div class="featured-badge">Featured</div>
-                                <img src="${movie.poster}" alt="${movie.title}">
-                                <div class="slide-title">${movie.title}</div>
-                            </a>`;
+                        slide.innerHTML = `<a href="player.html?id=${movie.id}"><div class="featured-badge">Featured</div><img src="${movie.poster}" alt="${movie.title}"><div class="slide-title">${movie.title}</div></a>`;
                         sliderTrack.appendChild(slide);
                     });
 
@@ -172,7 +171,6 @@
                         prevBtn.style.display = 'flex';
                         nextBtn.style.display = 'flex';
 
-                        // Infinite loop ke liye setup
                         const slides = Array.from(sliderTrack.children);
                         const firstClone = slides[0].cloneNode(true);
                         const lastClone = slides[slides.length - 1].cloneNode(true);
@@ -182,23 +180,27 @@
                         let currentIndex = 1;
                         let isTransitioning = false;
 
-                        function setSliderPosition() {
-                            sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-                        }
+                        const setSliderPosition = () => sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+                        
+                        // YAHAN BADLAV KIYA GAYA HAI: Auto-play ko restart karne ke liye function
+                        const startSliderInterval = () => {
+                            clearInterval(sliderInterval); // Purana interval band karo
+                            sliderInterval = setInterval(moveToNext, 3000); // Naya shuru karo
+                        };
 
-                        function moveToNext() {
+                        const moveToNext = () => {
                             if (isTransitioning) return;
                             currentIndex++;
                             sliderTrack.style.transition = 'transform 0.5s ease-in-out';
                             setSliderPosition();
-                        }
+                        };
                         
-                        function moveToPrev() {
+                        const moveToPrev = () => {
                             if (isTransitioning) return;
-                             currentIndex--;
+                            currentIndex--;
                             sliderTrack.style.transition = 'transform 0.5s ease-in-out';
                             setSliderPosition();
-                        }
+                        };
 
                         sliderTrack.addEventListener('transitionstart', () => { isTransitioning = true; });
                         
@@ -217,12 +219,12 @@
                             }
                         });
 
-                        nextBtn.addEventListener('click', () => { moveToNext(); clearInterval(sliderInterval); });
-                        prevBtn.addEventListener('click', () => { moveToPrev(); clearInterval(sliderInterval); });
-
-                        sliderInterval = setInterval(moveToNext, 3000); // Speed badha di gayi hai
+                        // YAHAN BADLAV KIYA GAYA HAI: Manual click par interval restart hoga
+                        nextBtn.addEventListener('click', () => { moveToNext(); startSliderInterval(); });
+                        prevBtn.addEventListener('click', () => { moveToPrev(); startSliderInterval(); });
                         
-                        // Initial position set karo
+                        startSliderInterval(); // Slider ko shuru mein start karne ke liye
+                        
                         sliderTrack.style.transition = 'none';
                         setSliderPosition();
                     }
@@ -234,15 +236,7 @@
                     movieArray.forEach(movie => {
                         const movieLink = document.createElement('a');
                         movieLink.href = `player.html?id=${movie.id}`;
-                        movieLink.innerHTML = `
-                            <div class="movie-card">
-                                <div class="featured-badge">Featured</div>
-                                <img src="${movie.poster}" alt="${movie.title}">
-                                <div class="movie-info">
-                                    <h3>${movie.title}</h3>
-                                    <p>${movie.details}</p>
-                                </div>
-                            </div>`;
+                        movieLink.innerHTML = `<div class="movie-card"><div class="featured-badge">Featured</div><img src="${movie.poster}" alt="${movie.title}"><div class="movie-info"><h3>${movie.title}</h3><p>${movie.details}</p></div></div>`;
                         movieGrid.appendChild(movieLink);
                     });
                 }
@@ -285,18 +279,11 @@
                 originalSelect.addEventListener('change', (e) => {
                     const selectedCategoryValue = e.target.value;
                     const selectedCategoryText = e.target.options[e.target.selectedIndex].text;
-
                     if (selectedCategoryValue === 'all') {
                         displayMovies(movies);
                         gridTitle.innerHTML = '🔥 Latest Releases';
                     } else {
-                        const filteredMovies = movies.filter(movie => {
-                            if (Array.isArray(movie.category)) {
-                                return movie.category.includes(selectedCategoryValue);
-                            } else {
-                                return movie.category === selectedCategoryValue;
-                            }
-                        });
+                        const filteredMovies = movies.filter(movie => Array.isArray(movie.category) ? movie.category.includes(selectedCategoryValue) : movie.category === selectedCategoryValue);
                         displayMovies(filteredMovies);
                         gridTitle.innerText = selectedCategoryText;
                     }
