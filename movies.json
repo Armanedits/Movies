@@ -1,66 +1,282 @@
 [
   {
     "id": 1,
-    "title": "Sitaare Zameen Par",
-    "poster": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRvHZlqsNFOhanqIx3WdC1PUt2-fCgZ9uMTRArEs7IwdcCkLfty",
-    "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
-    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
-    "category": ["trending","hindi"]
+    "title": "Kalki 2898 AD",
+    "poster": "https://via.placeholder.com/300x450.png?text=Kalki",
+    "category": ["bollywood", "trending"],
+    "home_section": "trending"
   },
   {
     "id": 2,
-    "title": "KGF (Season 2)",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
-    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
-    "category": "trending"
+    "title": "Mirzapur Season 3",
+    "poster": "https://via.placeholder.com/300x450.png?text=Mirzapur+3",
+    "category": ["webseries", "trending"],
+    "home_section": "webseries"
   },
   {
     "id": 3,
-    "title": "KGF (Season 1) - Duplicate",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
-    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
-    "category": "trending"
+    "title": "Deadpool & Wolverine",
+    "poster": "https://via.placeholder.com/300x450.png?text=Deadpool",
+    "category": ["hollywood", "trending"],
+    "home_section": "trending"
   },
   {
     "id": 4,
-    "title": "KGF (Season 1) - Duplicate 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
-    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
-    "category": "trending"
+    "title": "Pushpa 2: The Rule",
+    "poster": "https://via.placeholder.com/300x450.png?text=Pushpa+2",
+    "category": ["tollywood", "trending"],
+    "home_section": "trending"
   },
   {
     "id": 5,
-    "title": "KGF (Season 1) - Duplicate 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "details": "WEB-DL [Hindi (DD5.1) & English] 4K 1080p 720p & 480p [x264/ESubs] | NF Series",
-    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
-    "category": "trending"
+    "title": "Panchayat Season 3",
+    "poster": "https://via.placeholder.com/300x450.png?text=Panchayat+3",
+    "category": ["webseries"],
+    "home_section": "webseries"
   },
   {
     "id": 6,
-    "title": "Death Note (Season 1)",
-    "poster": "https://i.postimg.cc/tJcR3b3j/death-note.jpg",
-    "details": "BluRay [Hindi (DD2.0) & English] 1080p 720p & 480p [x264/ESubs] | [EP-16 Added]",
-    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
-    "category": "hollywood"
+    "title": "Stree 2",
+    "poster": "https://via.placeholder.com/300x450.png?text=Stree+2",
+    "category": ["bollywood"],
+    "home_section": "movies"
   },
   {
     "id": 7,
-    "title": "Coolie (2025)",
-    "poster": "https://i.postimg.cc/k47v7p3V/coolie.jpg",
-    "details": "DS4K WEB-DL [Hindi (DD5.1) & Tamil] 4K 1080p 720p & 480p Dual Audio [x264/10Bit-HEVC] | Full Movie",
-    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
-    "category": "tollywood"
+    "title": "Kota Factory Season 3",
+    "poster": "https://via.placeholder.com/300x450.png?text=Kota+Factory",
+    "category": ["webseries", "trending"],
+    "home_section": "webseries"
   },
   {
     "id": 8,
-    "title": "War 2 (2025)",
-    "poster": "https://i.postimg.cc/PqgT59k3/war2.jpg",
-    "details": "DS4K WEB-DL [Hindi DD5.1] 4K 1080p 720p & 480p [x264/HEVC] | Full Movie",
-    "videoLink": "https://ia600107.us.archive.org/28/items/2025-04-03-19-50-10/2025-04-03%2019-50-10.mp4",
-    "category": "bollywood"
+    "title": "Joker: Folie à Deux",
+    "poster": "https://via.placeholder.com/300x450.png?text=Joker+2",
+    "category": ["hollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 9,
+    "title": "Bhool Bhulaiyaa 3",
+    "poster": "https://via.placeholder.com/300x450.png?text=Bhool+Bhulaiyaa+3",
+    "category": ["bollywood", "trending"],
+    "home_section": "trending"
+  },
+  {
+    "id": 10,
+    "title": "The Family Man 3",
+    "poster": "https://via.placeholder.com/300x450.png?text=Family+Man+3",
+    "category": ["webseries"],
+    "home_section": "webseries"
+  },
+  {
+    "id": 11,
+    "title": "Singham Again",
+    "poster": "https://via.placeholder.com/300x450.png?text=Singham+Again",
+    "category": ["bollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 12,
+    "title": "Gladiator 2",
+    "poster": "https://via.placeholder.com/300x450.png?text=Gladiator+2",
+    "category": ["hollywood", "trending"],
+    "home_section": "trending"
+  },
+  {
+    "id": 13,
+    "title": "Asur Season 2",
+    "poster": "https://via.placeholder.com/300x450.png?text=Asur+2",
+    "category": ["webseries", "trending"],
+    "home_section": "webseries"
+  },
+  {
+    "id": 14,
+    "title": "Chandu Champion",
+    "poster": "https://via.placeholder.com/300x450.png?text=Chandu+Champion",
+    "category": ["bollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 15,
+    "title": "Money Heist: Season 5",
+    "poster": "https://via.placeholder.com/300x450.png?text=Money+Heist",
+    "category": ["webseries", "hollywood"],
+    "home_section": "webseries"
+  },
+  {
+    "id": 16,
+    "title": "KGF Chapter 3",
+    "poster": "https://via.placeholder.com/300x450.png?text=KGF+3",
+    "category": ["tollywood", "trending"],
+    "home_section": "trending"
+  },
+  {
+    "id": 17,
+    "title": "Farzi",
+    "poster": "https://via.placeholder.com/300x450.png?text=Farzi",
+    "category": ["webseries", "bollywood"],
+    "home_section": "webseries"
+  },
+  {
+    "id": 18,
+    "title": "Oppenheimer",
+    "poster": "https://via.placeholder.com/300x450.png?text=Oppenheimer",
+    "category": ["hollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 19,
+    "title": "Animal",
+    "poster": "https://via.placeholder.com/300x450.png?text=Animal",
+    "category": ["bollywood", "trending"],
+    "home_section": "trending"
+  },
+  {
+    "id": 20,
+    "title": "Scam 2003",
+    "poster": "https://via.placeholder.com/300x450.png?text=Scam+2003",
+    "category": ["webseries"],
+    "home_section": "webseries"
+  },
+  {
+    "id": 21,
+    "title": "Jawan",
+    "poster": "https://via.placeholder.com/300x450.png?text=Jawan",
+    "category": ["bollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 22,
+    "title": "The Boys Season 4",
+    "poster": "https://via.placeholder.com/300x450.png?text=The+Boys",
+    "category": ["webseries", "hollywood"],
+    "home_section": "webseries"
+  },
+  {
+    "id": 23,
+    "title": "Avatar: The Way of Water",
+    "poster": "https://via.placeholder.com/300x450.png?text=Avatar+2",
+    "category": ["hollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 24,
+    "title": "Gadar 2",
+    "poster": "https://via.placeholder.com/300x450.png?text=Gadar+2",
+    "category": ["bollywood", "trending"],
+    "home_section": "trending"
+  },
+  {
+    "id": 25,
+    "title": "Squid Game",
+    "poster": "https://via.placeholder.com/300x450.png?text=Squid+Game",
+    "category": ["webseries", "trending"],
+    "home_section": "trending"
+  },
+  {
+    "id": 26,
+    "title": "Brahmastra",
+    "poster": "https://via.placeholder.com/300x450.png?text=Brahmastra",
+    "category": ["bollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 27,
+    "title": "Aspirants",
+    "poster": "https://via.placeholder.com/300x450.png?text=Aspirants",
+    "category": ["webseries"],
+    "home_section": "webseries"
+  },
+  {
+    "id": 28,
+    "title": "Avengers: Endgame",
+    "poster": "https://via.placeholder.com/300x450.png?text=Endgame",
+    "category": ["hollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 29,
+    "title": "RRR",
+    "poster": "https://via.placeholder.com/300x450.png?text=RRR",
+    "category": ["tollywood", "trending"],
+    "home_section": "trending"
+  },
+  {
+    "id": 30,
+    "title": "Gullak Season 4",
+    "poster": "https://via.placeholder.com/300x450.png?text=Gullak+4",
+    "category": ["webseries"],
+    "home_section": "webseries"
+  },
+  {
+    "id": 31,
+    "title": "Vikram",
+    "poster": "https://via.placeholder.com/300x450.png?text=Vikram",
+    "category": ["tollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 32,
+    "title": "The Night Manager",
+    "poster": "https://via.placeholder.com/300x450.png?text=Night+Manager",
+    "category": ["webseries", "bollywood"],
+    "home_section": "webseries"
+  },
+  {
+    "id": 33,
+    "title": "John Wick: Chapter 4",
+    "poster": "https://via.placeholder.com/300x450.png?text=John+Wick+4",
+    "category": ["hollywood", "trending"],
+    "home_section": "trending"
+  },
+  {
+    "id": 34,
+    "title": "Kantara",
+    "poster": "https://via.placeholder.com/300x450.png?text=Kantara",
+    "category": ["tollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 35,
+    "title": "Fighter",
+    "poster": "https://via.placeholder.com/300x450.png?text=Fighter",
+    "category": ["bollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 36,
+    "title": "Sacred Games",
+    "poster": "https://via.placeholder.com/300x450.png?text=Sacred+Games",
+    "category": ["webseries", "trending"],
+    "home_section": "trending"
+  },
+  {
+    "id": 37,
+    "title": "Drishyam 2",
+    "poster": "https://via.placeholder.com/300x450.png?text=Drishyam+2",
+    "category": ["bollywood"],
+    "home_section": "movies"
+  },
+  {
+    "id": 38,
+    "title": "Dahmer",
+    "poster": "https://via.placeholder.com/300x450.png?text=Dahmer",
+    "category": ["webseries", "hollywood"],
+    "home_section": "webseries"
+  },
+  {
+    "id": 39,
+    "title": "Spiderman: No Way Home",
+    "poster": "https://via.placeholder.com/300x450.png?text=Spiderman",
+    "category": ["hollywood", "trending"],
+    "home_section": "trending"
+  },
+  {
+    "id": 40,
+    "title": "Pathaan",
+    "poster": "https://via.placeholder.com/300x450.png?text=Pathaan",
+    "category": ["bollywood"],
+    "home_section": "movies"
   }
 ]
