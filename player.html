@@ -226,7 +226,7 @@
                 }
 
                 // =======================================================================
-                // === YAHAN SE CODE THEEK KIYA GAYA HAI (REPLACED AND UPGRADED CODE) ===
+                // === YAHAN SE CODE UPDATE KIYA GAYA HAI (Final Version) ===
                 // =======================================================================
 
                 const downloadsContainer = document.getElementById('download-links');
@@ -240,16 +240,18 @@
                         const button = document.createElement('a');
                         button.className = 'download-btn';
                         
-                        let buttonText = qualityValue; // Start with the basic quality text
+                        let buttonText = qualityValue; 
+                        if (linkObject && linkObject.size) {
+                            buttonText += ` (${linkObject.size})`;
+                        }
 
-                        if (linkObject && linkObject.link) {
+                        // Condition: Kya link asli hai ya demo/missing hai?
+                        if (linkObject && linkObject.link && !linkObject.link.includes('your-server.com')) {
+                            // Asli link - download karega
                             button.href = linkObject.link;
                             button.setAttribute('download', '');
-                            // Agar size bhi available hai to use text me jod do
-                            if (linkObject.size) {
-                                buttonText += ` (${linkObject.size})`;
-                            }
                         } else {
+                            // Demo ya missing link - popup dikhayega
                             button.href = '#';
                             button.addEventListener('click', (e) => {
                                 e.preventDefault();
@@ -265,7 +267,7 @@
                 }
                 
                 // =======================================================================
-                // === CODE REPLACEMENT ENDS HERE ===
+                // === CODE UPDATE ENDS HERE ===
                 // =======================================================================
 
 
