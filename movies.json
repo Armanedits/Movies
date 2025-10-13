@@ -10,6 +10,7 @@
     "slide_overlay_color": "#FF0000",
     "overlay_text": "S03",
     "overlay_color": "#2ecc71",
+    "suggestion_ids": [5, 9]
     "downloadLinks": [
       { "quality": "720p", "size": "2.21 GB", "link": "https://pixeldrain.dev/api/file/CncEwjVn?download" }
     ]
