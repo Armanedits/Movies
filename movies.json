@@ -8,7 +8,7 @@
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "slide_overlay_text": "Season 3",
     "overlay_text": "S03",
-    "overlay_color": "#2ecc71", // Green color
+    "overlay_color": "#2ecc71",
     "downloadLinks": [
       { "quality": "720p", "size": "2.21 GB", "link": "https://pixeldrain.dev/api/file/CncEwjVn?download" }
     ]
