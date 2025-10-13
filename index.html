@@ -7,118 +7,93 @@
     <!-- === CSS (Poora Style Ek Saath) === -->
     <style>
         :root {
-            --theme-color: #e74c3c;
             --dark-bg: #121212;
             --light-bg: #1f1f1f;
-            --card-text-bg: #0c0c0c;
-            --featured-bg: #e74c3c;
-            --featured-text: #ffffff;
+            --text-primary: #ffffff;
+            --text-secondary: #aaa;
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             background-color: var(--dark-bg);
-            color: #fff;
+            color: var(--text-primary);
             margin: 0;
             overflow-x: hidden;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 10px; /* Padding kam kar di gayi hai */
         }
-        header { text-align: center; padding: 20px 0; }
-        header img.logo { max-width: 180px; margin-bottom: 20px; }
-        header h1 { margin: 0; font-size: 36px; }
+        header { text-align: center; padding: 20px 0 10px 0; }
+        header img.logo { max-width: 150px; margin-bottom: 15px; }
+        header h1 { margin: 0; font-size: 28px; }
         a { color: inherit; text-decoration: none; }
 
-        /* === SLIDER STYLES === */
-        .slider-container { position: relative; width: 100%; margin: 0 auto 30px; overflow: hidden; border-radius: 8px; }
-        .trending-slider { width: 100%; overflow: hidden; }
-        .slider-track { display: flex; }
-        .slide {
-            min-width: 100%;
-            position: relative;
-            cursor: pointer;
-            box-sizing: border-box;
-            padding: 0 8px;
-        }
-        .slide a { position: relative; display: block; }
-        .slide img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            display: block;
-            border-radius: 8px;
-            aspect-ratio: 2/3; /* Hamesha poster jaisa shape rahega */
-        }
-        .slide-title { position: absolute; bottom: 20px; left: 20px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 10px 15px; border-radius: 5px; font-size: 24px; font-weight: bold; }
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); border: none; color: white; padding: 10px; cursor: pointer; border-radius: 50%; z-index: 10; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-        #prev-slide { left: 15px; }
-        #next-slide { right: 15px; }
+        /* Search bar */
+        #search-container { margin-bottom: 20px; }
+        #searchInput { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; font-size: 16px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
         
-        @media (min-width: 600px) { .slide { min-width: 50%; } }
-        @media (min-width: 992px) { .slide { min-width: 33.33%; } }
-        @media (min-width: 1200px) { .slide { min-width: 25%; } }
-
-        /* === SEARCH & SUGGESTIONS === */
-        #search-container { position: relative; margin-bottom: 30px; }
-        #searchInput { width: 100%; padding: 15px; border-radius: 8px; border: 1px solid #333; font-size: 18px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
+        /* === MOVIE GRID (PHONE PAR 4, DESKTOP PAR 7-8+) === */
+        main h2 { font-size: 20px; font-weight: 600; margin-bottom: 15px; }
         
-        /* === CUSTOM DROPDOWN STYLES === */
-        #category-filter { margin-bottom: 30px; }
-        .custom-select-container { position: relative; font-size: 18px; }
-        .select-selected { background-color: var(--light-bg); color: #fff; padding: 15px; border: 2px solid #555; border-radius: 8px; cursor: pointer; position: relative; }
-        .select-selected.select-arrow-active { border-radius: 8px 8px 0 0; border-color: var(--theme-color); }
-        .select-selected::after { position: absolute; content: ""; top: 50%; right: 18px; transform: translateY(-50%); width: 0; height: 0; border: 7px solid transparent; border-color: var(--theme-color) transparent transparent transparent; }
-        .select-selected.select-arrow-active::after { border-color: transparent transparent var(--theme-color) transparent; top: 40%; }
-        .select-items { position: absolute; background-color: #2a2a2a; top: 100%; left: 0; right: 0; z-index: 99; border-radius: 0 0 8px 8px; border: 2px solid var(--theme-color); border-top: none; }
-        .hide { display: none; }
-        .select-items div { color: #fff; padding: 12px 16px; cursor: pointer; border-bottom: 1px solid #444; }
-        .select-items div:hover, .same-as-selected { background-color: var(--theme-color); }
-
-        /* === MOVIE GRID (2 aor 4 COLUMN WALA FINAL FIX) === */
-        main h2 { font-size: 22px; font-weight: 600; margin-bottom: 20px; }
-        
-        /* Default (Mobile) ke liye 2 column */
+        /* YAHI HAI AAPKA FINAL SOLUTION */
         #movie-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-top: 20px;
+            /* Yeh line browser ko bolegi ki jitne poster fit ho sakein, utne fit karo,
+               har poster kam se kam 85px ka hona chahiye. Isse phone par 4 aayenge. */
+            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+            gap: 12px; /* Gap kam kar diya gaya hai */
+            margin-top: 10px;
         }
 
-        /* Badi Screen (Desktop) ke liye 4 column */
-        @media (min-width: 768px) {
-            #movie-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-            }
+        /* Poster card ka style */
+        .movie-card {
+            cursor: pointer;
+            transition: transform 0.2s ease;
         }
-        
-        .movie-card { background-color: var(--card-text-bg); border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; position: relative; }
-        .movie-card:hover { transform: scale(1.05); }
-        /* YAHAN BADLAV KIYA GAYA HAI: aspect-ratio se shape hamesha theek rahega */
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+        .poster-container {
+            position: relative;
+            margin-bottom: 8px;
+        }
         .movie-card img {
             width: 100%;
-            height: auto;
-            object-fit: cover;
-            aspect-ratio: 2 / 3; /* Sabse important fix yahi hai */
+            height: auto; /* Image apni natural height legi */
+            display: block;
+            border-radius: 6px; /* Thoda kam rounded corner */
         }
-        .movie-info { padding: 12px; flex-grow: 1; }
-        .movie-info h3 { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; }
+        .movie-info h3 {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+            line-height: 1.3;
+            /* Title ko 2 line ke baad cut karne ke liye */
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
 
-        /* === FEATURED BADGE === */
-        .featured-badge {
+        /* Poster ke upar wale Tags */
+        .lang-badge, .rating-badge {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: var(--featured-bg);
-            color: var(--featured-text);
-            padding: 5px 8px;
-            border-radius: 5px;
-            font-size: 12px;
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-size: 10px;
             font-weight: bold;
-            z-index: 5;
+        }
+        .lang-badge {
+            top: 6px;
+            right: 6px;
+            color: #fff;
+        }
+        .rating-badge {
+            bottom: 6px;
+            right: 6px;
+            color: #ffc107;
         }
     </style>
 </head>
@@ -128,21 +103,8 @@
         <h1>Ultimate Movie Site</h1>
     </header>
     <main class="container">
-        <div class="slider-container">
-            <div class="trending-slider"><div class="slider-track"></div></div>
-            <button id="prev-slide" class="slider-btn" style="display: none;">&#10094;</button>
-            <button id="next-slide" class="slider-btn" style="display: none;">&#10095;</button>
-        </div>
         <div id="search-container">
             <input type="text" id="searchInput" placeholder="Search for movies...">
-            <div id="suggestions-box"></div>
-        </div>
-        <div id="category-filter">
-            <div class="custom-select-container">
-                <select id="category-select" style="display: none;">
-                    <option value="all">All Categories</option><option value="trending">Trending</option><option value="bollywood">Bollywood</option><option value="hollywood">Hollywood</option><option value="tollywood">Tollywood</option><option value="bengali">Bengali</option><option value="hindi">Hindi</option>
-                </select>
-            </div>
         </div>
         <h2 id="grid-title">🔥 Latest Releases</h2>
         <div id="movie-grid"></div>
@@ -150,7 +112,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        let sliderInterval;
+        // Zaroori: movies.json mein "language" aur "rating" fields hone chahiye.
         fetch('movies.json')
             .then(response => {
                 if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
@@ -161,87 +123,46 @@
                 const searchInput = document.getElementById('searchInput');
                 const gridTitle = document.getElementById('grid-title');
 
-                function populateSlider(movieArray) {
-                    const sliderTrack = document.querySelector('.slider-track');
-                    const prevBtn = document.getElementById('prev-slide');
-                    const nextBtn = document.getElementById('next-slide');
-                    if (!sliderTrack) return;
-                    const trendingMovies = movieArray.filter(movie => (Array.isArray(movie.category) && movie.category.includes('trending')) || movie.category === 'trending');
-                    if (trendingMovies.length === 0) return;
-                    sliderTrack.innerHTML = '';
-                    trendingMovies.forEach(movie => {
-                        const slide = document.createElement('div');
-                        slide.classList.add('slide');
-                        slide.innerHTML = `<a href="player.html?id=${movie.id}"><div class="featured-badge">Featured</div><img src="${movie.poster}" alt="${movie.title}"><div class="slide-title">${movie.title}</div></a>`;
-                        sliderTrack.appendChild(slide);
-                    });
-                    if (trendingMovies.length > 3) {
-                        prevBtn.style.display = 'flex';
-                        nextBtn.style.display = 'flex';
-                        const slides = Array.from(sliderTrack.children);
-                        slides.forEach(slide => sliderTrack.appendChild(slide.cloneNode(true)));
-                        let currentIndex = 0;
-                        const startSliderInterval = () => { clearInterval(sliderInterval); sliderInterval = setInterval(moveToNext, 3000); };
-                        function moveToNext() {
-                            const slideWidth = sliderTrack.children[0].offsetWidth;
-                            sliderTrack.style.transition = 'transform 0.5s ease-in-out';
-                            currentIndex++;
-                            sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-                            if (currentIndex >= trendingMovies.length) { setTimeout(() => { sliderTrack.style.transition = 'none'; currentIndex = 0; sliderTrack.style.transform = `translateX(0)`; }, 500); }
-                        }
-                        nextBtn.addEventListener('click', () => { moveToNext(); startSliderInterval(); });
-                        prevBtn.addEventListener('click', () => { /* Add previous logic if needed */ startSliderInterval(); });
-                        startSliderInterval();
-                    }
-                }
-                
                 function displayMovies(movieArray) {
                     movieGrid.innerHTML = '';
                     movieArray.forEach(movie => {
                         const movieLink = document.createElement('a');
                         movieLink.href = `player.html?id=${movie.id}`;
-                        movieLink.innerHTML = `<div class="movie-card"><div class="featured-badge">Featured</div><img src="${movie.poster}" alt="${movie.title}"><div class="movie-info"><h3>${movie.title}</h3></div></div>`;
+                        
+                        movieLink.innerHTML = `
+                            <div class="movie-card">
+                                <div class="poster-container">
+                                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy"> <!-- lazy loading se speed badhegi -->
+                                    <div class="lang-badge">${movie.language || ''}</div>
+                                    <div class="rating-badge">${movie.rating || ''}</div>
+                                </div>
+                                <div class="movie-info">
+                                    <h3>${movie.title}</h3>
+                                </div>
+                            </div>`;
                         movieGrid.appendChild(movieLink);
                     });
                 }
 
+                // --- Search Logic ---
                 searchInput.addEventListener('input', (e) => {
                     const searchTerm = e.target.value.toLowerCase();
-                    if(searchTerm.length > 0) {
+                    if (searchTerm) {
                         const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
                         displayMovies(filteredMovies);
-                        gridTitle.innerText = `Search Results for "${searchTerm}"`;
+                        gridTitle.innerText = `Results for "${searchTerm}"`;
                     } else {
                         displayMovies(movies);
                         gridTitle.innerHTML = '🔥 Latest Releases';
                     }
                 });
 
-                const originalSelect = document.getElementById('category-select'); const customSelectContainer = document.querySelector('.custom-select-container'); const selectedDiv = document.createElement('div'); selectedDiv.classList.add('select-selected'); selectedDiv.innerHTML = originalSelect.options[originalSelect.selectedIndex].innerHTML; customSelectContainer.appendChild(selectedDiv); const optionsDiv = document.createElement('div'); optionsDiv.classList.add('select-items', 'hide');
-                Array.from(originalSelect.options).forEach((option, index) => { const optionDiv = document.createElement('div'); optionDiv.innerHTML = option.innerHTML; optionDiv.addEventListener('click', function() { originalSelect.selectedIndex = index; selectedDiv.innerHTML = this.innerHTML; optionsDiv.querySelector('.same-as-selected')?.classList.remove('same-as-selected'); this.classList.add('same-as-selected'); selectedDiv.click(); originalSelect.dispatchEvent(new Event('change')); }); optionsDiv.appendChild(optionDiv); });
-                customSelectContainer.appendChild(optionsDiv);
-                selectedDiv.addEventListener('click', (e) => { e.stopPropagation(); optionsDiv.classList.toggle('hide'); e.currentTarget.classList.toggle('select-arrow-active'); });
-                document.addEventListener('click', () => { optionsDiv.classList.add('hide'); selectedDiv.classList.remove('select-arrow-active'); });
-
-                originalSelect.addEventListener('change', (e) => {
-                    const selectedCategoryValue = e.target.value;
-                    const selectedCategoryText = e.target.options[e.target.selectedIndex].text;
-                    if (selectedCategoryValue === 'all') {
-                        displayMovies(movies);
-                        gridTitle.innerHTML = '🔥 Latest Releases';
-                    } else {
-                        const filteredMovies = movies.filter(movie => Array.isArray(movie.category) ? movie.category.includes(selectedCategoryValue) : movie.category === selectedCategoryValue);
-                        displayMovies(filteredMovies);
-                        gridTitle.innerText = selectedCategoryText;
-                    }
-                });
-
-                populateSlider(movies);
+                // --- Initial Load ---
                 displayMovies(movies);
             })
             .catch(error => {
                 console.error('Error loading movies.json:', error);
-                document.querySelector('main.container').innerHTML = `<h2 style="color: red;">Error: Movies load nahi ho payi.</h2><p style-="color: white;">Kripya 'movies.json' file aur hosting setup check karein.</p>`;
+                document.querySelector('main.container').innerHTML = `<h2 style="color: red;">Error: Movies load nahi ho payi.</h2><p style="color: white;">Kripya 'movies.json' file check karein.</p>`;
             });
     });
 </script>
