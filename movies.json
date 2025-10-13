@@ -8,7 +8,7 @@
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "slide_overlay_text": "Season 3 Out",
     "overlay_text": "S03",
-    "overlay_colour": "Green"
+    "overlay_colour": "Green",
     "downloadLinks": [
       { "quality": "480p", "size": "3.5 GB", "link": "https://your-server.com/download/mirzapur-s3/480p" },
       { "quality": "720p", "size": "2.21 GB", "link": "https://pixeldrain.dev/api/file/CncEwjVn?download" },
