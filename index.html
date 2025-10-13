@@ -43,18 +43,16 @@
             padding: 0 8px;
         }
         .slide a { position: relative; display: block; }
-        /* YAHAN BADLAV KIYA GAYA HAI: Slider image ko perfect aspect ratio diya gaya hai */
+        /* YAHAN BADLAV KIYA GAYA HAI: Fixed height di gayi hai */
         .slide img {
             width: 100%;
-            height: auto;
-            object-fit: cover;
+            height: 350px; /* Ek fixed height */
+            object-fit: cover; /* Image ko stretch kiye bina fill karega */
             display: block;
             border-radius: 8px;
-            aspect-ratio: 2/3; /* Consistent shape */
         }
         .slide-title { position: absolute; bottom: 20px; left: 20px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 10px 15px; border-radius: 5px; font-size: 24px; font-weight: bold; }
         .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); border: none; color: white; padding: 10px; cursor: pointer; border-radius: 50%; z-index: 10; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-        .slider-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
         #prev-slide { left: 15px; }
         #next-slide { right: 15px; }
         
@@ -92,16 +90,14 @@
         }
         .movie-card { background-color: var(--card-text-bg); border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; position: relative; }
         .movie-card:hover { transform: scale(1.05); }
-        .movie-card img { width: 100%; height: auto; aspect-ratio: 2/3; object-fit: cover; }
-        .movie-info { padding: 12px; flex-grow: 1; }
-        /* YAHAN BADLAV KIYA GAYA HAI: Title chota kiya gaya hai */
-        .movie-info h3 {
-            margin: 0;
-            font-size: 15px; /* Thoda chota font */
-            font-weight: 600;
-            line-height: 1.4; /* Line ke beech thodi jagah */
+        /* YAHAN BADLAV KIYA GAYA HAI: Fixed height di gayi hai aur aspect-ratio hata diya gaya hai */
+        .movie-card img {
+            width: 100%;
+            height: 240px; /* Ek fixed height, jisse sab card ek jaise dikhenge */
+            object-fit: cover; /* Yeh image ko stretch nahi hone dega */
         }
-        /* Description yahan se CSS mein hide karne ki zaroorat nahi, JS se hi hata diya hai */
+        .movie-info { padding: 12px; flex-grow: 1; }
+        .movie-info h3 { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; }
 
         /* === FEATURED BADGE === */
         .featured-badge {
@@ -119,6 +115,7 @@
     </style>
 </head>
 <body>
+    <!-- HTML code mein koi badlav nahi hai, isliye use yahan dobara nahi likh raha -->
     <header class="container">
         <img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Ultimate Movie Site Logo" class="logo">
         <h1>Ultimate Movie Site</h1>
@@ -145,9 +142,9 @@
     </main>
 
 <script>
+    // JavaScript mein koi badlav nahi hai, isliye yeh waisa hi hai
     document.addEventListener('DOMContentLoaded', () => {
         let sliderInterval;
-
         fetch('movies.json')
             .then(response => {
                 if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
@@ -159,7 +156,6 @@
                 const suggestionsBox = document.getElementById('suggestions-box');
                 const gridTitle = document.getElementById('grid-title');
 
-                // --- SLIDER LOGIC ---
                 function populateSlider(movieArray) {
                     const sliderTrack = document.querySelector('.slider-track');
                     const prevBtn = document.getElementById('prev-slide');
@@ -194,26 +190,16 @@
                     }
                 }
                 
-                // --- MOVIE GRID (DESCRIPTION REMOVED) ---
                 function displayMovies(movieArray) {
                     movieGrid.innerHTML = '';
                     movieArray.forEach(movie => {
                         const movieLink = document.createElement('a');
                         movieLink.href = `player.html?id=${movie.id}`;
-                        // YAHAN BADLAV KIYA GAYA HAI: <p>${movie.details}</p> ko hata diya gaya hai
-                        movieLink.innerHTML = `
-                            <div class="movie-card">
-                                <div class="featured-badge">Featured</div>
-                                <img src="${movie.poster}" alt="${movie.title}">
-                                <div class="movie-info">
-                                    <h3>${movie.title}</h3>
-                                </div>
-                            </div>`;
+                        movieLink.innerHTML = `<div class="movie-card"><div class="featured-badge">Featured</div><img src="${movie.poster}" alt="${movie.title}"><div class="movie-info"><h3>${movie.title}</h3></div></div>`;
                         movieGrid.appendChild(movieLink);
                     });
                 }
 
-                // --- SEARCH LOGIC ---
                 searchInput.addEventListener('input', (e) => {
                     const searchTerm = e.target.value.toLowerCase();
                     if(searchTerm.length > 0) {
@@ -226,14 +212,12 @@
                     }
                 });
 
-                // --- CUSTOM DROPDOWN ---
                 const originalSelect = document.getElementById('category-select'); const customSelectContainer = document.querySelector('.custom-select-container'); const selectedDiv = document.createElement('div'); selectedDiv.classList.add('select-selected'); selectedDiv.innerHTML = originalSelect.options[originalSelect.selectedIndex].innerHTML; customSelectContainer.appendChild(selectedDiv); const optionsDiv = document.createElement('div'); optionsDiv.classList.add('select-items', 'hide');
                 Array.from(originalSelect.options).forEach((option, index) => { const optionDiv = document.createElement('div'); optionDiv.innerHTML = option.innerHTML; optionDiv.addEventListener('click', function() { originalSelect.selectedIndex = index; selectedDiv.innerHTML = this.innerHTML; optionsDiv.querySelector('.same-as-selected')?.classList.remove('same-as-selected'); this.classList.add('same-as-selected'); selectedDiv.click(); originalSelect.dispatchEvent(new Event('change')); }); optionsDiv.appendChild(optionDiv); });
                 customSelectContainer.appendChild(optionsDiv);
                 selectedDiv.addEventListener('click', (e) => { e.stopPropagation(); optionsDiv.classList.toggle('hide'); e.currentTarget.classList.toggle('select-arrow-active'); });
                 document.addEventListener('click', () => { optionsDiv.classList.add('hide'); selectedDiv.classList.remove('select-arrow-active'); });
 
-                // --- CATEGORY FILTER ---
                 originalSelect.addEventListener('change', (e) => {
                     const selectedCategoryValue = e.target.value;
                     const selectedCategoryText = e.target.options[e.target.selectedIndex].text;
@@ -247,7 +231,6 @@
                     }
                 });
 
-                // --- INITIALIZATION ---
                 populateSlider(movies);
                 displayMovies(movies);
             })
@@ -258,4 +241,4 @@
     });
 </script>
 </body>
-</html>```
+</html>
