@@ -10,7 +10,6 @@
             --theme-color: #e74c3c;
             --dark-bg: #121212;
             --light-bg: #1f1f1f;
-            --card-text-bg: #0c0c0c;
             --text-primary: #ffffff;
             --text-secondary: #aaa;
         }
@@ -26,89 +25,172 @@
             margin: 0 auto;
             padding: 10px;
         }
-        header { text-align: center; padding: 20px 0 10px 0; }
-        header img.logo { max-width: 150px; margin-bottom: 15px; }
-        header h1 { margin: 0; font-size: 28px; }
         a { color: inherit; text-decoration: none; }
 
-        /* === SLIDER STYLES (WAPAS ADD KIYA GAYA HAI) === */
-        .slider-container { position: relative; width: 100%; margin: 0 auto 30px; overflow: hidden; border-radius: 8px; }
-        .trending-slider { width: 100%; overflow: hidden; }
-        .slider-track { display: flex; }
-        .slide {
-            min-width: 100%;
-            position: relative;
-            cursor: pointer;
-            box-sizing: border-box;
-            padding: 0 8px;
+        /* === HEADER / NAVIGATION (POORI TARAH SE NAYA) === */
+        header {
+            background-color: var(--dark-bg);
+            padding: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #2a2a2a;
         }
-        .slide a { position: relative; display: block; }
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .nav-icons, .logo-container {
+            flex: 1;
+        }
+        .logo-container { text-align: center; }
+        .nav-icons { text-align: right; }
+        header img.logo {
+            max-width: 120px;
+            vertical-align: middle;
+        }
+        .icon-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        #search-container {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            transform: translateY(-50%);
+            display: none; /* JS se handle hoga */
+            background-color: var(--dark-bg);
+        }
+        #searchInput {
+            width: 100%;
+            height: 45px;
+            padding: 0 45px 0 15px; /* right padding close button ke liye */
+            border-radius: 8px;
+            border: 1px solid var(--theme-color);
+            font-size: 16px;
+            background-color: var(--light-bg);
+            color: #fff;
+            box-sizing: border-box;
+        }
+        #close-search-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 28px;
+        }
+        .nav-bar.search-active .logo-container,
+        .nav-bar.search-active .icon-btn {
+            display: none;
+        }
+        .nav-bar.search-active #search-container {
+            display: block;
+        }
+
+
+        /* === SIDE MENU (Naya Feature) === */
+        #side-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 280px;
+            background-color: #181818;
+            z-index: 1002;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            padding-top: 60px;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.5);
+        }
+        #side-menu.open {
+            transform: translateX(0);
+        }
+        #side-menu .category-item {
+            display: block;
+            color: #fff;
+            padding: 15px 25px;
+            font-size: 18px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        #side-menu .category-item:hover {
+            background-color: var(--theme-color);
+        }
+        #menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1001;
+            display: none;
+        }
+
+        /* === SLIDER (HEIGHT KAM KI GAYI HAI) === */
+        .slider-container { position: relative; width: 100%; margin: 20px auto; overflow: hidden; border-radius: 8px; }
+        .slider-track { display: flex; }
+        .slide { min-width: 100%; padding: 0 5px; box-sizing: border-box; }
         .slide img {
             width: 100%;
             height: auto;
+            max-height: 250px; /* HEIGHT KAM KAR DI GAYI HAI */
             object-fit: cover;
-            display: block;
             border-radius: 8px;
-            aspect-ratio: 2/3;
         }
-        .slide-title { position: absolute; bottom: 20px; left: 20px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 10px 15px; border-radius: 5px; font-size: 24px; font-weight: bold; }
-        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); border: none; color: white; padding: 10px; cursor: pointer; border-radius: 50%; z-index: 10; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-        #prev-slide { left: 15px; }
-        #next-slide { right: 15px; }
-        
+        .slide-title { position: absolute; bottom: 15px; left: 15px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 8px 12px; border-radius: 5px; font-size: 18px; }
         @media (min-width: 600px) { .slide { min-width: 50%; } }
-        @media (min-width: 992px) { .slide { min-width: 33.33%; } }
 
-        /* === SEARCH & CATEGORY (STYLES THEEK KAR DIYE GAYE HAIN) === */
-        #search-container { margin-bottom: 20px; }
-        #searchInput { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; font-size: 16px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
-        #category-filter { margin-bottom: 20px; }
-        .custom-select-container { position: relative; font-size: 16px; }
-        .select-selected { background-color: var(--light-bg); color: #fff; padding: 12px; border: 1px solid #333; border-radius: 8px; cursor: pointer; position: relative; }
-        .select-selected.select-arrow-active { border-radius: 8px 8px 0 0; border-color: var(--theme-color); }
-        .select-selected::after { position: absolute; content: ""; top: 50%; right: 15px; transform: translateY(-50%); width: 0; height: 0; border: 6px solid transparent; border-color: var(--theme-color) transparent transparent transparent; }
-        .select-selected.select-arrow-active::after { border-color: transparent transparent var(--theme-color) transparent; top: 40%; }
-        .select-items { display: none; position: absolute; background-color: #2a2a2a; top: 100%; left: 0; right: 0; z-index: 99; border-radius: 0 0 8px 8px; border: 1px solid var(--theme-color); border-top: none; }
-        .select-items div { color: #fff; padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #444; }
-        .select-items div:last-child { border-bottom: none; }
-        .select-items div:hover, .same-as-selected { background-color: var(--theme-color); }
-        
         /* === MOVIE GRID === */
         main h2 { font-size: 20px; font-weight: 600; margin-bottom: 15px; }
         #movie-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
             gap: 12px;
-            margin-top: 10px;
         }
         .movie-card { cursor: pointer; transition: transform 0.2s ease; }
         .movie-card:hover { transform: scale(1.05); }
-        .poster-container { position: relative; margin-bottom: 8px; }
         .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
-        .movie-info h3 { font-size: 14px; font-weight: 500; margin: 0; line-height: 1.3; }
+        .movie-info h3 { font-size: 14px; font-weight: 500; margin: 8px 0 0 0; line-height: 1.3; }
     </style>
 </head>
 <body>
-    <header class="container">
-        <img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Ultimate Movie Site Logo" class="logo">
-        <h1>Ultimate Movie Site</h1>
-    </header>
-    <main class="container">
-        <!-- Slider ab wapas aa gaya hai -->
-        <div class="slider-container">
-            <div class="trending-slider"><div class="slider-track"></div></div>
-            <button id="prev-slide" class="slider-btn" style="display: none;">&#10094;</button>
-            <button id="next-slide" class="slider-btn" style="display: none;">&#10095;</button>
-        </div>
-        <div id="search-container">
-            <input type="text" id="searchInput" placeholder="Search for movies...">
-        </div>
-        <div id="category-filter">
-            <div class="custom-select-container">
-                <select id="category-select" style="display: none;">
-                    <option value="all">All Categories</option><option value="trending">Trending</option><option value="bollywood">Bollywood</option><option value="hollywood">Hollywood</option><option value="tollywood">Tollywood</option><option value="bengali">Bengali</option><option value="hindi">Hindi</option>
-                </select>
+    <!-- Naya Header -->
+    <header>
+        <nav class="nav-bar">
+            <div class="nav-icons" style="text-align: left;">
+                <button class="icon-btn" id="menu-btn">&#9776;</button> <!-- Menu Icon -->
             </div>
+            <div class="logo-container">
+                <img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Logo" class="logo">
+            </div>
+            <div class="nav-icons">
+                <button class="icon-btn" id="search-icon-btn">&#128269;</button> <!-- Search Icon -->
+            </div>
+            <!-- Search Bar (hidden initially) -->
+            <div id="search-container">
+                <input type="text" id="searchInput" placeholder="Search for movies...">
+                <button class="icon-btn" id="close-search-btn">&times;</button> <!-- Close Icon -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Side Menu (Naya) -->
+    <div id="side-menu">
+        <!-- Categories yahan JS se add hongi -->
+    </div>
+    <div id="menu-overlay"></div>
+
+    <main class="container">
+        <div class="slider-container">
+            <div class="slider-track"></div>
         </div>
         <h2 id="grid-title">🔥 Latest Releases</h2>
         <div id="movie-grid"></div>
@@ -116,6 +198,16 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        const categories = [
+            { value: 'all', text: 'All Categories' },
+            { value: 'trending', text: 'Trending' },
+            { value: 'bollywood', text: 'Bollywood' },
+            { value: 'hollywood', text: 'Hollywood' },
+            { value: 'tollywood', text: 'Tollywood' },
+            { value: 'bengali', text: 'Bengali' },
+            { value: 'hindi', text: 'Hindi' }
+        ];
+
         fetch('movies.json')
             .then(response => {
                 if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
@@ -125,121 +217,110 @@
                 const movieGrid = document.getElementById('movie-grid');
                 const searchInput = document.getElementById('searchInput');
                 const gridTitle = document.getElementById('grid-title');
+                const sideMenu = document.getElementById('side-menu');
 
-                // SLIDER FUNCTION (WAPAS ENABLE KIYA GAYA HAI)
+                // --- SIDE MENU LOGIC ---
+                const menuBtn = document.getElementById('menu-btn');
+                const overlay = document.getElementById('menu-overlay');
+
+                // Menu mein categories ko add karna
+                categories.forEach(cat => {
+                    const item = document.createElement('a');
+                    item.href = '#';
+                    item.className = 'category-item';
+                    item.dataset.value = cat.value;
+                    item.textContent = cat.text;
+                    sideMenu.appendChild(item);
+
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const selectedCategory = e.target.dataset.value;
+                        
+                        if (selectedCategory === 'all') {
+                            displayMovies(movies);
+                            gridTitle.innerHTML = '🔥 Latest Releases';
+                        } else {
+                            const filtered = movies.filter(movie => (Array.isArray(movie.category) && movie.category.includes(selectedCategory)) || movie.category === selectedCategory);
+                            displayMovies(filtered);
+                            gridTitle.textContent = e.target.textContent;
+                        }
+                        // Menu band karna
+                        sideMenu.classList.remove('open');
+                        overlay.style.display = 'none';
+                    });
+                });
+
+                menuBtn.addEventListener('click', () => {
+                    sideMenu.classList.add('open');
+                    overlay.style.display = 'block';
+                });
+                overlay.addEventListener('click', () => {
+                    sideMenu.classList.remove('open');
+                    overlay.style.display = 'none';
+                });
+
+                // --- SEARCH BAR LOGIC ---
+                const searchIconBtn = document.getElementById('search-icon-btn');
+                const closeSearchBtn = document.getElementById('close-search-btn');
+                const navBar = document.querySelector('.nav-bar');
+
+                searchIconBtn.addEventListener('click', () => {
+                    navBar.classList.add('search-active');
+                    searchInput.focus();
+                });
+                closeSearchBtn.addEventListener('click', () => {
+                    navBar.classList.remove('search-active');
+                });
+
+                // --- SLIDER ---
                 function populateSlider(movieArray) {
                     const sliderTrack = document.querySelector('.slider-track');
-                    if (!sliderTrack) return;
-                    const trendingMovies = movieArray.filter(movie => (Array.isArray(movie.category) && movie.category.includes('trending')) || movie.category === 'trending');
-                    if (trendingMovies.length === 0) {
-                        document.querySelector('.slider-container').style.display = 'none';
+                    const sliderContainer = document.querySelector('.slider-container');
+                    const trending = movieArray.filter(m => (Array.isArray(m.category) && m.category.includes('trending')) || m.category === 'trending');
+                    if (!sliderTrack || trending.length === 0) {
+                        sliderContainer.style.display = 'none';
                         return;
                     }
                     sliderTrack.innerHTML = '';
-                    trendingMovies.forEach(movie => {
+                    trending.forEach(movie => {
                         const slide = document.createElement('div');
-                        slide.classList.add('slide');
-                        // Slider mein ab koi extra style nahi hai, sirf poster aur title
+                        slide.className = 'slide';
                         slide.innerHTML = `<a href="player.html?id=${movie.id}"><img src="${movie.poster}" alt="${movie.title}"><div class="slide-title">${movie.title}</div></a>`;
                         sliderTrack.appendChild(slide);
                     });
                 }
-
+                
+                // --- MOVIE GRID ---
                 function displayMovies(movieArray) {
                     movieGrid.innerHTML = '';
                     movieArray.forEach(movie => {
-                        const movieLink = document.createElement('a');
-                        movieLink.href = `player.html?id=${movie.id}`;
-                        
-                        // POSTER SE SABHI EXTRA STYLE HATA DIYE GAYE HAIN
-                        movieLink.innerHTML = `
-                            <div class="movie-card">
-                                <div class="poster-container">
-                                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                                </div>
-                                <div class="movie-info">
-                                    <h3>${movie.title}</h3>
-                                </div>
-                            </div>`;
-                        movieGrid.appendChild(movieLink);
+                        const link = document.createElement('a');
+                        link.href = `player.html?id=${movie.id}`;
+                        link.innerHTML = `<div class="movie-card"><img src="${movie.poster}" alt="${movie.title}" loading="lazy"><div class="movie-info"><h3>${movie.title}</h3></div></div>`;
+                        movieGrid.appendChild(link);
                     });
                 }
 
+                // --- SEARCH INPUT EVENT ---
                 searchInput.addEventListener('input', (e) => {
-                    const searchTerm = e.target.value.toLowerCase();
-                    if (searchTerm) {
-                        const filteredMovies = movies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
-                        displayMovies(filteredMovies);
-                        gridTitle.innerText = `Results for "${searchTerm}"`;
+                    const term = e.target.value.toLowerCase();
+                    if (term) {
+                        const filtered = movies.filter(m => m.title.toLowerCase().includes(term));
+                        displayMovies(filtered);
+                        gridTitle.innerText = `Results for "${term}"`;
                     } else {
                         displayMovies(movies);
                         gridTitle.innerHTML = '🔥 Latest Releases';
-                    }
-                });
-
-                const originalSelect = document.getElementById('category-select');
-                const customSelectContainer = document.querySelector('.custom-select-container');
-                const selectedDiv = document.createElement('div');
-                selectedDiv.classList.add('select-selected');
-                selectedDiv.innerHTML = originalSelect.options[originalSelect.selectedIndex].innerHTML;
-                customSelectContainer.appendChild(selectedDiv);
-                
-                const optionsDiv = document.createElement('div');
-                optionsDiv.classList.add('select-items');
-                
-                Array.from(originalSelect.options).forEach((option, index) => {
-                    const optionDiv = document.createElement('div');
-                    optionDiv.innerHTML = option.innerHTML;
-                    optionDiv.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        originalSelect.selectedIndex = index;
-                        selectedDiv.innerHTML = this.innerHTML;
-                        optionsDiv.style.display = 'none';
-                        selectedDiv.classList.remove('select-arrow-active');
-                        originalSelect.dispatchEvent(new Event('change'));
-                        // Remove highlight from other items
-                        this.parentElement.querySelector('.same-as-selected')?.classList.remove('same-as-selected');
-                        this.classList.add('same-as-selected');
-                    });
-                    optionsDiv.appendChild(optionDiv);
-                });
-                customSelectContainer.appendChild(optionsDiv);
-
-                selectedDiv.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const isHidden = optionsDiv.style.display === 'none' || !optionsDiv.style.display;
-                    optionsDiv.style.display = isHidden ? 'block' : 'none';
-                    e.currentTarget.classList.toggle('select-arrow-active');
-                });
-
-                document.addEventListener('click', () => {
-                    optionsDiv.style.display = 'none';
-                    selectedDiv.classList.remove('select-arrow-active');
-                });
-
-                originalSelect.addEventListener('change', (e) => {
-                    const selectedCategory = e.target.value;
-                    const selectedText = e.target.options[e.target.selectedIndex].text;
-                    if (selectedCategory === 'all') {
-                        displayMovies(movies);
-                        gridTitle.innerHTML = '🔥 Latest Releases';
-                    } else {
-                        const filteredMovies = movies.filter(movie => {
-                            if (Array.isArray(movie.category)) return movie.category.includes(selectedCategory);
-                            return movie.category === selectedCategory;
-                        });
-                        displayMovies(filteredMovies);
-                        gridTitle.innerText = selectedText;
                     }
                 });
 
                 // Initial Load
-                populateSlider(movies); // Slider ko call kiya gaya hai
+                populateSlider(movies);
                 displayMovies(movies);
             })
             .catch(error => {
-                console.error('Error loading movies.json:', error);
-                document.querySelector('main.container').innerHTML = `<h2 style="color: red;">Error: Movies load nahi ho payi.</h2><p style="color: white;">Kripya 'movies.json' file check karein.</p>`;
+                console.error('Error loading file:', error);
+                document.querySelector('main.container').innerHTML = `<h2 style="color:red;">Error: Movies load nahi ho payi.</h2>`;
             });
     });
 </script>
