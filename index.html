@@ -9,6 +9,7 @@
         :root {
             --dark-bg: #121212;
             --light-bg: #1f1f1f;
+            --theme-color: #e74c3c;
             --text-primary: #ffffff;
             --text-secondary: #aaa;
         }
@@ -22,58 +23,51 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 10px; /* Padding kam kar di gayi hai */
+            padding: 10px;
         }
         header { text-align: center; padding: 20px 0 10px 0; }
         header img.logo { max-width: 150px; margin-bottom: 15px; }
         header h1 { margin: 0; font-size: 28px; }
         a { color: inherit; text-decoration: none; }
 
-        /* Search bar */
+        /* Search aur Category */
         #search-container { margin-bottom: 20px; }
         #searchInput { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; font-size: 16px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
+        #category-filter { margin-bottom: 20px; }
+        .custom-select-container { position: relative; font-size: 16px; }
+        .select-selected { background-color: var(--light-bg); color: #fff; padding: 12px; border: 1px solid #333; border-radius: 8px; cursor: pointer; position: relative; }
+        .select-selected.select-arrow-active { border-radius: 8px 8px 0 0; }
+        .select-selected::after { position: absolute; content: ""; top: 50%; right: 15px; transform: translateY(-50%); width: 0; height: 0; border: 6px solid transparent; border-color: var(--theme-color) transparent transparent transparent; }
+        .select-selected.select-arrow-active::after { border-color: transparent transparent var(--theme-color) transparent; top: 40%; }
+        .select-items { display: none; position: absolute; background-color: #2a2a2a; top: 100%; left: 0; right: 0; z-index: 99; border-radius: 0 0 8px 8px; border: 1px solid #333; border-top: none; }
+        .select-items div { color: #fff; padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #444; }
+        .select-items div:last-child { border-bottom: none; }
+        .select-items div:hover, .same-as-selected { background-color: var(--theme-color); }
         
         /* === MOVIE GRID (PHONE PAR 4, DESKTOP PAR 7-8+) === */
         main h2 { font-size: 20px; font-weight: 600; margin-bottom: 15px; }
         
-        /* YAHI HAI AAPKA FINAL SOLUTION */
+        /* YAHAN BADLAV KIYA GAYA HAI: Ab phone par 4 poster aayenge */
         #movie-grid {
             display: grid;
-            /* Yeh line browser ko bolegi ki jitne poster fit ho sakein, utne fit karo,
-               har poster kam se kam 85px ka hona chahiye. Isse phone par 4 aayenge. */
-            grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
-            gap: 12px; /* Gap kam kar diya gaya hai */
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 12px;
             margin-top: 10px;
         }
 
         /* Poster card ka style */
-        .movie-card {
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-        .movie-card:hover {
-            transform: scale(1.05);
-        }
-        .poster-container {
-            position: relative;
-            margin-bottom: 8px;
-        }
-        .movie-card img {
-            width: 100%;
-            height: auto; /* Image apni natural height legi */
-            display: block;
-            border-radius: 6px; /* Thoda kam rounded corner */
-        }
+        .movie-card { cursor: pointer; transition: transform 0.2s ease; }
+        .movie-card:hover { transform: scale(1.05); }
+        .poster-container { position: relative; margin-bottom: 8px; }
+        .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; }
+        
+        /* YAHAN BADLAV KIYA GAYA HAI: Title se dots (...) hata diye gaye hain */
         .movie-info h3 {
             font-size: 14px;
             font-weight: 500;
             margin: 0;
             line-height: 1.3;
-            /* Title ko 2 line ke baad cut karne ke liye */
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;  
-            overflow: hidden;
+            /* Ab title poora dikhega aur neeche ki line mein wrap hoga */
         }
 
         /* Poster ke upar wale Tags */
@@ -85,16 +79,8 @@
             font-size: 10px;
             font-weight: bold;
         }
-        .lang-badge {
-            top: 6px;
-            right: 6px;
-            color: #fff;
-        }
-        .rating-badge {
-            bottom: 6px;
-            right: 6px;
-            color: #ffc107;
-        }
+        .lang-badge { top: 6px; right: 6px; color: #fff; }
+        .rating-badge { bottom: 6px; right: 6px; color: #ffc107; }
     </style>
 </head>
 <body>
@@ -106,13 +92,20 @@
         <div id="search-container">
             <input type="text" id="searchInput" placeholder="Search for movies...">
         </div>
+        <!-- YAHAN BADLAV KIYA GAYA HAI: Category ko wapas laya gaya hai -->
+        <div id="category-filter">
+            <div class="custom-select-container">
+                <select id="category-select" style="display: none;">
+                    <option value="all">All Categories</option><option value="trending">Trending</option><option value="bollywood">Bollywood</option><option value="hollywood">Hollywood</option><option value="tollywood">Tollywood</option><option value="bengali">Bengali</option><option value="hindi">Hindi</option>
+                </select>
+            </div>
+        </div>
         <h2 id="grid-title">🔥 Latest Releases</h2>
         <div id="movie-grid"></div>
     </main>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Zaroori: movies.json mein "language" aur "rating" fields hone chahiye.
         fetch('movies.json')
             .then(response => {
                 if (!response.ok) { throw new Error(`HTTP error! status: ${response.status}`); }
@@ -132,7 +125,7 @@
                         movieLink.innerHTML = `
                             <div class="movie-card">
                                 <div class="poster-container">
-                                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy"> <!-- lazy loading se speed badhegi -->
+                                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
                                     <div class="lang-badge">${movie.language || ''}</div>
                                     <div class="rating-badge">${movie.rating || ''}</div>
                                 </div>
@@ -144,7 +137,6 @@
                     });
                 }
 
-                // --- Search Logic ---
                 searchInput.addEventListener('input', (e) => {
                     const searchTerm = e.target.value.toLowerCase();
                     if (searchTerm) {
@@ -157,7 +149,60 @@
                     }
                 });
 
-                // --- Initial Load ---
+                // --- CATEGORY DROPDOWN LOGIC (WAPAS ADD KAR DIYA GAYA HAI) ---
+                const originalSelect = document.getElementById('category-select');
+                const customSelectContainer = document.querySelector('.custom-select-container');
+                const selectedDiv = document.createElement('div');
+                selectedDiv.classList.add('select-selected');
+                selectedDiv.innerHTML = originalSelect.options[originalSelect.selectedIndex].innerHTML;
+                customSelectContainer.appendChild(selectedDiv);
+                
+                const optionsDiv = document.createElement('div');
+                optionsDiv.classList.add('select-items');
+                
+                Array.from(originalSelect.options).forEach((option, index) => {
+                    const optionDiv = document.createElement('div');
+                    optionDiv.innerHTML = option.innerHTML;
+                    optionDiv.addEventListener('click', function() {
+                        originalSelect.selectedIndex = index;
+                        selectedDiv.innerHTML = this.innerHTML;
+                        optionsDiv.style.display = 'none';
+                        selectedDiv.classList.remove('select-arrow-active');
+                        originalSelect.dispatchEvent(new Event('change'));
+                    });
+                    optionsDiv.appendChild(optionDiv);
+                });
+                customSelectContainer.appendChild(optionsDiv);
+
+                selectedDiv.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isHidden = optionsDiv.style.display === 'none' || !optionsDiv.style.display;
+                    optionsDiv.style.display = isHidden ? 'block' : 'none';
+                    e.currentTarget.classList.toggle('select-arrow-active');
+                });
+
+                document.addEventListener('click', () => {
+                    optionsDiv.style.display = 'none';
+                    selectedDiv.classList.remove('select-arrow-active');
+                });
+
+                originalSelect.addEventListener('change', (e) => {
+                    const selectedCategory = e.target.value;
+                    const selectedText = e.target.options[e.target.selectedIndex].text;
+                    if (selectedCategory === 'all') {
+                        displayMovies(movies);
+                        gridTitle.innerHTML = '🔥 Latest Releases';
+                    } else {
+                        const filteredMovies = movies.filter(movie => {
+                            if (Array.isArray(movie.category)) return movie.category.includes(selectedCategory);
+                            return movie.category === selectedCategory;
+                        });
+                        displayMovies(filteredMovies);
+                        gridTitle.innerText = selectedText;
+                    }
+                });
+
+                // Initial Load
                 displayMovies(movies);
             })
             .catch(error => {
