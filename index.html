@@ -67,21 +67,14 @@
         .select-items div:last-child { border-bottom: none; }
         .select-items div:hover, .same-as-selected { background-color: var(--theme-color); }
 
-        /* === MOVIE GRID (UPDATED FOR 4 COLUMNS - FINAL) === */
+        /* === MOVIE GRID (FIXED 4 COLUMNS) === */
         main h2 { font-size: 22px; font-weight: 600; margin-bottom: 20px; }
-        /* Mobile par default 2 column */
         #movie-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            /* HAMESHA 4 COLUMN KE LIYE YEH LINE HAI */
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px; /* Sab screen ke liye ek jaisa gap */
             margin-top: 20px;
-        }
-        /* Desktop (badi screen) par hamesha 4 column */
-        @media (min-width: 768px) {
-            #movie-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 20px;
-            }
         }
         .movie-card { background-color: var(--card-text-bg); border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; position: relative; }
         .movie-card:hover { transform: scale(1.05); }
@@ -146,7 +139,7 @@
                 const suggestionsBox = document.getElementById('suggestions-box');
                 const gridTitle = document.getElementById('grid-title');
 
-                // --- SLIDER LOGIC (UPDATED WITH AUTO-PLAY RESUME) ---
+                // --- SLIDER LOGIC ---
                 function populateSlider(movieArray) {
                     const sliderTrack = document.querySelector('.slider-track');
                     const prevBtn = document.getElementById('prev-slide');
@@ -182,10 +175,9 @@
 
                         const setSliderPosition = () => sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
                         
-                        // YAHAN BADLAV KIYA GAYA HAI: Auto-play ko restart karne ke liye function
                         const startSliderInterval = () => {
-                            clearInterval(sliderInterval); // Purana interval band karo
-                            sliderInterval = setInterval(moveToNext, 3000); // Naya shuru karo
+                            clearInterval(sliderInterval);
+                            sliderInterval = setInterval(moveToNext, 3000);
                         };
 
                         const moveToNext = () => {
@@ -219,11 +211,10 @@
                             }
                         });
 
-                        // YAHAN BADLAV KIYA GAYA HAI: Manual click par interval restart hoga
                         nextBtn.addEventListener('click', () => { moveToNext(); startSliderInterval(); });
                         prevBtn.addEventListener('click', () => { moveToPrev(); startSliderInterval(); });
                         
-                        startSliderInterval(); // Slider ko shuru mein start karne ke liye
+                        startSliderInterval();
                         
                         sliderTrack.style.transition = 'none';
                         setSliderPosition();
