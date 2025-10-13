@@ -6,14 +6,42 @@
     <title>Ultimate Movie Site</title>
     <!-- === CSS (Poora Style Ek Saath) === -->
     <style>
-        :root { --theme-color: #e74c3c; --dark-bg: #121212; --light-bg: #1f1f1f; --card-text-bg: #0c0c0c; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color: var(--dark-bg); color: #fff; margin: 0; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        header { text-align: center; padding: 20px 0; }
-        header img.logo { max-width: 180px; margin-bottom: 20px;}
-        header h1 { margin: 0; font-size: 36px; }
-        a { color: inherit; text-decoration: none; }
-        
+        :root {
+            --theme-color: #e74c3c;
+            --dark-bg: #121212;
+            --light-bg: #1f1f1f;
+            --card-text-bg: #0c0c0c;
+            --featured-bg: #e74c3c; /* Featured box ka background color */
+            --featured-text: #ffffff; /* Featured box ka text color */
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--dark-bg);
+            color: #fff;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        header img.logo {
+            max-width: 180px;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
         /* === SLIDER STYLES === */
         .slider-container { position: relative; width: 100%; margin: 0 auto 30px; overflow: hidden; border-radius: 8px; }
         .trending-slider { width: 100%; overflow: hidden; }
@@ -25,7 +53,7 @@
         .slider-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
         #prev-slide { left: 15px; }
         #next-slide { right: 15px; }
-        
+
         /* === SEARCH & SUGGESTIONS === */
         #search-container { position: relative; margin-bottom: 30px; }
         #searchInput { width: 100%; padding: 15px; border-radius: 8px; border: 1px solid #333; font-size: 18px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
@@ -35,29 +63,60 @@
         .suggestion-item:hover { background-color: #3c3c3c; }
         .suggestion-item img { width: 40px; height: 60px; object-fit: cover; margin-right: 15px; border-radius: 4px; }
         .suggestion-item span { font-size: 16px; }
-        
-        /* === CUSTOM DROPDOWN STYLES === */
+
+        /* === CUSTOM DROPDOWN STYLES (UPDATED) === */
         #category-filter { margin-bottom: 30px; }
         .custom-select-container { position: relative; font-size: 18px; }
         .select-selected { background-color: var(--light-bg); color: #fff; padding: 15px; border: 2px solid #555; border-radius: 8px; cursor: pointer; position: relative; transition: border-color 0.3s, box-shadow 0.3s; }
         .select-selected.select-arrow-active { border-radius: 8px 8px 0 0; border-color: var(--theme-color); box-shadow: 0 0 10px rgba(231, 76, 60, 0.5); }
         .select-selected::after { position: absolute; content: ""; top: 50%; right: 18px; transform: translateY(-50%); width: 0; height: 0; border: 7px solid transparent; border-color: var(--theme-color) transparent transparent transparent; }
         .select-selected.select-arrow-active::after { border-color: transparent transparent var(--theme-color) transparent; top: 40%; }
-        .select-items { position: absolute; background-color: #2a2a2a; top: 100%; left: 0; right: 0; z-index: 99; border-radius: 0 0 8px 8px; border: 2px solid var(--theme-color); border-top: none; max-height: 250px; overflow-y: auto; }
+        /* YAHAN BADLAV KIYA GAYA HAI: max-height aur overflow-y hata diya gaya hai */
+        .select-items { position: absolute; background-color: #2a2a2a; top: 100%; left: 0; right: 0; z-index: 99; border-radius: 0 0 8px 8px; border: 2px solid var(--theme-color); border-top: none; }
         .hide { display: none; }
         .select-items div { color: #fff; padding: 12px 16px; cursor: pointer; border-bottom: 1px solid #444; transition: background-color 0.2s; }
         .select-items div:last-child { border-bottom: none; }
         .select-items div:hover, .same-as-selected { background-color: var(--theme-color); }
-        
-        /* === MOVIE GRID === */
+
+        /* === MOVIE GRID (UPDATED) === */
         main h2 { font-size: 22px; font-weight: 600; margin-bottom: 20px; }
-        #movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; margin-top: 20px; }
-        .movie-card { background-color: var(--card-text-bg); border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; }
+        /* YAHAN BADLAV KIYA GAYA HAI: Ab 4 column dikhenge aur gap adjust kiya gaya hai */
+        #movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .movie-card {
+            background-color: var(--card-text-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            position: relative; /* Featured badge ke liye zaroori */
+        }
         .movie-card:hover { transform: scale(1.05); }
-        .movie-card img { width: 100%; height: auto; aspect-ratio: 2/3; object-fit: cover; }
+        /* YAHAN BADLAV KIYA GAYA HAI: object-fit: cover se image poora cover hogi */
+        .movie-card img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 2/3;
+            object-fit: cover;
+        }
         .movie-info { padding: 12px; flex-grow: 1; }
         .movie-info h3 { margin: 0 0 8px 0; font-size: 16px; text-align: left; font-weight: 600; color: #fff; }
         .movie-info p { margin: 0; font-size: 12px; color: #aaa; line-height: 1.5; text-align: left; }
+        
+        /* === FEATURED BADGE (NEW) === */
+        .featured-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--featured-bg);
+            color: var(--featured-text);
+            padding: 5px 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 5;
+        }
     </style>
 </head>
 <body>
@@ -103,12 +162,9 @@
                     const sliderTrack = document.querySelector('.slider-track');
                     if (!sliderTrack) return;
                     
-                    // === REPLACED CODE FOR SLIDER ===
-                    // This now checks for 'trending' inside an array as well as a simple string.
                     const trendingMovies = movieArray.filter(movie => 
                         (Array.isArray(movie.category) && movie.category.includes('trending')) || movie.category === 'trending'
                     );
-                    // ================================
 
                     sliderTrack.innerHTML = '';
                     trendingMovies.forEach(movie => {
@@ -130,13 +186,22 @@
                     }
                 }
 
-                // --- MOVIE GRID ---
+                // --- MOVIE GRID (UPDATED with FEATURED BADGE) ---
                 function displayMovies(movieArray) {
                     movieGrid.innerHTML = '';
                     movieArray.forEach(movie => {
                         const movieLink = document.createElement('a');
                         movieLink.href = `player.html?id=${movie.id}`;
-                        movieLink.innerHTML = `<div class="movie-card"><img src="${movie.poster}" alt="${movie.title}"><div class="movie-info"><h3>${movie.title}</h3><p>${movie.details}</p></div></div>`;
+                        // YAHAN BADLAV KIYA GAYA HAI: Featured badge add kiya gaya hai
+                        movieLink.innerHTML = `
+                            <div class="movie-card">
+                                <div class="featured-badge">Featured</div>
+                                <img src="${movie.poster}" alt="${movie.title}">
+                                <div class="movie-info">
+                                    <h3>${movie.title}</h3>
+                                    <p>${movie.details}</p>
+                                </div>
+                            </div>`;
                         movieGrid.appendChild(movieLink);
                     });
                 }
@@ -169,27 +234,21 @@
                 document.addEventListener('click', () => { optionsDiv.classList.add('hide'); selectedDiv.classList.remove('select-arrow-active'); });
                 
                 // --- CATEGORY FILTER ---
-                // === REPLACED CODE FOR CATEGORY DROPDOWN ===
-                // This entire block is updated to handle both array and string categories.
                 originalSelect.addEventListener('change', (e) => {
                     const selectedCategory = e.target.value;
                     if (selectedCategory === 'all') {
                         displayMovies(movies);
                     } else {
                         const filteredMovies = movies.filter(movie => {
-                            // Check if the movie's category is an array
                             if (Array.isArray(movie.category)) {
-                                // If it is, check if the selected category is inside that array
                                 return movie.category.includes(selectedCategory);
                             } else {
-                                // If it's not an array, do the old comparison
                                 return movie.category === selectedCategory;
                             }
                         });
                         displayMovies(filteredMovies);
                     }
                 });
-                // ===========================================
                 
                 // --- INITIALIZATION ---
                 populateSlider(movies);
