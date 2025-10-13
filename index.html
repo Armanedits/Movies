@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Movie Site</title>
-    <!-- === CSS (Poora Style Ek Saath) === -->
     <style>
         :root {
-            --theme-color: #e74c3c;
+            --theme-color: #e74c3c; /* Yeh default red color hai */
             --dark-bg: #121212;
             --light-bg: #1f1f1f;
             --text-primary: #ffffff;
@@ -43,59 +42,24 @@
             margin: 0 auto;
             height: 50px;
         }
-        .nav-left, .nav-right, .logo-container {
-            flex: 1;
-        }
-        .logo-container { 
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-        }
+        .nav-left, .nav-right, .logo-container { flex: 1; }
+        .logo-container { text-align: center; display: flex; align-items: center; justify-content: center; height: 100%; }
         .logo-container a { display: inline-block; line-height: 0; }
         .nav-right { text-align: right; }
         header img.logo { max-width: 120px; vertical-align: middle; }
-        .icon-btn {
-            background: none; border: none; color: white;
-            font-size: 24px; cursor: pointer; padding: 5px;
-        }
-        
-        #search-container {
-            display: none; flex-grow: 1; position: relative;
-        }
-        #searchInput {
-            width: 100%; height: 40px; padding: 0 45px 0 15px;
-            border-radius: 8px; border: 1px solid var(--theme-color);
-            font-size: 16px; background-color: var(--light-bg); color: #fff;
-            box-sizing: border-box;
-        }
-        #close-search-btn {
-            position: absolute; right: 5px; top: 50%;
-            transform: translateY(-50%); font-size: 28px;
-        }
-        .nav-bar.search-active .logo-container,
-        .nav-bar.search-active .nav-left,
-        .nav-bar.search-active .nav-right { display: none; }
+        .icon-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; }
+        #search-container { display: none; flex-grow: 1; position: relative; }
+        #searchInput { width: 100%; height: 40px; padding: 0 45px 0 15px; border-radius: 8px; border: 1px solid var(--theme-color); font-size: 16px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
+        #close-search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); font-size: 28px; }
+        .nav-bar.search-active .logo-container, .nav-bar.search-active .nav-left, .nav-bar.search-active .nav-right { display: none; }
         .nav-bar.search-active #search-container { display: flex; align-items: center; }
 
         /* === SIDE MENU === */
-        #side-menu {
-            position: fixed; top: 0; left: 0; height: 100%; width: 280px;
-            background-color: #181818; z-index: 1002;
-            transform: translateX(-100%); transition: transform 0.3s ease-in-out;
-            padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5);
-        }
+        #side-menu { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background-color: #181818; z-index: 1002; transform: translateX(-100%); transition: transform 0.3s ease-in-out; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         #side-menu.open { transform: translateX(0); }
-        #side-menu .category-item {
-            display: block; color: #fff; padding: 15px 25px;
-            font-size: 18px; border-bottom: 1px solid #2a2a2a;
-        }
+        #side-menu .category-item { display: block; color: #fff; padding: 15px 25px; font-size: 18px; border-bottom: 1px solid #2a2a2a; }
         #side-menu .category-item:hover { background-color: var(--theme-color); }
-        #menu-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.7); z-index: 1001; display: none;
-        }
+        #menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1001; display: none; }
 
         /* === SLIDER === */
         .slider-container { position: relative; width: 100%; margin: 20px auto; overflow: hidden; border-radius: 8px; }
@@ -106,9 +70,9 @@
         .slider-btn { display: none; }
         .slide-overlay-text {
             position: absolute; top: 10px; left: 10px;
-            background-color: var(--theme-color); color: white;
-            padding: 5px 10px; font-size: 12px; font-weight: bold;
-            border-radius: 5px; z-index: 5;
+            /* background-color YAHAN SE HATA DIYA GAYA HAI */
+            color: white; padding: 5px 10px; font-size: 12px;
+            font-weight: bold; border-radius: 5px; z-index: 5;
         }
         @media (min-width: 600px) { .slide { min-width: 50%; } }
         @media (min-width: 992px) { .slide { min-width: 33.33%; } }
@@ -116,28 +80,15 @@
         /* === MOVIE GRID === */
         main h2 { font-size: 20px; font-weight: 600; margin-bottom: 15px; margin-top: 30px; }
         .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 12px; }
-        .movie-card { 
-            cursor: pointer; 
-            transition: transform 0.2s ease;
-            position: relative; /* Zaroori hai overlay ke liye */
-            overflow: hidden; /* Good practice */
-        }
+        .movie-card { cursor: pointer; transition: transform 0.2s ease; position: relative; overflow: hidden; }
         .movie-card:hover { transform: scale(1.05); }
         .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
         .movie-info h3 { font-size: 14px; font-weight: 500; margin: 8px 0 0 0; line-height: 1.3; }
-
-        /* Grid Poster ke overlay ke liye Naya CSS */
         .movie-card-overlay {
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            background-color: var(--theme-color);
-            color: white;
-            padding: 3px 6px;
-            font-size: 10px;
-            font-weight: bold;
-            border-radius: 4px;
-            z-index: 2;
+            position: absolute; top: 5px; left: 5px;
+            /* background-color YAHAN SE BHI HATA DIYA GAYA HAI */
+            color: white; padding: 3px 6px; font-size: 10px;
+            font-weight: bold; border-radius: 4px; z-index: 2;
         }
     </style>
 </head>
@@ -191,15 +142,10 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const categories = [
-            { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' },
-            { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' },
-            { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' }
-        ];
+        const categories = [ { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
         let sliderInterval;
         let allMovies = [];
 
-        // DOM Elements
         const homePageContent = document.getElementById('home-page-content');
         const filteredResultsContainer = document.getElementById('filtered-results-container');
         const filteredTitle = document.getElementById('filtered-title');
@@ -211,13 +157,8 @@
             populateHomePage(allMovies);
             populateSlider(allMovies);
             setupSideMenu();
-
             document.getElementById('searchInput').addEventListener('input', handleSearch);
-            document.getElementById('logo-link').addEventListener('click', (e) => {
-                e.preventDefault();
-                showHomePage();
-            });
-
+            document.getElementById('logo-link').addEventListener('click', (e) => { e.preventDefault(); showHomePage(); });
         }).catch(error => {
             console.error('Error loading file:', error);
             document.querySelector('main.container').innerHTML = `<h2 style="color:red;">Error: Movies load nahi ho payi.</h2>`;
@@ -303,8 +244,12 @@
                 const link = document.createElement('a');
                 link.href = `player.html?id=${movie.id}`;
 
-                // JSON se overlay text check karein
-                const overlayHTML = movie.overlay_text ? `<div class="movie-card-overlay">${movie.overlay_text}</div>` : '';
+                let overlayHTML = '';
+                if (movie.overlay_text) {
+                    // JSON se color check karo, warna default --theme-color use karo
+                    const bgColor = movie.overlay_color || 'var(--theme-color)';
+                    overlayHTML = `<div class="movie-card-overlay" style="background-color: ${bgColor};">${movie.overlay_text}</div>`;
+                }
 
                 link.innerHTML = `
                     <div class="movie-card">
@@ -318,6 +263,7 @@
             });
         }
         
+        // === POPULATE SLIDER FUNCTION (UPDATED) ===
         function populateSlider(movieArray) {
             const sliderTrack = document.querySelector('.slider-track');
             const prevBtn = document.getElementById('prev-slide');
@@ -335,9 +281,13 @@
                 slide.className = 'slide';
                 const posterUrl = movie.slide_poster || movie.poster; 
                 const overlayText = movie.slide_overlay_text || 'Featured';
+                
+                // JSON se color check karo, warna default --theme-color use karo
+                const bgColor = movie.overlay_color || 'var(--theme-color)';
+                
                 slide.innerHTML = `
                     <a href="player.html?id=${movie.id}">
-                        <div class="slide-overlay-text">${overlayText}</div>
+                        <div class="slide-overlay-text" style="background-color: ${bgColor};">${overlayText}</div>
                         <img src="${posterUrl}" alt="${movie.title}">
                         <div class="slide-title">${movie.title}</div>
                     </a>`;
@@ -347,17 +297,16 @@
             if (trending.length > 1) {
                 prevBtn.style.display = 'flex'; 
                 nextBtn.style.display = 'flex';
+                // (Slider ka baaki logic waisa hi hai, usmein koi badlav nahi)
                 const slides = Array.from(sliderTrack.children);
                 const slideWidth = slides[0].offsetWidth;
                 const firstClone = slides[0].cloneNode(true);
                 const lastClone = slides[slides.length - 1].cloneNode(true);
                 sliderTrack.appendChild(firstClone);
                 sliderTrack.insertBefore(lastClone, slides[0]);
-                let currentIndex = 1; 
-                let isTransitioning = false;
+                let currentIndex = 1; let isTransitioning = false;
                 const setSliderPosition = () => { sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`; };
-                sliderTrack.style.transition = 'none'; 
-                setSliderPosition();
+                sliderTrack.style.transition = 'none'; setSliderPosition();
                 const moveTo = (direction) => {
                     if (isTransitioning) return;
                     isTransitioning = true;
@@ -368,16 +317,8 @@
                 sliderTrack.addEventListener('transitionend', () => {
                     isTransitioning = false;
                     const allSlides = Array.from(sliderTrack.children);
-                    if (currentIndex >= allSlides.length - 1) {
-                        sliderTrack.style.transition = 'none'; 
-                        currentIndex = 1; 
-                        setSliderPosition();
-                    }
-                    if (currentIndex <= 0) {
-                        sliderTrack.style.transition = 'none'; 
-                        currentIndex = allSlides.length - 2; 
-                        setSliderPosition();
-                    }
+                    if (currentIndex >= allSlides.length - 1) { sliderTrack.style.transition = 'none'; currentIndex = 1; setSliderPosition(); }
+                    if (currentIndex <= 0) { sliderTrack.style.transition = 'none'; currentIndex = allSlides.length - 2; setSliderPosition(); }
                 });
                 const startSliderInterval = () => {
                     clearInterval(sliderInterval);
