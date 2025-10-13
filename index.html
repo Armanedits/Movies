@@ -7,9 +7,10 @@
     <!-- === CSS (Poora Style Ek Saath) === -->
     <style>
         :root {
+            --theme-color: #e74c3c;
             --dark-bg: #121212;
             --light-bg: #1f1f1f;
-            --theme-color: #e74c3c;
+            --card-text-bg: #0c0c0c;
             --text-primary: #ffffff;
             --text-secondary: #aaa;
         }
@@ -30,57 +31,61 @@
         header h1 { margin: 0; font-size: 28px; }
         a { color: inherit; text-decoration: none; }
 
-        /* Search aur Category */
+        /* === SLIDER STYLES (WAPAS ADD KIYA GAYA HAI) === */
+        .slider-container { position: relative; width: 100%; margin: 0 auto 30px; overflow: hidden; border-radius: 8px; }
+        .trending-slider { width: 100%; overflow: hidden; }
+        .slider-track { display: flex; }
+        .slide {
+            min-width: 100%;
+            position: relative;
+            cursor: pointer;
+            box-sizing: border-box;
+            padding: 0 8px;
+        }
+        .slide a { position: relative; display: block; }
+        .slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            border-radius: 8px;
+            aspect-ratio: 2/3;
+        }
+        .slide-title { position: absolute; bottom: 20px; left: 20px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 10px 15px; border-radius: 5px; font-size: 24px; font-weight: bold; }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); border: none; color: white; padding: 10px; cursor: pointer; border-radius: 50%; z-index: 10; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+        #prev-slide { left: 15px; }
+        #next-slide { right: 15px; }
+        
+        @media (min-width: 600px) { .slide { min-width: 50%; } }
+        @media (min-width: 992px) { .slide { min-width: 33.33%; } }
+
+        /* === SEARCH & CATEGORY (STYLES THEEK KAR DIYE GAYE HAIN) === */
         #search-container { margin-bottom: 20px; }
         #searchInput { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; font-size: 16px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
         #category-filter { margin-bottom: 20px; }
         .custom-select-container { position: relative; font-size: 16px; }
         .select-selected { background-color: var(--light-bg); color: #fff; padding: 12px; border: 1px solid #333; border-radius: 8px; cursor: pointer; position: relative; }
-        .select-selected.select-arrow-active { border-radius: 8px 8px 0 0; }
+        .select-selected.select-arrow-active { border-radius: 8px 8px 0 0; border-color: var(--theme-color); }
         .select-selected::after { position: absolute; content: ""; top: 50%; right: 15px; transform: translateY(-50%); width: 0; height: 0; border: 6px solid transparent; border-color: var(--theme-color) transparent transparent transparent; }
         .select-selected.select-arrow-active::after { border-color: transparent transparent var(--theme-color) transparent; top: 40%; }
-        .select-items { display: none; position: absolute; background-color: #2a2a2a; top: 100%; left: 0; right: 0; z-index: 99; border-radius: 0 0 8px 8px; border: 1px solid #333; border-top: none; }
+        .select-items { display: none; position: absolute; background-color: #2a2a2a; top: 100%; left: 0; right: 0; z-index: 99; border-radius: 0 0 8px 8px; border: 1px solid var(--theme-color); border-top: none; }
         .select-items div { color: #fff; padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #444; }
         .select-items div:last-child { border-bottom: none; }
         .select-items div:hover, .same-as-selected { background-color: var(--theme-color); }
         
-        /* === MOVIE GRID (PHONE PAR 4, DESKTOP PAR 7-8+) === */
+        /* === MOVIE GRID === */
         main h2 { font-size: 20px; font-weight: 600; margin-bottom: 15px; }
-        
-        /* YAHAN BADLAV KIYA GAYA HAI: Ab phone par 4 poster aayenge */
         #movie-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
             gap: 12px;
             margin-top: 10px;
         }
-
-        /* Poster card ka style */
         .movie-card { cursor: pointer; transition: transform 0.2s ease; }
         .movie-card:hover { transform: scale(1.05); }
         .poster-container { position: relative; margin-bottom: 8px; }
-        .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; }
-        
-        /* YAHAN BADLAV KIYA GAYA HAI: Title se dots (...) hata diye gaye hain */
-        .movie-info h3 {
-            font-size: 14px;
-            font-weight: 500;
-            margin: 0;
-            line-height: 1.3;
-            /* Ab title poora dikhega aur neeche ki line mein wrap hoga */
-        }
-
-        /* Poster ke upar wale Tags */
-        .lang-badge, .rating-badge {
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.75);
-            padding: 3px 6px;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: bold;
-        }
-        .lang-badge { top: 6px; right: 6px; color: #fff; }
-        .rating-badge { bottom: 6px; right: 6px; color: #ffc107; }
+        .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
+        .movie-info h3 { font-size: 14px; font-weight: 500; margin: 0; line-height: 1.3; }
     </style>
 </head>
 <body>
@@ -89,10 +94,15 @@
         <h1>Ultimate Movie Site</h1>
     </header>
     <main class="container">
+        <!-- Slider ab wapas aa gaya hai -->
+        <div class="slider-container">
+            <div class="trending-slider"><div class="slider-track"></div></div>
+            <button id="prev-slide" class="slider-btn" style="display: none;">&#10094;</button>
+            <button id="next-slide" class="slider-btn" style="display: none;">&#10095;</button>
+        </div>
         <div id="search-container">
             <input type="text" id="searchInput" placeholder="Search for movies...">
         </div>
-        <!-- YAHAN BADLAV KIYA GAYA HAI: Category ko wapas laya gaya hai -->
         <div id="category-filter">
             <div class="custom-select-container">
                 <select id="category-select" style="display: none;">
@@ -116,18 +126,36 @@
                 const searchInput = document.getElementById('searchInput');
                 const gridTitle = document.getElementById('grid-title');
 
+                // SLIDER FUNCTION (WAPAS ENABLE KIYA GAYA HAI)
+                function populateSlider(movieArray) {
+                    const sliderTrack = document.querySelector('.slider-track');
+                    if (!sliderTrack) return;
+                    const trendingMovies = movieArray.filter(movie => (Array.isArray(movie.category) && movie.category.includes('trending')) || movie.category === 'trending');
+                    if (trendingMovies.length === 0) {
+                        document.querySelector('.slider-container').style.display = 'none';
+                        return;
+                    }
+                    sliderTrack.innerHTML = '';
+                    trendingMovies.forEach(movie => {
+                        const slide = document.createElement('div');
+                        slide.classList.add('slide');
+                        // Slider mein ab koi extra style nahi hai, sirf poster aur title
+                        slide.innerHTML = `<a href="player.html?id=${movie.id}"><img src="${movie.poster}" alt="${movie.title}"><div class="slide-title">${movie.title}</div></a>`;
+                        sliderTrack.appendChild(slide);
+                    });
+                }
+
                 function displayMovies(movieArray) {
                     movieGrid.innerHTML = '';
                     movieArray.forEach(movie => {
                         const movieLink = document.createElement('a');
                         movieLink.href = `player.html?id=${movie.id}`;
                         
+                        // POSTER SE SABHI EXTRA STYLE HATA DIYE GAYE HAIN
                         movieLink.innerHTML = `
                             <div class="movie-card">
                                 <div class="poster-container">
                                     <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                                    <div class="lang-badge">${movie.language || ''}</div>
-                                    <div class="rating-badge">${movie.rating || ''}</div>
                                 </div>
                                 <div class="movie-info">
                                     <h3>${movie.title}</h3>
@@ -149,7 +177,6 @@
                     }
                 });
 
-                // --- CATEGORY DROPDOWN LOGIC (WAPAS ADD KAR DIYA GAYA HAI) ---
                 const originalSelect = document.getElementById('category-select');
                 const customSelectContainer = document.querySelector('.custom-select-container');
                 const selectedDiv = document.createElement('div');
@@ -163,12 +190,16 @@
                 Array.from(originalSelect.options).forEach((option, index) => {
                     const optionDiv = document.createElement('div');
                     optionDiv.innerHTML = option.innerHTML;
-                    optionDiv.addEventListener('click', function() {
+                    optionDiv.addEventListener('click', function(e) {
+                        e.stopPropagation();
                         originalSelect.selectedIndex = index;
                         selectedDiv.innerHTML = this.innerHTML;
                         optionsDiv.style.display = 'none';
                         selectedDiv.classList.remove('select-arrow-active');
                         originalSelect.dispatchEvent(new Event('change'));
+                        // Remove highlight from other items
+                        this.parentElement.querySelector('.same-as-selected')?.classList.remove('same-as-selected');
+                        this.classList.add('same-as-selected');
                     });
                     optionsDiv.appendChild(optionDiv);
                 });
@@ -203,6 +234,7 @@
                 });
 
                 // Initial Load
+                populateSlider(movies); // Slider ko call kiya gaya hai
                 displayMovies(movies);
             })
             .catch(error => {
