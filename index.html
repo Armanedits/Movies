@@ -31,7 +31,7 @@
         header h1 { margin: 0; font-size: 36px; }
         a { color: inherit; text-decoration: none; }
 
-        /* === SLIDER STYLES (UPDATED IMAGE FIT) === */
+        /* === SLIDER STYLES === */
         .slider-container { position: relative; width: 100%; margin: 0 auto 30px; overflow: hidden; border-radius: 8px; }
         .trending-slider { width: 100%; overflow: hidden; }
         .slider-track { display: flex; }
@@ -43,13 +43,13 @@
             padding: 0 8px;
         }
         .slide a { position: relative; display: block; }
-        /* YAHAN BADLAV KIYA GAYA HAI: Fixed height di gayi hai */
         .slide img {
             width: 100%;
-            height: 350px; /* Ek fixed height */
-            object-fit: cover; /* Image ko stretch kiye bina fill karega */
+            height: auto;
+            object-fit: cover;
             display: block;
             border-radius: 8px;
+            aspect-ratio: 2/3; /* Hamesha poster jaisa shape rahega */
         }
         .slide-title { position: absolute; bottom: 20px; left: 20px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 10px 15px; border-radius: 5px; font-size: 24px; font-weight: bold; }
         .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.5); border: none; color: white; padding: 10px; cursor: pointer; border-radius: 50%; z-index: 10; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
@@ -63,11 +63,7 @@
         /* === SEARCH & SUGGESTIONS === */
         #search-container { position: relative; margin-bottom: 30px; }
         #searchInput { width: 100%; padding: 15px; border-radius: 8px; border: 1px solid #333; font-size: 18px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
-        #suggestions-box { display: none; position: absolute; top: 100%; left: 0; right: 0; background-color: #2a2a2a; border-radius: 0 0 8px 8px; max-height: 400px; overflow-y: auto; z-index: 999; border: 1px solid #333; border-top: none; }
-        .suggestion-item { display: flex; align-items: center; padding: 10px; cursor: pointer; border-bottom: 1px solid #333; }
-        .suggestion-item:hover { background-color: #3c3c3c; }
-        .suggestion-item img { width: 40px; height: 60px; object-fit: cover; margin-right: 15px; border-radius: 4px; }
-
+        
         /* === CUSTOM DROPDOWN STYLES === */
         #category-filter { margin-bottom: 30px; }
         .custom-select-container { position: relative; font-size: 18px; }
@@ -80,21 +76,33 @@
         .select-items div { color: #fff; padding: 12px 16px; cursor: pointer; border-bottom: 1px solid #444; }
         .select-items div:hover, .same-as-selected { background-color: var(--theme-color); }
 
-        /* === MOVIE GRID === */
+        /* === MOVIE GRID (2 aor 4 COLUMN WALA FINAL FIX) === */
         main h2 { font-size: 22px; font-weight: 600; margin-bottom: 20px; }
+        
+        /* Default (Mobile) ke liye 2 column */
         #movie-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
             margin-top: 20px;
         }
+
+        /* Badi Screen (Desktop) ke liye 4 column */
+        @media (min-width: 768px) {
+            #movie-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+        }
+        
         .movie-card { background-color: var(--card-text-bg); border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.2s; display: flex; flex-direction: column; position: relative; }
         .movie-card:hover { transform: scale(1.05); }
-        /* YAHAN BADLAV KIYA GAYA HAI: Fixed height di gayi hai aur aspect-ratio hata diya gaya hai */
+        /* YAHAN BADLAV KIYA GAYA HAI: aspect-ratio se shape hamesha theek rahega */
         .movie-card img {
             width: 100%;
-            height: 240px; /* Ek fixed height, jisse sab card ek jaise dikhenge */
-            object-fit: cover; /* Yeh image ko stretch nahi hone dega */
+            height: auto;
+            object-fit: cover;
+            aspect-ratio: 2 / 3; /* Sabse important fix yahi hai */
         }
         .movie-info { padding: 12px; flex-grow: 1; }
         .movie-info h3 { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; }
@@ -115,7 +123,6 @@
     </style>
 </head>
 <body>
-    <!-- HTML code mein koi badlav nahi hai, isliye use yahan dobara nahi likh raha -->
     <header class="container">
         <img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Ultimate Movie Site Logo" class="logo">
         <h1>Ultimate Movie Site</h1>
@@ -142,7 +149,6 @@
     </main>
 
 <script>
-    // JavaScript mein koi badlav nahi hai, isliye yeh waisa hi hai
     document.addEventListener('DOMContentLoaded', () => {
         let sliderInterval;
         fetch('movies.json')
@@ -153,7 +159,6 @@
             .then(movies => {
                 const movieGrid = document.getElementById('movie-grid');
                 const searchInput = document.getElementById('searchInput');
-                const suggestionsBox = document.getElementById('suggestions-box');
                 const gridTitle = document.getElementById('grid-title');
 
                 function populateSlider(movieArray) {
