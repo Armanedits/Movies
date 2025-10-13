@@ -4,99 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading Movie...</title>
-    <!-- === CSS (Updated with Popup and Grid Style) === -->
+    <!-- === CSS (Updated with Navigation Bar Styles) === -->
     <style>
         :root { --theme-color: #e74c3c; --dark-bg: #121212; --light-bg: #1f1f1f; --card-text-bg: #0c0c0c; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color: var(--dark-bg); color: #fff; margin: 0; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         a { color: inherit; text-decoration: none; }
         
-        header { text-align: center; padding: 20px 0; border-bottom: 1px solid #222; }
-        header img.logo { max-width: 150px; }
+        /* === 1. NAYA NAVIGATION BAR KA CSS === */
+        header { background-color: var(--dark-bg); padding: 10px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #2a2a2a; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; height: 45px; }
+        .nav-left, .nav-right, .logo-container { flex: 1; }
+        .logo-container { text-align: center; display: flex; align-items: center; justify-content: center; height: 100%; }
+        .logo-container a { display: inline-block; line-height: 0; }
+        .nav-right { text-align: right; }
+        header img.logo { max-width: 120px; vertical-align: middle; }
+        .icon-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; }
+        #search-container { display: none; flex-grow: 1; position: relative; }
+        #searchInput { width: 100%; height: 40px; padding: 0 45px 0 15px; border-radius: 8px; border: 1px solid var(--theme-color); font-size: 16px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
+        #close-search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); font-size: 28px; }
+        .nav-bar.search-active .logo-container, .nav-bar.search-active .nav-left, .nav-bar.search-active .nav-right { display: none; }
+        .nav-bar.search-active #search-container { display: flex; align-items: center; }
+        
+        #side-menu { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background-color: #181818; z-index: 1002; transform: translateX(-100%); transition: transform 0.3s ease-in-out; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
+        #side-menu.open { transform: translateX(0); }
+        #side-menu .category-item { display: block; color: #fff; padding: 15px 25px; font-size: 18px; border-bottom: 1px solid #2a2a2a; }
+        #side-menu .category-item:hover { background-color: var(--theme-color); }
+        #menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1001; display: none; }
 
+        /* Baaki page ka CSS */
         .movie-info-container { display: flex; flex-direction: column; gap: 30px; margin-top: 30px; }
         @media (min-width: 768px) { .movie-info-container { flex-direction: row; } }
-
         .movie-poster-large { width: 100%; max-width: 250px; height: auto; object-fit: cover; border-radius: 8px; align-self: center; }
         .movie-text-details { flex-grow: 1; }
         #movie-title { font-size: 32px; margin: 0 0 15px 0; }
         #movie-description { font-size: 16px; color: #ccc; line-height: 1.6; }
-        
         h2.section-title { font-size: 22px; margin-top: 30px; border-bottom: 2px solid var(--theme-color); padding-bottom: 10px; }
         .cast-list { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin-top: 15px; }
         .cast-member { background-color: var(--light-bg); padding: 8px 15px; border-radius: 20px; font-size: 14px; }
-        
         .download-links { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
         .download-btn { background-color: var(--theme-color); color: white; padding: 12px 25px; border-radius: 5px; font-size: 16px; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; transition: background-color 0.2s; cursor: pointer; }
         .download-btn:hover { background-color: #c0392b; }
         .download-btn svg { width: 20px; height: 20px; fill: white; }
 
-        /* === 1. RELATED MOVIES KA STYLE FIX (Home Page Jaisa) === */
+        /* Related Movies Style */
         .related-movies { margin-top: 50px; }
-        #related-movies-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); 
-            gap: 12px; 
-            margin-top: 20px; 
-        }
+        #related-movies-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 12px; margin-top: 20px; }
         .movie-card { cursor: pointer; transition: transform 0.2s ease; }
         .movie-card:hover { transform: scale(1.05); }
         .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
         .movie-info h3 { font-size: 14px; font-weight: 500; margin: 8px 0 0 0; line-height: 1.3; }
 
-        /* === 2. NAYA STYLISH POPUP KA CSS === */
-        .popup-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none; /* Shuru mein chhupa hua */
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        .popup-box {
-            background-color: var(--light-bg);
-            padding: 25px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            border-top: 4px solid var(--theme-color);
-        }
-        .popup-header h3 {
-            margin: 0 0 15px 0;
-            font-size: 20px;
-            color: #fff;
-        }
-        .popup-body p {
-            margin: 0 0 25px 0;
-            font-size: 16px;
-            color: #ccc;
-        }
-        .popup-btn {
-            background-color: var(--theme-color);
-            color: white;
-            border: none;
-            padding: 10px 30px;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
+        /* Stylish Popup CSS */
+        .popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.7); display: none; justify-content: center; align-items: center; z-index: 2000; }
+        .popup-box { background-color: var(--light-bg); padding: 25px; border-radius: 8px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.5); border-top: 4px solid var(--theme-color); }
+        .popup-header h3 { margin: 0 0 15px 0; font-size: 20px; color: #fff; }
+        .popup-body p { margin: 0 0 25px 0; font-size: 16px; color: #ccc; }
+        .popup-btn { background-color: var(--theme-color); color: white; border: none; padding: 10px 30px; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; transition: background-color 0.2s; }
         .popup-btn:hover { background-color: #c0392b; }
-
     </style>
 </head>
 <body>
-    <header class="container">
-        <a href="index.html"><img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Logo" class="logo"></a>
+    <!-- === 2. NAYA NAVIGATION BAR KA HTML === -->
+    <header>
+        <nav class="nav-bar">
+            <div class="nav-left">
+                <button class="icon-btn" id="menu-btn">&#9776;</button>
+            </div>
+            <div class="logo-container">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Logo" class="logo">
+                </a>
+            </div>
+            <div class="nav-right">
+                <button class="icon-btn" id="search-icon-btn">&#128269;</button>
+            </div>
+            <div id="search-container">
+                <input type="text" id="searchInput" placeholder="Search and press Enter...">
+                <button class="icon-btn" id="close-search-btn">&times;</button>
+            </div>
+        </nav>
     </header>
+
+    <div id="side-menu"></div>
+    <div id="menu-overlay"></div>
     
     <main class="container">
-        <!-- Movie Details -->
+        <!-- Baaki page ka HTML pehle jaisa -->
         <div class="movie-info-container">
             <img src="" alt="Movie Poster" id="main-poster" class="movie-poster-large">
             <div class="movie-text-details">
@@ -108,28 +102,19 @@
                 <div id="download-links" class="download-links"></div>
             </div>
         </div>
-        <!-- Related Movies -->
         <div class="related-movies">
             <h2 class="section-title">You might also like</h2>
             <div id="related-movies-grid"></div>
         </div>
     </main>
 
-    <!-- === POPUP KA HTML STRUCTURE (Body ke end mein) === -->
     <div id="custom-popup" class="popup-overlay">
         <div class="popup-box">
-            <div class="popup-header">
-                <h3>Ultimate Movie Site</h3>
-            </div>
-            <div class="popup-body">
-                <p id="popup-message">This is a sample message.</p>
-            </div>
-            <div class="popup-footer">
-                <button id="popup-close-btn" class="popup-btn">OK</button>
-            </div>
+            <div class="popup-header"><h3>Ultimate Movie Site</h3></div>
+            <div class="popup-body"><p id="popup-message"></p></div>
+            <div class="popup-footer"><button id="popup-close-btn" class="popup-btn">OK</button></div>
         </div>
     </div>
-
 
     <!-- === JAVASCRIPT LOGIC (Updated) === -->
     <script>
@@ -139,22 +124,50 @@
         const popup = document.getElementById('custom-popup');
         const popupMessage = document.getElementById('popup-message');
         const popupCloseBtn = document.getElementById('popup-close-btn');
-
-        function showCustomPopup(message) {
-            popupMessage.textContent = message;
-            popup.style.display = 'flex';
-        }
-
-        function hideCustomPopup() {
-            popup.style.display = 'none';
-        }
-
+        function showCustomPopup(message) { popupMessage.textContent = message; popup.style.display = 'flex'; }
+        function hideCustomPopup() { popup.style.display = 'none'; }
         popupCloseBtn.addEventListener('click', hideCustomPopup);
-        // Overlay par click karke bhi popup band hoga
-        popup.addEventListener('click', (event) => {
-            if (event.target === popup) {
-                hideCustomPopup();
+        popup.addEventListener('click', (event) => { if (event.target === popup) { hideCustomPopup(); } });
+
+        // --- 3. NAVIGATION BAR KE LIYE NAYA JS ---
+        const categories = [
+            { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' },
+            { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' },
+            { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' }
+        ];
+        const sideMenu = document.getElementById('side-menu');
+        const menuBtn = document.getElementById('menu-btn');
+        const overlay = document.getElementById('menu-overlay');
+        const searchIconBtn = document.getElementById('search-icon-btn');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const navBar = document.querySelector('.nav-bar');
+        const searchInput = document.getElementById('searchInput');
+
+        // Nav bar ke buttons ko chalu karo
+        menuBtn.addEventListener('click', () => { sideMenu.classList.add('open'); overlay.style.display = 'block'; });
+        overlay.addEventListener('click', () => { sideMenu.classList.remove('open'); overlay.style.display = 'none'; });
+        searchIconBtn.addEventListener('click', () => navBar.classList.add('search-active'));
+        closeSearchBtn.addEventListener('click', () => navBar.classList.remove('search-active'));
+
+        // Search bar (Enter dabane par home page par search karega)
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    window.location.href = `index.html?search=${encodeURIComponent(searchTerm)}`;
+                }
             }
+        });
+        
+        // Side menu banao
+        sideMenu.innerHTML = '';
+        categories.forEach(cat => {
+            const item = document.createElement('a');
+            item.className = 'category-item';
+            // Category par click karne se home page par filter hoga
+            item.href = `index.html?category=${cat.value}`;
+            item.textContent = cat.text;
+            sideMenu.appendChild(item);
         });
 
         // --- BAAKI PAGE KA LOGIC ---
@@ -168,14 +181,14 @@
                 const currentMovie = movies.find(m => m.id == movieId);
                 if (!currentMovie) { document.querySelector('main.container').innerHTML = `<h1>Error: Movie not found.</h1>`; return; }
 
-                // Basic details set karo
+                // Page par details daalo
                 document.title = `Download: ${currentMovie.title}`;
                 document.getElementById('main-poster').src = currentMovie.poster;
                 document.getElementById('main-poster').alt = currentMovie.title;
                 document.getElementById('movie-title').textContent = currentMovie.title;
                 document.getElementById('movie-description').textContent = currentMovie.details || '';
 
-                // Cast list banao
+                // Cast list
                 const castContainer = document.getElementById('cast-list');
                 const castTitle = document.getElementById('cast-title');
                 castContainer.innerHTML = '';
@@ -191,7 +204,7 @@
                     castTitle.style.display = 'none';
                 }
 
-                // Download buttons banao (Updated logic ke saath)
+                // Download buttons
                 const downloadsContainer = document.getElementById('download-links');
                 downloadsContainer.innerHTML = '';
                 const qualities = { q480p: "480p", q720p: "720p", q1080p: "1080p" };
@@ -199,23 +212,21 @@
                     const link = currentMovie.downloadLinks ? currentMovie.downloadLinks[key] : null;
                     const button = document.createElement('a');
                     button.className = 'download-btn';
-                    
                     if (link) {
                         button.href = link;
                         button.setAttribute('download', '');
                     } else {
-                        button.href = '#'; // Link ko '#' kar do taaki page jump na kare
+                        button.href = '#';
                         button.addEventListener('click', (e) => {
-                            e.preventDefault(); // Default behaviour ko roko
+                            e.preventDefault();
                             showCustomPopup('Sorry, this download link is not available yet!');
                         });
                     }
-                    
                     button.innerHTML = `<svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> ${qualities[key]}`;
                     downloadsContainer.appendChild(button);
                 }
 
-                // Related movies ka logic
+                // Related movies
                 let relatedMovies = [];
                 if (currentMovie.suggestedIds && currentMovie.suggestedIds.length > 0) {
                     relatedMovies = currentMovie.suggestedIds.map(id => movies.find(m => m.id == id)).filter(movie => movie != null);
@@ -223,14 +234,12 @@
                     const firstCategory = Array.isArray(currentMovie.category) ? currentMovie.category[0] : currentMovie.category;
                     relatedMovies = movies.filter(m => m.id != currentMovie.id && (Array.isArray(m.category) ? m.category.includes(firstCategory) : m.category === firstCategory));
                 }
-
                 const relatedGrid = document.getElementById('related-movies-grid');
                 relatedGrid.innerHTML = '';
                 if (relatedMovies.length > 0) {
                     relatedMovies.slice(0, 12).forEach(movie => {
                         const link = document.createElement('a');
                         link.href = `player.html?id=${movie.id}`;
-                        // Naya compact style
                         link.innerHTML = `<div class="movie-card"><img src="${movie.poster}" alt="${movie.title}"><div class="movie-info"><h3>${movie.title}</h3></div></div>`;
                         relatedGrid.appendChild(link);
                     });
