@@ -1,17 +1,29 @@
 [
   {
-    "id": 1,
-    "title": "Kalki 2898 AD",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": "trending",
-    "details": "Yeh movie saal 2898 ki duniya mein set hai, jahan science fiction aur mythology milte hain.",
-    "downloadLinks": [
-      { "quality": "480p", "size": "700 MB", "link": "https://your-server.com/download/kalki-2898-ad/480p" },
-      { "quality": "720p", "size": "1.5 GB", "link": "https://pixeldrain.dev/api/file/muVEYsoy?download" },
-      { "quality": "1080p", "size": "2.8 GB", "link": "https://your-server.com/download/kalki-2898-ad/1080p" }
-    ]
-  },
+  "id": 1,
+  "title": "Kalki 2898 AD",
+  "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+  "category": ["bollywood", "trending"],
+  "home_section": "trending",
+  "details": "Yeh movie saal 2898 ki duniya mein set hai, jahan science fiction aur mythology milte hain.",
+  "downloadLinks": [
+    { 
+      "quality": "480p", 
+      "size": "700 MB", 
+      "link": "https://your-server.com/download/kalki-2898-ad/480p" 
+    },
+    { 
+      "quality": "720p", 
+      "size": "1.5 GB", 
+      "link": "https://pixeldrain.dev/api/file/muVEYsoy?download"  // <-- CHECK YAHAN KAREIN
+    },
+    { 
+      "quality": "1080p", 
+      "size": "2.8 GB", 
+      "link": "https://your-server.com/download/kalki-2898-ad/1080p" 
+    }
+  ]
+},
   {
     "id": 2,
     "title": "Mirzapur Season 3",
