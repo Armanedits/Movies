@@ -77,6 +77,7 @@
     <div id="menu-overlay"></div>
     
     <main class="container">
+        <!-- Yeh view movie ki details dikhata hai -->
         <div id="movie-details-view">
             <div class="movie-info-container">
                 <img src="" alt="Movie Poster" id="main-poster" class="movie-poster-large">
@@ -95,6 +96,7 @@
             </div>
         </div>
 
+        <!-- Yeh view search ke results dikhata hai -->
         <div id="search-results-view" style="display: none;">
             <h2 id="search-results-title"></h2>
             <div id="search-results-grid" class="movie-grid"></div>
@@ -112,10 +114,11 @@
     <!-- === JAVASCRIPT LOGIC === -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-
-        let allMovies = []; 
-
-        // Baaki ke saare variables waise hi rahenge...
+        let allMovies = [];
+        const movieDetailsView = document.getElementById('movie-details-view');
+        const searchResultsView = document.getElementById('search-results-view');
+        const searchResultsTitle = document.getElementById('search-results-title');
+        const searchResultsGrid = document.getElementById('search-results-grid');
 
         // --- PAGE LOAD LOGIC ---
         fetch('movies.json')
@@ -124,7 +127,6 @@
                 allMovies = movies;
                 
                 const urlParams = new URLSearchParams(window.location.search);
-                // Text ID (slug) system waise hi kaam kar raha hai
                 const movieId = urlParams.get('id');
 
                 if (!movieId) { document.querySelector('main.container').innerHTML = `<h1>Error: Movie ID not found.</h1>`; return; }
@@ -136,8 +138,6 @@
                 document.getElementById('main-poster').alt = currentMovie.title;
                 document.getElementById('movie-title').textContent = currentMovie.title;
                 document.getElementById('movie-description').textContent = currentMovie.details || '';
-
-                // Cast, Download links, etc. ka code waise hi rahega
 
                 const castContainer = document.getElementById('cast-list');
                 const castTitle = document.getElementById('cast-title');
@@ -157,16 +157,14 @@
                 const downloadsContainer = document.getElementById('download-links');
                 downloadsContainer.innerHTML = '';
                 const qualitiesToShow = ["480p", "720p", "1080p"];
-
                 if (currentMovie.downloadLinks && Array.isArray(currentMovie.downloadLinks)) {
                     qualitiesToShow.forEach(qualityValue => {
                         const linkObject = currentMovie.downloadLinks.find(item => item.quality === qualityValue);
                         const button = document.createElement('a');
                         button.className = 'download-btn';
                         let buttonText = qualityValue; 
-                        if (linkObject && linkObject.size) {
-                            buttonText += ` (${linkObject.size})`;
-                        }
+                        if (linkObject && linkObject.size) { buttonText += ` (${linkObject.size})`; }
+                        
                         if (linkObject && linkObject.link && !linkObject.link.includes('your-server.com')) {
                             button.href = linkObject.link;
                             button.setAttribute('download', '');
@@ -184,41 +182,28 @@
                     downloadsContainer.innerHTML = '<p>Download links are not available for this title.</p>';
                 }
 
-                // =======================================================================
-                // === SIRF YEH HISSA BADLA GAYA HAI (MANUAL SUGGESTIONS LOGIC) ===
-                // =======================================================================
-                
                 const relatedGrid = document.getElementById('related-movies-grid');
                 const relatedMoviesSection = document.querySelector('.related-movies');
                 let relatedMovies = [];
-
-                // Sirf tabhi movies dhoondho jab 'suggestedIds' maujood ho aur khaali na ho
                 if (currentMovie.suggestedIds && currentMovie.suggestedIds.length > 0) {
                     relatedMovies = currentMovie.suggestedIds
-                        .map(id => movies.find(m => m.id === id)) // Text ID ke liye strict check (===)
+                        .map(id => movies.find(m => m.id === id))
                         .filter(movie => movie != null); 
                 }
                 
-                // Ab check karo ki relatedMovies mein kuch hai ya nahi
                 if (relatedMovies.length > 0) {
-                    relatedMoviesSection.style.display = 'block'; // Section ko dikhao
+                    relatedMoviesSection.style.display = 'block';
                     displayMovies(relatedMovies.slice(0, 12), relatedGrid);
                 } else {
-                    relatedMoviesSection.style.display = 'none'; // Section ko chhipa do
+                    relatedMoviesSection.style.display = 'none';
                 }
-
-                // =======================================================================
-                // === CODE UPDATE YAHAN KHATM HOTA HAI ===
-                // =======================================================================
-
             })
             .catch(error => {
                 console.error('Error:', error);
                 document.querySelector('main.container').innerHTML = `<h2 style="color: red;">Error loading movie data.</h2>`;
             });
         
-        // --- Baaki ka JS (SEARCH, SIDEMENU etc.) ---
-        // Ismein koi badlav nahi kiya gaya hai
+        // --- COMMON FUNCTIONS (POPUP, DISPLAY MOVIES) ---
         function displayMovies(movieArray, gridElement) {
             gridElement.innerHTML = '';
             if (movieArray.length === 0) { gridElement.innerHTML = `<p>No movies found.</p>`; return; }
@@ -238,6 +223,7 @@
         popupCloseBtn.addEventListener('click', hideCustomPopup);
         popup.addEventListener('click', (event) => { if (event.target === popup) { hideCustomPopup(); } });
 
+        // --- HEADER, SIDEMENU, AND SEARCH LOGIC ---
         const sideMenu = document.getElementById('side-menu');
         const menuBtn = document.getElementById('menu-btn');
         const overlay = document.getElementById('menu-overlay');
@@ -250,32 +236,44 @@
         overlay.addEventListener('click', () => { sideMenu.classList.remove('open'); overlay.style.display = 'none'; });
         searchIconBtn.addEventListener('click', () => navBar.classList.add('search-active'));
         
+        // Close search button ka logic
         closeSearchBtn.addEventListener('click', () => {
             navBar.classList.remove('search-active');
             searchInput.value = '';
-            showDetailsView();
+            showDetailsView(); // Search band karne par movie details dikhao
         });
         
+        // Search input ka logic
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase().trim();
             if (term) {
-                showSearchView();
                 const filteredMovies = allMovies.filter(m => m.title.toLowerCase().includes(term));
-                searchResultsTitle.textContent = `Results for "${term}"`;
-                displayMovies(filteredMovies, searchResultsGrid);
+                showSearchView(`Results for "${term}"`, filteredMovies);
             } else {
-                showDetailsView();
+                showDetailsView(); // Input khaali hone par movie details dikhao
             }
         });
 
-        function showDetailsView() { searchResultsView.style.display = 'none'; movieDetailsView.style.display = 'block'; }
-        function showSearchView() { movieDetailsView.style.display = 'none'; searchResultsView.style.display = 'block'; }
+        // Yeh function movie details view dikhata hai
+        function showDetailsView() { 
+            searchResultsView.style.display = 'none'; 
+            movieDetailsView.style.display = 'block'; 
+        }
+        
+        // Yeh function search results view dikhata hai
+        function showSearchView(title, movies) { 
+            movieDetailsView.style.display = 'none'; 
+            searchResultsView.style.display = 'block'; 
+            searchResultsTitle.textContent = title;
+            displayMovies(movies, searchResultsGrid);
+        }
         
         const categories = [ { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', 'text': 'Tollywood' } ];
         sideMenu.innerHTML = '';
         categories.forEach(cat => {
             const item = document.createElement('a');
             item.className = 'category-item';
+            // Category links ko index.html par bhej rahe hain
             item.href = `index.html?category=${cat.value}`;
             item.textContent = cat.text;
             sideMenu.appendChild(item);
