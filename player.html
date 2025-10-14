@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading Movie...</title>
-    <!-- === CSS (Koi Change Nahi) === -->
+    <!-- === CSS === -->
     <style>
         :root { --theme-color: #e74c3c; --dark-bg: #121212; --light-bg: #1f1f1f; --card-text-bg: #0c0c0c; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color: var(--dark-bg); color: #fff; margin: 0; }
@@ -20,6 +20,13 @@
         .nav-right { text-align: right; }
         header img.logo { max-width: 120px; vertical-align: middle; }
         .icon-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; }
+        
+        .icon-btn img {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+        }
+        
         #search-container { display: none; flex-grow: 1; position: relative; }
         #searchInput { width: 100%; height: 40px; padding: 0 45px 0 15px; border-radius: 8px; border: 1px solid var(--theme-color); font-size: 16px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
         #close-search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); font-size: 28px; }
@@ -68,7 +75,11 @@
         <nav class="nav-bar">
             <div class="nav-left"><button class="icon-btn" id="menu-btn">&#9776;</button></div>
             <div class="logo-container"><a href="index.html"><img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Logo" class="logo"></a></div>
-            <div class="nav-right"><button class="icon-btn" id="search-icon-btn">&#128269;</button></div>
+            <div class="nav-right">
+                <button class="icon-btn" id="search-icon-btn">
+                    <img src="https://icons.iconarchive.com/icons/fa-team/fontawesome/512/FontAwesome-Magnifying-Glass-icon.png" alt="Search Icon">
+                </button>
+            </div>
             <div id="search-container"><input type="text" id="searchInput" placeholder="Search for movies..."><button class="icon-btn" id="close-search-btn">&times;</button></div>
         </nav>
     </header>
@@ -77,7 +88,6 @@
     <div id="menu-overlay"></div>
     
     <main class="container">
-        <!-- Yeh view movie ki details dikhata hai -->
         <div id="movie-details-view">
             <div class="movie-info-container">
                 <img src="" alt="Movie Poster" id="main-poster" class="movie-poster-large">
@@ -95,8 +105,6 @@
                 <div id="related-movies-grid" class="movie-grid"></div>
             </div>
         </div>
-
-        <!-- Yeh view search ke results dikhata hai -->
         <div id="search-results-view" style="display: none;">
             <h2 id="search-results-title"></h2>
             <div id="search-results-grid" class="movie-grid"></div>
@@ -116,7 +124,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     let allMovies = [];
     const movieDetailsView = document.getElementById('movie-details-view');
-
     const searchResultsView = document.getElementById('search-results-view');
     const searchResultsTitle = document.getElementById('search-results-title');
     const searchResultsGrid = document.getElementById('search-results-grid');
@@ -134,7 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentMovie = movies.find(m => m.id === movieId);
             if (!currentMovie) { document.querySelector('main.container').innerHTML = `<h1>Error: Movie not found.</h1>`; return; }
 
-            document.title = `Download: ${currentMovie.title}`;
+            // === YEH LINE HATA DI GAYI HAI ===
+            // document.title = `Download: ${currentMovie.title}`;
+            
             document.getElementById('main-poster').src = currentMovie.poster;
             document.getElementById('main-poster').alt = currentMovie.title;
             document.getElementById('movie-title').textContent = currentMovie.title;
@@ -163,16 +172,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const linkObject = currentMovie.downloadLinks.find(item => item.quality === qualityValue);
                     const button = document.createElement('a');
                     button.className = 'download-btn';
-                    let buttonText = qualityValue; 
-                    
-                    // === YAHAN BADLAV KIYA GAYA HAI ===
-                    // Ab size tabhi dikhega jab woh maujood ho aur "..." na ho.
-                    if (linkObject && linkObject.size && linkObject.size !== '...') { 
-                        buttonText += ` (${linkObject.size})`; 
+                    let buttonText = qualityValue;
+                    if (linkObject && linkObject.size && linkObject.size !== '...') {
+                        buttonText += ` (${linkObject.size})`;
                     }
-                    
                     const isRealLink = linkObject && linkObject.link && linkObject.link !== "..." && !linkObject.link.includes('your-server.com');
-
                     if (isRealLink) {
                         button.href = linkObject.link;
                         button.setAttribute('download', '');
@@ -183,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             showCustomPopup(`Sorry, the ${qualityValue} download link is not available yet!`);
                         });
                     }
-                    
                     button.innerHTML = `<svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> ${buttonText}`;
                     downloadsContainer.appendChild(button);
                 });
@@ -197,9 +200,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentMovie.suggestedIds && currentMovie.suggestedIds.length > 0) {
                 relatedMovies = currentMovie.suggestedIds
                     .map(id => movies.find(m => m.id === id))
-                    .filter(movie => movie != null); 
+                    .filter(movie => movie != null);
             }
-            
             if (relatedMovies.length > 0) {
                 relatedMoviesSection.style.display = 'block';
                 displayMovies(relatedMovies.slice(0, 12), relatedGrid);
@@ -211,7 +213,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error:', error);
             document.querySelector('main.container').innerHTML = `<h2 style="color: red;">Error loading movie data.</h2>`;
         });
-    
     function displayMovies(movieArray, gridElement) {
         gridElement.innerHTML = '';
         if (movieArray.length === 0) { gridElement.innerHTML = `<p>No movies found.</p>`; return; }
@@ -222,7 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
             gridElement.appendChild(link);
         });
     }
-    
     const popup = document.getElementById('custom-popup');
     const popupMessage = document.getElementById('popup-message');
     const popupCloseBtn = document.getElementById('popup-close-btn');
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeSearchBtn.addEventListener('click', () => {
         navBar.classList.remove('search-active');
         searchInput.value = '';
-        showDetailsView(); 
+        showDetailsView();
     });
     searchInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase().trim();
@@ -254,17 +254,17 @@ document.addEventListener('DOMContentLoaded', () => {
             showDetailsView();
         }
     });
-    function showDetailsView() { 
-        searchResultsView.style.display = 'none'; 
-        movieDetailsView.style.display = 'block'; 
+    function showDetailsView() {
+        searchResultsView.style.display = 'none';
+        movieDetailsView.style.display = 'block';
     }
-    function showSearchView(title, movies) { 
-        movieDetailsView.style.display = 'none'; 
-        searchResultsView.style.display = 'block'; 
+    function showSearchView(title, movies) {
+        movieDetailsView.style.display = 'none';
+        searchResultsView.style.display = 'block';
         searchResultsTitle.textContent = title;
         displayMovies(movies, searchResultsGrid);
     }
-    const categories = [ { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', 'text': 'Bollywood' }, { value: 'hollywood', 'text': 'Hollywood' }, { 'value': 'tollywood', 'text': 'Tollywood' } ];
+    const categories = [{ value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', 'text': 'Bollywood' }, { value: 'hollywood', 'text': 'Hollywood' }, { 'value': 'tollywood', 'text': 'Tollywood' }];
     sideMenu.innerHTML = '';
     categories.forEach(cat => {
         const item = document.createElement('a');
