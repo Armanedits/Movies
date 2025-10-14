@@ -1,141 +1,8 @@
 [
   {
-    "id": "mirzapur-season-3",
-    "title": "Mirzapur Season 3",
-    "poster": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTlDaK-ugoW4rGWb0Qtw9LeLY--qiGotHAyTxsBcwol9ngZEC7w",
-    "category": ["webseries", "trending"],
-    "home_section": "webseries",
-    "slide_poster": "https://assets.aboutamazon.com/dims4/default/6e3f075/2147483647/strip/true/crop/1919x1080+0+0/resize/1240x698!/quality/90/?url=https%3A%2F%2Famazon-blogs-brightspot.s3.amazonaws.com%2F91%2F16%2F4234e20e4618a6c05682bf9f280c%2F16x9-mzp-ka-r1-kkau-copy.jpg",
-    "slide_overlay_text": "Season 3",
-    "slide_overlay_color": "#FF0000",
-    "overlay_text": "S03",
-    "overlay_color": "#2ecc71",
-    "display_order": 2,
-    "suggestedIds": ["panchayat-season-3", "bhool-bhulaiyaa-3"],
-    "downloadLinks": [
-      { "quality": "480p", "size": "650 MB", "link": "https://your-server.com/download/deadpool-wolverine/480p" },
-      { "quality": "720p", "size": "1.3 GB", "link": "https://your-server.com/download/deadpool-wolverine/720p" },
-      { "quality": "1080p", "size": "2.5 GB", "link": "https://your-server.com/download/deadpool-wolverine/1080p" }
-     ]
-  },
-  {
-    "id": "deadpool-and-wolverine",
-    "title": "Deadpool & Wolverine",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["hollywood", "trending"],
-    "home_section": "trending",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Must Watch",
-    "overlay_text": "HD",
-    "display_order": 4,
-    "suggestedIds": ["joker-folie-a-deux", "stree-2"],
-    "downloadLinks": [
-      { "quality": "480p", "size": "650 MB", "link": "https://your-server.com/download/deadpool-wolverine/480p" },
-      { "quality": "720p", "size": "1.3 GB", "link": "https://your-server.com/download/deadpool-wolverine/720p" },
-      { "quality": "1080p", "size": "2.5 GB", "link": "https://your-server.com/download/deadpool-wolverine/1080p" }
-    ]
-  },
-  {
-    "id": "pushpa-2-the-rule",
-    "title": "Pushpa 2: The Rule",
-    "poster": "https://m.media-amazon.com/images/M/MV5BNDM3N2UzM2UtMjEwMC00NGUzLThmMmQtNGMyM2VmMDA0ZWEwXkEyXkFqcGc@._V1_.jpg",
-    "category": ["tollywood", "trending"],
-    "home_section": "trending",
-    "slide_poster": "https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg",
-    "overlay_text": "Teaser",
-    "display_order": 1,
-    "downloadLinks": [
-      { "quality": "480p", "size": "750 MB", "link": "https://your-server.com/download/pushpa-2/480p" },
-      { "quality": "720p", "size": "1.6 GB", "link": "https://your-server.com/download/pushpa-2/720p" },
-      { "quality": "1080p", "size": "3 GB", "link": "https://your-server.com/download/pushpa-2/1080p" }
-    ]
-  },
-  {
-    "id": "panchayat-season-3",
-    "title": "Panchayat Season 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["webseries"],
-    "home_section": "webseries",
-    "overlay_text": "All Eps",
-    "suggestedIds": ["kota-factory-season-3", "the-family-man-3"],
-    "downloadLinks": [
-      { "quality": "480p", "size": "2.5 GB", "link": "https://your-server.com/download/panchayat-s3/480p" },
-      { "quality": "720p", "size": "5 GB", "link": "https://your-server.com/download/panchayat-s3/720p" },
-      { "quality": "1080p", "size": "10 GB", "link": "https://your-server.com/download/panchayat-s3/1080p" }
-    ]
-  },
-  {
-    "id": "stree-2",
-    "title": "Stree 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood"],
-    "home_section": "movies",
-    "overlay_text": "HD",
-    "suggestedIds": ["bhool-bhulaiyaa-3"],
-    "downloadLinks": [
-      { "quality": "480p", "size": "600 MB", "link": "https://your-server.com/download/stree-2/480p" },
-      { "quality": "720p", "size": "1.2 GB", "link": "https://your-server.com/download/stree-2/720p" },
-      { "quality": "1080p", "size": "2.4 GB", "link": "https://your-server.com/download/stree-2/1080p" }
-    ]
-  },
-  {
-    "id": "kota-factory-season-3",
-    "title": "Kota Factory Season 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["webseries", "trending"],
-    "home_section": "webseries",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "New Season",
-    "overlay_text": "S03",
-    "downloadLinks": [
-      { "quality": "480p", "size": "2 GB", "link": "https://your-server.com/download/kota-factory-s3/480p" },
-      { "quality": "720p", "size": "4 GB", "link": "https://your-server.com/download/kota-factory-s3/720p" },
-      { "quality": "1080p", "size": "8 GB", "link": "https://your-server.com/download/kota-factory-s3/1080p" }
-    ]
-  },
-  {
-    "id": "joker-folie-a-deux",
-    "title": "Joker: Folie à Deux",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["hollywood"],
-    "home_section": "movies",
-    "downloadLinks": [
-      { "quality": "480p", "size": "700 MB", "link": "https://your-server.com/download/joker-2/480p" },
-      { "quality": "720p", "size": "1.4 GB", "link": "https://your-server.com/download/joker-2/720p" },
-      { "quality": "1080p", "size": "2.7 GB", "link": "https://your-server.com/download/joker-2/1080p" }
-    ]
-  },
-  {
-    "id": "bhool-bhulaiyaa-3",
-    "title": "Bhool Bhulaiyaa 3",
-    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPrgGZofBmaASm6xVqQ0v0w8urbZFlAqSyLg&usqp=CAU",
-    "category": ["bollywood", "trending"],
-    "home_section": "trending",
-    "slide_poster": "https://i.ytimg.com/vi/6YMY62tMLUA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCf8TCoogMnzgNTDo2krYYrjr9TMg",
-    "overlay_text": "HD",
-    "downloadLinks": [
-      { "quality": "480p", "size": "650 MB", "link": "https://your-server.com/download/bhool-bhulaiyaa-3/480p" },
-      { "quality": "720p", "size": "1.3 GB", "link": "https://your-server.com/download/bhool-bhulaiyaa-3/720p" },
-      { "quality": "1080p", "size": "2.6 GB", "link": "https://your-server.com/download/bhool-bhulaiyaa-3/1080p" }
-    ]
-  },
-  {
-    "id": "the-family-man-3",
-    "title": "The Family Man 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["webseries"],
-    "home_section": "webseries",
-    "overlay_text": "Coming Soon",
-    "downloadLinks": [
-      { "quality": "480p", "size": "4 GB", "link": "https://your-server.com/download/family-man-s3/480p" },
-      { "quality": "720p", "size": "8 GB", "link": "https://your-server.com/download/family-man-s3/720p" },
-      { "quality": "1080p", "size": "16 GB", "link": "https://your-server.com/download/family-man-s3/1080p" }
-    ]
-  },
-  {
     "id": "housefull-5",
     "title": "Housefull 5",
-    "poster": "...",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNzM1YjE4ZmItZGY0Zi00OTI4LWI0M2ItYzA5ODM2ZTI4Mzc3XkEyXkFqcGdeQXVyMTU5NjE2NTI0._V1_FMjpg_UX1000_.jpg",
     "category": ["bollywood", "movies"],
     "home_section": "movies",
     "display_order": 1,
@@ -150,7 +17,7 @@
   {
     "id": "game-changer",
     "title": "Game Changer",
-    "poster": "...",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNGM4MTE2YjQtZTU4OC00MjMyLThmM2QtZDA2ODRhYzA5MzE2XkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_FMjpg_UX1000_.jpg",
     "category": ["bollywood", "movies"],
     "home_section": "movies",
     "display_order": 2,
@@ -165,7 +32,7 @@
   {
     "id": "tehran",
     "title": "Tehran",
-    "poster": "...",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNWUxYjBlN2ItOGU2Zi00Y2E3LTg1YjUtYjI4YmI0MWFhZDA0XkEyXkFqcGdeQXVyMTA3MDk2NDg2._V1_FMjpg_UX1000_.jpg",
     "category": ["movies"],
     "home_section": "movies",
     "display_order": 3,
@@ -180,7 +47,7 @@
   {
     "id": "coolie",
     "title": "Coolie",
-    "poster": "...",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMjgwZTYxZmMtYmMyZi00YmY0LWE5MmMtMTIyMzM3MjQ0ZjgzXkEyXkFqcGdeQXVyMTUyNjQ0MDU4._V1_FMjpg_UX1000_.jpg",
     "category": ["movies"],
     "home_section": "movies",
     "display_order": 4,
@@ -195,7 +62,7 @@
   {
     "id": "sitaare-zameen-par",
     "title": "Sitaare Zameen Par",
-    "poster": "...",
+    "poster": "https://staticele.s3.ap-south-1.amazonaws.com/images/24/11/2023/sitaare-zameen-par-movie-poster-3.jpeg",
     "category": ["movies"],
     "home_section": "movies",
     "display_order": 5,
@@ -210,7 +77,7 @@
   {
     "id": "sky-force",
     "title": "Sky Force",
-    "poster": "...",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMzQ4YmMzYmEtMTI1Mi00YjQ4LThjM2QtNzZlZDI0ZGM5NzAxXkEyXkFqcGdeQXVyOTI3MzI4MzA@._V1_FMjpg_UX1000_.jpg",
     "category": ["movies"],
     "home_section": "movies",
     "display_order": 6,
@@ -225,7 +92,7 @@
   {
     "id": "kuberaa",
     "title": "Kuberaa",
-    "poster": "...",
+    "poster": "https://m.media-amazon.com/images/M/MV5BN2EwYmU3NjktYjZhNy00MzI4LTg5NzgtYjIwYmQyNGEwOGU5XkEyXkFqcGdeQXVyMTYwMjk5OTI@._V1_FMjpg_UX1000_.jpg",
     "category": ["movies"],
     "home_section": "movies",
     "display_order": 7,
@@ -240,7 +107,7 @@
   {
     "id": "songs-of-paradise",
     "title": "Songs of Paradise",
-    "poster": "...",
+    "poster": "https://www.thestatesman.com/wp-content/uploads/2024/05/Songs-of-Paradise-1.jpg",
     "category": ["movies"],
     "home_section": "movies",
     "display_order": 8,
@@ -255,7 +122,7 @@
   {
     "id": "ace",
     "title": "Ace",
-    "poster": "...",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNzQ2Yzc1NzItYjBlNy00ZTVhLWI4MGEtMzI5ZTUxZjc3ZmM0XkEyXkFqcGdeQXVyMTE0MTY2Nw@@._V1_FMjpg_UX1000_.jpg",
     "category": ["movies"],
     "home_section": "movies",
     "display_order": 9,
@@ -270,7 +137,7 @@
   {
     "id": "hari-hara-veera-mallu",
     "title": "Hari Hara Veera Mallu",
-    "poster": "...",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZjliY2VlNDItMmNhNC00YjhiLTk3ZmItZmRjZDU4YzQ4MmZmXkEyXkFqcGdeQXVyMTQ3Mzk2MDg4._V1_FMjpg_UX1000_.jpg",
     "category": ["movies"],
     "home_section": "movies",
     "display_order": 10,
@@ -285,7 +152,7 @@
   {
     "id": "thudarum",
     "title": "Thudarum",
-    "poster": "...",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNzQwYzZlNTMtYWZlMS00YmI0LWE4YmQtYjA4Y2RhZmQwYmI1XkEyXkFqcGdeQXVyMTE0NjYxNjkx._V1_FMjpg_UX1000_.jpg",
     "category": ["movies"],
     "home_section": "movies",
     "display_order": 11,
@@ -300,7 +167,7 @@
   {
     "id": "l2-empuraan",
     "title": "L2: Empuraan",
-    "poster": "...",
+    "poster": "https://www.koimoi.com/wp-content/new-galleries/2024/04/mohanlals-l2-empuraan-director-prithviraj-sukumaran-drops-a-major-update-at-aadujeevitham-aka-the-goat-life-event-01.jpg",
     "category": ["movies"],
     "home_section": "movies",
     "display_order": 12,
