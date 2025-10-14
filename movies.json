@@ -10,6 +10,7 @@
     "slide_overlay_color": "#FF0000",
     "overlay_text": "S03",
     "overlay_color": "#2ecc71",
+    "display_order": 2,
     "suggestedIds": ["panchayat-season-3", "bhool-bhulaiyaa-3"],
     "downloadLinks": [
       { "quality": "480p", "size": "650 MB", "link": "https://your-server.com/download/deadpool-wolverine/480p" },
@@ -26,6 +27,7 @@
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "slide_overlay_text": "Must Watch",
     "overlay_text": "HD",
+    "display_order": 4,
     "suggestedIds": ["joker-folie-a-deux", "stree-2"],
     "downloadLinks": [
       { "quality": "480p", "size": "650 MB", "link": "https://your-server.com/download/deadpool-wolverine/480p" },
@@ -41,6 +43,7 @@
     "home_section": "trending",
     "slide_poster": "https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg",
     "overlay_text": "Teaser",
+    "display_order": 1,
     "downloadLinks": [
       { "quality": "480p", "size": "750 MB", "link": "https://your-server.com/download/pushpa-2/480p" },
       { "quality": "720p", "size": "1.6 GB", "link": "https://your-server.com/download/pushpa-2/720p" },
