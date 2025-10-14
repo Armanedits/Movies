@@ -4,7 +4,7 @@
     "title": "Housefull 5",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "category": ["bollywood", "movies", "trending"],
-    "home_section": "movies",
+    "home_section": ["movies", "letest release"]
     "display_order": 1,
     "overlay_text": "Coming Soon",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
