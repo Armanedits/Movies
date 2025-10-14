@@ -102,178 +102,219 @@
     </main>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const categories = [ { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
-        let sliderInterval;
-        let allMovies = [];
-        const homePageContent = document.getElementById('home-page-content');
-        const filteredResultsContainer = document.getElementById('filtered-results-container');
-        const filteredTitle = document.getElementById('filtered-title');
-        const filteredGrid = document.getElementById('filtered-grid');
-        const sliderContainer = document.querySelector('.slider-container');
-        fetch('movies.json').then(res => res.json()).then(movies => {
-            allMovies = movies;
-            populateHomePage(allMovies);
-            populateSlider(allMovies);
-            setupSideMenu();
-            document.getElementById('searchInput').addEventListener('input', handleSearch);
-            document.getElementById('logo-link').addEventListener('click', (e) => { e.preventDefault(); showHomePage(); });
-        }).catch(error => {
-            console.error('Error loading file:', error);
-            document.querySelector('main.container').innerHTML = `<h2 style="color:red;">Error: Movies load nahi ho payi. Invalid JSON format.</h2>`;
-        });
-        const sideMenu = document.getElementById('side-menu');
-        const menuBtn = document.getElementById('menu-btn');
-        const overlay = document.getElementById('menu-overlay');
-        const searchIconBtn = document.getElementById('search-icon-btn');
-        const closeSearchBtn = document.getElementById('close-search-btn');
-        const navBar = document.querySelector('.nav-bar');
-        menuBtn.addEventListener('click', () => { sideMenu.classList.add('open'); overlay.style.display = 'block'; });
-        overlay.addEventListener('click', () => { sideMenu.classList.remove('open'); overlay.style.display = 'none'; });
-        searchIconBtn.addEventListener('click', () => navBar.classList.add('search-active'));
-        closeSearchBtn.addEventListener('click', () => {
-            navBar.classList.remove('search-active');
-            if(document.getElementById('searchInput').value) {
-                document.getElementById('searchInput').value = '';
-                showHomePage();
-            }
-        });
-        function populateHomePage(movies) {
-            displayMovies(movies.slice().reverse(), document.getElementById('latest-grid'));
-            displayMovies(movies.filter(m => m.home_section === 'trending'), document.getElementById('trending-grid'));
-            displayMovies(movies.filter(m => m.home_section === 'movies'), document.getElementById('movies-grid'));
-            displayMovies(movies.filter(m => m.home_section === 'webseries'), document.getElementById('webseries-grid'));
-        }
-        function setupSideMenu() {
-            sideMenu.innerHTML = '';
-            categories.forEach(cat => {
-                const item = document.createElement('a');
-                item.href = '#'; item.className = 'category-item';
-                item.dataset.value = cat.value; item.textContent = cat.text;
-                sideMenu.appendChild(item);
-                item.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const category = e.target.dataset.value;
-                    if (category === 'all') {
-                        showHomePage();
-                    } else {
-                        const filtered = allMovies.filter(m => (Array.isArray(m.category) && m.category.includes(category)) || m.category === category);
-                        showFilteredResults(filtered, e.target.textContent);
-                    }
-                    sideMenu.classList.remove('open');
-                    overlay.style.display = 'none';
-                });
-            });
-        }
-        function handleSearch(e) {
-            const term = e.target.value.toLowerCase();
-            if (term) {
-                const filtered = allMovies.filter(m => m.title.toLowerCase().includes(term));
-                showFilteredResults(filtered, `Results for "${term}"`);
-            } else {
-                showHomePage();
-            }
-        }
-        function showFilteredResults(movieArray, title) {
-            homePageContent.style.display = 'none';
-            sliderContainer.style.display = 'none'; 
-            filteredResultsContainer.style.display = 'block';
-            filteredTitle.textContent = title;
-            displayMovies(movieArray, filteredGrid);
-        }
-        function showHomePage() {
-            filteredResultsContainer.style.display = 'none';
-            homePageContent.style.display = 'block';
-            sliderContainer.style.display = 'block'; 
-            document.getElementById('searchInput').value = ''; 
-        }
-
-        function displayMovies(movieArray, gridElement) {
-            if (!gridElement) return;
-            gridElement.innerHTML = '';
-            movieArray.forEach(movie => {
-                const link = document.createElement('a');
-                link.href = `player.html?id=${movie.id}`;
-                let overlayHTML = '';
-                if (movie.overlay_text) {
-                    const bgColor = movie.overlay_color || 'var(--theme-color)';
-                    overlayHTML = `<div class="movie-card-overlay" style="background-color: ${bgColor};">${movie.overlay_text}</div>`;
-                }
-                link.innerHTML = `
-                    <div class="movie-card">
-                        ${overlayHTML}
-                        <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                        <div class="movie-info">
-                            <h3>${movie.title}</h3>
-                        </div>
-                    </div>`;
-                gridElement.appendChild(link);
-            });
-        }
-        
-        function populateSlider(movieArray) {
-            const sliderTrack = document.querySelector('.slider-track');
-            const trending = movieArray.filter(m => (Array.isArray(m.category) && m.category.includes('trending')) || m.category === 'trending');
-            
-            if (!sliderTrack || trending.length === 0) { 
-                sliderContainer.style.display = 'none'; 
-                return; 
-            }
-
-            sliderTrack.innerHTML = '';
-            trending.forEach(movie => {
-                const slide = document.createElement('div');
-                slide.className = 'slide';
-                const posterUrl = movie.slide_poster || movie.poster; 
-                const overlayText = movie.slide_overlay_text || 'Featured';
-                const bgColor = movie.slide_overlay_color || 'var(--theme-color)';
-                
-                slide.innerHTML = `
-                    <a href="player.html?id=${movie.id}">
-                        <div class="slide-overlay-text" style="background-color: ${bgColor};">${overlayText}</div>
-                        <img src="${posterUrl}" alt="${movie.title}">
-                        <div class="slide-title">${movie.title}</div>
-                    </a>`;
-                sliderTrack.appendChild(slide);
-            });
-            
-            const prevBtn = document.getElementById('prev-slide');
-            const nextBtn = document.getElementById('next-slide');
-            if (trending.length > 1) {
-                prevBtn.style.display = 'flex'; 
-                nextBtn.style.display = 'flex';
-                const slides = Array.from(sliderTrack.children);
-                const slideWidth = slides[0].offsetWidth;
-                const firstClone = slides[0].cloneNode(true);
-                const lastClone = slides[slides.length - 1].cloneNode(true);
-                sliderTrack.appendChild(firstClone);
-                sliderTrack.insertBefore(lastClone, slides[0]);
-                let currentIndex = 1; let isTransitioning = false;
-                const setSliderPosition = () => { sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`; };
-                sliderTrack.style.transition = 'none'; setSliderPosition();
-                const moveTo = (direction) => {
-                    if (isTransitioning) return;
-                    isTransitioning = true;
-                    currentIndex += direction;
-                    sliderTrack.style.transition = 'transform 0.5s ease-in-out';
-                    setSliderPosition();
-                };
-                sliderTrack.addEventListener('transitionend', () => {
-                    isTransitioning = false;
-                    const allSlides = Array.from(sliderTrack.children);
-                    if (currentIndex >= allSlides.length - 1) { sliderTrack.style.transition = 'none'; currentIndex = 1; setSliderPosition(); }
-                    if (currentIndex <= 0) { sliderTrack.style.transition = 'none'; currentIndex = allSlides.length - 2; setSliderPosition(); }
-                });
-                const startSliderInterval = () => {
-                    clearInterval(sliderInterval);
-                    sliderInterval = setInterval(() => moveTo(1), 4000);
-                };
-                nextBtn.addEventListener('click', () => { moveTo(1); startSliderInterval(); });
-                prevBtn.addEventListener('click', () => { moveTo(-1); startSliderInterval(); });
-                startSliderInterval();
-            }
+document.addEventListener('DOMContentLoaded', () => {
+    const categories = [ { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
+    let sliderInterval;
+    let allMovies = [];
+    const homePageContent = document.getElementById('home-page-content');
+    const filteredResultsContainer = document.getElementById('filtered-results-container');
+    const filteredTitle = document.getElementById('filtered-title');
+    const filteredGrid = document.getElementById('filtered-grid');
+    const sliderContainer = document.querySelector('.slider-container');
+    
+    fetch('movies.json').then(res => res.json()).then(movies => {
+        allMovies = movies;
+        populateHomePage(allMovies);
+        populateSlider(allMovies);
+        setupSideMenu();
+        document.getElementById('searchInput').addEventListener('input', handleSearch);
+        document.getElementById('logo-link').addEventListener('click', (e) => { e.preventDefault(); showHomePage(); });
+    }).catch(error => {
+        console.error('Error loading file:', error);
+        document.querySelector('main.container').innerHTML = `<h2 style="color:red;">Error: Movies load nahi ho payi. Invalid JSON format.</h2>`;
+    });
+    
+    const sideMenu = document.getElementById('side-menu');
+    const menuBtn = document.getElementById('menu-btn');
+    const overlay = document.getElementById('menu-overlay');
+    const searchIconBtn = document.getElementById('search-icon-btn');
+    const closeSearchBtn = document.getElementById('close-search-btn');
+    const navBar = document.querySelector('.nav-bar');
+    menuBtn.addEventListener('click', () => { sideMenu.classList.add('open'); overlay.style.display = 'block'; });
+    overlay.addEventListener('click', () => { sideMenu.classList.remove('open'); overlay.style.display = 'none'; });
+    searchIconBtn.addEventListener('click', () => navBar.classList.add('search-active'));
+    closeSearchBtn.addEventListener('click', () => {
+        navBar.classList.remove('search-active');
+        if(document.getElementById('searchInput').value) {
+            document.getElementById('searchInput').value = '';
+            showHomePage();
         }
     });
+
+    function populateHomePage(movies) {
+        // NEW: Sorting function to arrange movies by display_order
+        const sortByDisplayOrder = (a, b) => {
+            const orderA = a.display_order || 999; // If display_order is not defined, treat it as 999 (last)
+            const orderB = b.display_order || 999; // This pushes movies without an order to the end
+            return orderA - orderB;
+        };
+
+        // UPDATED: Filter AND then Sort each section before displaying
+        displayMovies(movies.filter(m => m.home_section === 'latest').sort(sortByDisplayOrder), document.getElementById('latest-grid'));
+        displayMovies(movies.filter(m => m.home_section === 'trending').sort(sortByDisplayOrder), document.getElementById('trending-grid'));
+        displayMovies(movies.filter(m => m.home_section === 'movies').sort(sortByDisplayOrder), document.getElementById('movies-grid'));
+        displayMovies(movies.filter(m => m.home_section === 'webseries').sort(sortByDisplayOrder), document.getElementById('webseries-grid'));
+        
+        // Setup for "Show All" buttons
+        document.querySelectorAll('.show-all-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const grid = e.target.closest('.home-category-section').querySelector('.movie-grid');
+                grid.classList.toggle('limited');
+                if (grid.classList.contains('limited')) {
+                    e.target.innerHTML = 'Show All &#9662;'; // Down arrow
+                } else {
+                    e.target.innerHTML = 'Show Less &#9652;'; // Up arrow
+                }
+            });
+        });
+    }
+
+    function setupSideMenu() {
+        sideMenu.innerHTML = '';
+        categories.forEach(cat => {
+            const item = document.createElement('a');
+            item.href = '#'; item.className = 'category-item';
+            item.dataset.value = cat.value; item.textContent = cat.text;
+            sideMenu.appendChild(item);
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = e.target.dataset.value;
+                if (category === 'all') {
+                    showHomePage();
+                } else {
+                    const filtered = allMovies.filter(m => (Array.isArray(m.category) && m.category.includes(category)) || m.category === category);
+                    showFilteredResults(filtered, e.target.textContent);
+                }
+                sideMenu.classList.remove('open');
+                overlay.style.display = 'none';
+            });
+        });
+    }
+
+    function handleSearch(e) {
+        const term = e.target.value.toLowerCase();
+        if (term) {
+            const filtered = allMovies.filter(m => m.title.toLowerCase().includes(term));
+            showFilteredResults(filtered, `Results for "${term}"`);
+        } else {
+            showHomePage();
+        }
+    }
+
+    function showFilteredResults(movieArray, title) {
+        homePageContent.style.display = 'none';
+        sliderContainer.style.display = 'none'; 
+        filteredResultsContainer.style.display = 'block';
+        filteredTitle.textContent = title;
+        // Also sort the search/filtered results if you want
+        const sortedArray = movieArray.sort((a, b) => (a.display_order || 999) - (b.display_order || 999));
+        displayMovies(sortedArray, filteredGrid);
+    }
+
+    function showHomePage() {
+        filteredResultsContainer.style.display = 'none';
+        homePageContent.style.display = 'block';
+        sliderContainer.style.display = 'block'; 
+        document.getElementById('searchInput').value = ''; 
+    }
+
+    function displayMovies(movieArray, gridElement) {
+        if (!gridElement) return;
+        gridElement.innerHTML = '';
+        if(movieArray.length === 0) {
+            if(gridElement.closest('.home-category-section')) {
+                gridElement.closest('.home-category-section').style.display = 'none';
+            }
+            return;
+        }
+        
+        movieArray.forEach(movie => {
+            const link = document.createElement('a');
+            link.href = `player.html?id=${movie.id}`;
+            let overlayHTML = '';
+            if (movie.overlay_text) {
+                const bgColor = movie.overlay_color || 'var(--theme-color)';
+                overlayHTML = `<div class="movie-card-overlay" style="background-color: ${bgColor};">${movie.overlay_text}</div>`;
+            }
+            link.innerHTML = `
+                <div class="movie-card">
+                    ${overlayHTML}
+                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                    <div class="movie-info">
+                        <h3>${movie.title}</h3>
+                    </div>
+                </div>`;
+            gridElement.appendChild(link);
+        });
+    }
+    
+    // Slider function remains unchanged
+    function populateSlider(movieArray) {
+        // Slider can also be sorted if needed
+        const trending = movieArray.filter(m => (Array.isArray(m.category) && m.category.includes('trending')) || m.category === 'trending')
+                                    .sort((a,b) => (a.display_order || 999) - (b.display_order || 999));
+        
+        if (!document.querySelector('.slider-track') || trending.length === 0) { 
+            sliderContainer.style.display = 'none'; 
+            return; 
+        }
+
+        // ... rest of the slider function is the same
+        const sliderTrack = document.querySelector('.slider-track');
+        sliderTrack.innerHTML = '';
+        trending.forEach(movie => {
+            const slide = document.createElement('div');
+            slide.className = 'slide';
+            const posterUrl = movie.slide_poster || movie.poster; 
+            const overlayText = movie.slide_overlay_text || 'Featured';
+            const bgColor = movie.slide_overlay_color || 'var(--theme-color)';
+            
+            slide.innerHTML = `
+                <a href="player.html?id=${movie.id}">
+                    <div class="slide-overlay-text" style="background-color: ${bgColor};">${overlayText}</div>
+                    <img src="${posterUrl}" alt="${movie.title}">
+                    <div class="slide-title">${movie.title}</div>
+                </a>`;
+            sliderTrack.appendChild(slide);
+        });
+        
+        const prevBtn = document.getElementById('prev-slide');
+        const nextBtn = document.getElementById('next-slide');
+        if (trending.length > 1) {
+            prevBtn.style.display = 'flex'; 
+            nextBtn.style.display = 'flex';
+            const slides = Array.from(sliderTrack.children);
+            const slideWidth = slides[0].offsetWidth;
+            const firstClone = slides[0].cloneNode(true);
+            const lastClone = slides[slides.length - 1].cloneNode(true);
+            sliderTrack.appendChild(firstClone);
+            sliderTrack.insertBefore(lastClone, slides[0]);
+            let currentIndex = 1; let isTransitioning = false;
+            const setSliderPosition = () => { sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`; };
+            sliderTrack.style.transition = 'none'; setSliderPosition();
+            const moveTo = (direction) => {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex += direction;
+                sliderTrack.style.transition = 'transform 0.5s ease-in-out';
+                setSliderPosition();
+            };
+            sliderTrack.addEventListener('transitionend', () => {
+                isTransitioning = false;
+                const allSlides = Array.from(sliderTrack.children);
+                if (currentIndex >= allSlides.length - 1) { sliderTrack.style.transition = 'none'; currentIndex = 1; setSliderPosition(); }
+                if (currentIndex <= 0) { sliderTrack.style.transition = 'none'; currentIndex = allSlides.length - 2; setSliderPosition(); }
+            });
+            const startSliderInterval = () => {
+                clearInterval(sliderInterval);
+                sliderInterval = setInterval(() => moveTo(1), 4000);
+            };
+            nextBtn.addEventListener('click', () => { moveTo(1); startSliderInterval(); });
+            prevBtn.addEventListener('click', () => { moveTo(-1); startSliderInterval(); });
+            startSliderInterval();
+        }
+    }
+});
 </script>
 </body>
 </html>
