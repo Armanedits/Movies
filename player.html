@@ -164,21 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     const button = document.createElement('a');
                     button.className = 'download-btn';
                     let buttonText = qualityValue; 
-                    if (linkObject && linkObject.size) { buttonText += ` (${linkObject.size})`; }
                     
-                    // ======================================================
-                    // === YAHAN PAR BADLAV KIYA GAYA HAI - START ===
-                    // ======================================================
-
-                    // Hum check karenge ki link asli hai ya demo/placeholder
+                    // === YAHAN BADLAV KIYA GAYA HAI ===
+                    // Ab size tabhi dikhega jab woh maujood ho aur "..." na ho.
+                    if (linkObject && linkObject.size && linkObject.size !== '...') { 
+                        buttonText += ` (${linkObject.size})`; 
+                    }
+                    
                     const isRealLink = linkObject && linkObject.link && linkObject.link !== "..." && !linkObject.link.includes('your-server.com');
 
                     if (isRealLink) {
-                        // Agar link asli hai, to download button banao
                         button.href = linkObject.link;
                         button.setAttribute('download', '');
                     } else {
-                        // Agar link demo hai ya nahi hai, to popup wala button banao
                         button.href = '#';
                         button.addEventListener('click', (e) => {
                             e.preventDefault();
@@ -186,10 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         });
                     }
                     
-                    // ======================================================
-                    // === YAHAN PAR BADLAV KIYA GAYA HAI - END ===
-                    // ======================================================
-
                     button.innerHTML = `<svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> ${buttonText}`;
                     downloadsContainer.appendChild(button);
                 });
@@ -217,8 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error:', error);
             document.querySelector('main.container').innerHTML = `<h2 style="color: red;">Error loading movie data.</h2>`;
         });
-    
-    // Baaki ka poora code waisa hi hai, usmein koi badlav nahi hai
     
     function displayMovies(movieArray, gridElement) {
         gridElement.innerHTML = '';
