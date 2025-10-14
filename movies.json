@@ -12,9 +12,11 @@
     "overlay_color": "#2ecc71",
     "suggestion_ids": [5, 9],
     "downloadLinks": [
-      { "quality": "720p", "size": "2.21 GB", "link": "https://pixeldrain.dev/api/file/CncEwjVn?download" }
-    ]
-},
+      { "quality": "480p", "size": "650 MB", "link": "https://your-server.com/download/deadpool-wolverine/480p" },
+      { "quality": "720p", "size": "1.3 GB", "link": "https://your-server.com/download/deadpool-wolverine/720p" },
+      { "quality": "1080p", "size": "2.5 GB", "link": "https://your-server.com/download/deadpool-wolverine/1080p" }
+     ]
+  },
   {
     "id": 3,
     "title": "Deadpool & Wolverine",
