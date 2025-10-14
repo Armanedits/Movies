@@ -10,7 +10,7 @@
     "slide_overlay_color": "#FF0000",
     "overlay_text": "S03",
     "overlay_color": "#2ecc71",
-    "suggestion_ids": [5, 9],
+    "suggestedIds": ["panchayat-season-3", "bhool-bhulaiyaa-3"],
     "downloadLinks": [
       { "quality": "480p", "size": "650 MB", "link": "https://your-server.com/download/deadpool-wolverine/480p" },
       { "quality": "720p", "size": "1.3 GB", "link": "https://your-server.com/download/deadpool-wolverine/720p" },
@@ -18,7 +18,7 @@
      ]
   },
   {
-    "id": 3,
+    "id": "deadpool-and-wolverine",
     "title": "Deadpool & Wolverine",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "category": ["hollywood", "trending"],
@@ -26,6 +26,7 @@
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "slide_overlay_text": "Must Watch",
     "overlay_text": "HD",
+    "suggestedIds": ["joker-folie-a-deux", "stree-2"],
     "downloadLinks": [
       { "quality": "480p", "size": "650 MB", "link": "https://your-server.com/download/deadpool-wolverine/480p" },
       { "quality": "720p", "size": "1.3 GB", "link": "https://your-server.com/download/deadpool-wolverine/720p" },
@@ -33,7 +34,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": "pushpa-2-the-rule",
     "title": "Pushpa 2: The Rule",
     "poster": "https://m.media-amazon.com/images/M/MV5BNDM3N2UzM2UtMjEwMC00NGUzLThmMmQtNGMyM2VmMDA0ZWEwXkEyXkFqcGc@._V1_.jpg",
     "category": ["tollywood", "trending"],
@@ -47,12 +48,13 @@
     ]
   },
   {
-    "id": 5,
+    "id": "panchayat-season-3",
     "title": "Panchayat Season 3",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "category": ["webseries"],
     "home_section": "webseries",
     "overlay_text": "All Eps",
+    "suggestedIds": ["kota-factory-season-3", "the-family-man-3"],
     "downloadLinks": [
       { "quality": "480p", "size": "2.5 GB", "link": "https://your-server.com/download/panchayat-s3/480p" },
       { "quality": "720p", "size": "5 GB", "link": "https://your-server.com/download/panchayat-s3/720p" },
@@ -60,12 +62,13 @@
     ]
   },
   {
-    "id": 6,
+    "id": "stree-2",
     "title": "Stree 2",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "category": ["bollywood"],
     "home_section": "movies",
     "overlay_text": "HD",
+    "suggestedIds": ["bhool-bhulaiyaa-3"],
     "downloadLinks": [
       { "quality": "480p", "size": "600 MB", "link": "https://your-server.com/download/stree-2/480p" },
       { "quality": "720p", "size": "1.2 GB", "link": "https://your-server.com/download/stree-2/720p" },
@@ -73,7 +76,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": "kota-factory-season-3",
     "title": "Kota Factory Season 3",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "category": ["webseries", "trending"],
@@ -88,7 +91,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": "joker-folie-a-deux",
     "title": "Joker: Folie à Deux",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "category": ["hollywood"],
@@ -100,7 +103,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": "bhool-bhulaiyaa-3",
     "title": "Bhool Bhulaiyaa 3",
     "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPrgGZofBmaASm6xVqQ0v0w8urbZFlAqSyLg&usqp=CAU",
     "category": ["bollywood", "trending"],
@@ -114,7 +117,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": "the-family-man-3",
     "title": "The Family Man 3",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "category": ["webseries"],
