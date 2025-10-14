@@ -196,7 +196,6 @@
             <h2 id="filtered-title"></h2><div id="filtered-grid" class="movie-grid"></div>
         </div>
     </main>
-
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const categories = [ { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
@@ -237,128 +236,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function populateHomePage(movies) {
-        // NEW: Sorting function to arrange movies by display_order
-        const sortByDisplayOrder = (a, b) => {
-            const orderA = a.display_order || 999; // If display_order is not defined, treat it as 999 (last)
-            const orderB = b.display_order || 999; // This pushes movies without an order to the end
+    // YAHI HAI SABSE BADA BADLAV
+    // Yeh function section ke naam ke hisaab se ek naya sorter banata hai
+    const createSorter = (sectionName) => {
+        return (a, b) => {
+            // movie.display_orders?.['slider'] || 999;
+            const orderA = a.display_orders?.[sectionName] || 999;
+            const orderB = b.display_orders?.[sectionName] || 999;
             return orderA - orderB;
         };
+    };
 
-        // UPDATED: Filter AND then Sort each section before displaying
-        displayMovies(movies.filter(m => m.home_section === 'latest').sort(sortByDisplayOrder), document.getElementById('latest-grid'));
-        displayMovies(movies.filter(m => m.home_section === 'trending').sort(sortByDisplayOrder), document.getElementById('trending-grid'));
-        displayMovies(movies.filter(m => m.home_section === 'movies').sort(sortByDisplayOrder), document.getElementById('movies-grid'));
-        displayMovies(movies.filter(m => m.home_section === 'webseries').sort(sortByDisplayOrder), document.getElementById('webseries-grid'));
+    function populateHomePage(movies) {
+        // Ab filter 'home_section' array ke andar check karega
+        displayMovies(movies.filter(m => m.home_section?.includes('latest')).sort(createSorter('latest')), document.getElementById('latest-grid'));
+        displayMovies(movies.filter(m => m.home_section?.includes('trending')).sort(createSorter('trending')), document.getElementById('trending-grid'));
+        displayMovies(movies.filter(m => m.home_section?.includes('movies')).sort(createSorter('movies')), document.getElementById('movies-grid'));
+        displayMovies(movies.filter(m => m.home_section?.includes('webseries')).sort(createSorter('webseries')), document.getElementById('webseries-grid'));
         
-        // Setup for "Show All" buttons
         document.querySelectorAll('.show-all-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const grid = e.target.closest('.home-category-section').querySelector('.movie-grid');
                 grid.classList.toggle('limited');
-                if (grid.classList.contains('limited')) {
-                    e.target.innerHTML = 'Show All &#9662;'; // Down arrow
-                } else {
-                    e.target.innerHTML = 'Show Less &#9652;'; // Up arrow
-                }
+                e.target.innerHTML = grid.classList.contains('limited') ? 'Show All &#9662;' : 'Show Less &#9652;';
             });
-        });
-    }
-
-    function setupSideMenu() {
-        sideMenu.innerHTML = '';
-        categories.forEach(cat => {
-            const item = document.createElement('a');
-            item.href = '#'; item.className = 'category-item';
-            item.dataset.value = cat.value; item.textContent = cat.text;
-            sideMenu.appendChild(item);
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const category = e.target.dataset.value;
-                if (category === 'all') {
-                    showHomePage();
-                } else {
-                    const filtered = allMovies.filter(m => (Array.isArray(m.category) && m.category.includes(category)) || m.category === category);
-                    showFilteredResults(filtered, e.target.textContent);
-                }
-                sideMenu.classList.remove('open');
-                overlay.style.display = 'none';
-            });
-        });
-    }
-
-    function handleSearch(e) {
-        const term = e.target.value.toLowerCase();
-        if (term) {
-            const filtered = allMovies.filter(m => m.title.toLowerCase().includes(term));
-            showFilteredResults(filtered, `Results for "${term}"`);
-        } else {
-            showHomePage();
-        }
-    }
-
-    function showFilteredResults(movieArray, title) {
-        homePageContent.style.display = 'none';
-        sliderContainer.style.display = 'none'; 
-        filteredResultsContainer.style.display = 'block';
-        filteredTitle.textContent = title;
-        // Also sort the search/filtered results if you want
-        const sortedArray = movieArray.sort((a, b) => (a.display_order || 999) - (b.display_order || 999));
-        displayMovies(sortedArray, filteredGrid);
-    }
-
-    function showHomePage() {
-        filteredResultsContainer.style.display = 'none';
-        homePageContent.style.display = 'block';
-        sliderContainer.style.display = 'block'; 
-        document.getElementById('searchInput').value = ''; 
-    }
-
-    function displayMovies(movieArray, gridElement) {
-        if (!gridElement) return;
-        gridElement.innerHTML = '';
-        if(movieArray.length === 0) {
-            if(gridElement.closest('.home-category-section')) {
-                gridElement.closest('.home-category-section').style.display = 'none';
-            }
-            return;
-        }
-        
-        movieArray.forEach(movie => {
-            const link = document.createElement('a');
-            link.href = `player.html?id=${movie.id}`;
-            let overlayHTML = '';
-            if (movie.overlay_text) {
-                const bgColor = movie.overlay_color || 'var(--theme-color)';
-                overlayHTML = `<div class="movie-card-overlay" style="background-color: ${bgColor};">${movie.overlay_text}</div>`;
-            }
-            link.innerHTML = `
-                <div class="movie-card">
-                    ${overlayHTML}
-                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                    <div class="movie-info">
-                        <h3>${movie.title}</h3>
-                    </div>
-                </div>`;
-            gridElement.appendChild(link);
         });
     }
     
-    // Slider function remains unchanged
+    // SLIDER FUNCTION BHI UPDATE KIYA GAYA HAI
     function populateSlider(movieArray) {
-        // Slider can also be sorted if needed
-        const trending = movieArray.filter(m => (Array.isArray(m.category) && m.category.includes('trending')) || m.category === 'trending')
-                                    .sort((a,b) => (a.display_order || 999) - (b.display_order || 999));
+        const sliderTrack = document.querySelector('.slider-track');
         
-        if (!document.querySelector('.slider-track') || trending.length === 0) { 
+        // NAYA: Ab slider un movies ko lega jinke 'display_orders' mein 'slider' property hai
+        const sliderMovies = movieArray
+            .filter(m => m.display_orders?.slider) // Check if display_orders.slider exists
+            .sort(createSorter('slider')) // Sort according to slider order
+            .slice(0, 5); // Hamesha sirf top 5 hi lega
+
+        if (!sliderTrack || sliderMovies.length === 0) { 
             sliderContainer.style.display = 'none'; 
             return; 
         }
 
-        // ... rest of the slider function is the same
-        const sliderTrack = document.querySelector('.slider-track');
         sliderTrack.innerHTML = '';
-        trending.forEach(movie => {
+        sliderMovies.forEach(movie => {
             const slide = document.createElement('div');
             slide.className = 'slide';
             const posterUrl = movie.slide_poster || movie.poster; 
@@ -376,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const prevBtn = document.getElementById('prev-slide');
         const nextBtn = document.getElementById('next-slide');
-        if (trending.length > 1) {
+        if (sliderMovies.length > 1) {
             prevBtn.style.display = 'flex'; 
             nextBtn.style.display = 'flex';
             const slides = Array.from(sliderTrack.children);
@@ -409,6 +330,76 @@ document.addEventListener('DOMContentLoaded', () => {
             prevBtn.addEventListener('click', () => { moveTo(-1); startSliderInterval(); });
             startSliderInterval();
         }
+    }
+
+    // Baaki ke functions (setupSideMenu, handleSearch, etc.) waise hi rahenge
+    function setupSideMenu() {
+        sideMenu.innerHTML = '';
+        categories.forEach(cat => {
+            const item = document.createElement('a');
+            item.href = '#'; item.className = 'category-item';
+            item.dataset.value = cat.value; item.textContent = cat.text;
+            sideMenu.appendChild(item);
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = e.target.dataset.value;
+                if (category === 'all') { showHomePage(); } 
+                else {
+                    const filtered = allMovies.filter(m => (Array.isArray(m.category) && m.category.includes(category)) || m.category === category);
+                    showFilteredResults(filtered, e.target.textContent);
+                }
+                sideMenu.classList.remove('open');
+                overlay.style.display = 'none';
+            });
+        });
+    }
+    function handleSearch(e) {
+        const term = e.target.value.toLowerCase();
+        if (term) {
+            const filtered = allMovies.filter(m => m.title.toLowerCase().includes(term));
+            showFilteredResults(filtered, `Results for "${term}"`);
+        } else { showHomePage(); }
+    }
+    function showFilteredResults(movieArray, title) {
+        homePageContent.style.display = 'none';
+        sliderContainer.style.display = 'none'; 
+        filteredResultsContainer.style.display = 'block';
+        filteredTitle.textContent = title;
+        displayMovies(movieArray, filteredGrid);
+    }
+    function showHomePage() {
+        filteredResultsContainer.style.display = 'none';
+        homePageContent.style.display = 'block';
+        sliderContainer.style.display = 'block'; 
+        document.getElementById('searchInput').value = ''; 
+    }
+    function displayMovies(movieArray, gridElement) {
+        if (!gridElement) return;
+        gridElement.innerHTML = '';
+        if(movieArray.length === 0) {
+            if(gridElement.closest('.home-category-section')) {
+                gridElement.closest('.home-category-section').style.display = 'none';
+            }
+            return;
+        }
+        movieArray.forEach(movie => {
+            const link = document.createElement('a');
+            link.href = `player.html?id=${movie.id}`;
+            let overlayHTML = '';
+            if (movie.overlay_text) {
+                const bgColor = movie.overlay_color || 'var(--theme-color)';
+                overlayHTML = `<div class="movie-card-overlay" style="background-color: ${bgColor};">${movie.overlay_text}</div>`;
+            }
+            link.innerHTML = `
+                <div class="movie-card">
+                    ${overlayHTML}
+                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                    <div class="movie-info">
+                        <h3>${movie.title}</h3>
+                    </div>
+                </div>`;
+            gridElement.appendChild(link);
+        });
     }
 });
 </script>
