@@ -90,10 +90,43 @@
         </div>
         
         <div id="home-page-content">
-            <h2>🔥 Latest Releases</h2><div id="latest-grid" class="movie-grid"></div>
-            <h2>🔥 Trending</h2><div id="trending-grid" class="movie-grid"></div>
-            <h2>🎬 Movies</h2><div id="movies-grid" class="movie-grid"></div>
-            <h2>📺 Webseries</h2><div id="webseries-grid" class="movie-grid"></div>
+            
+    <!-- Section 1: Latest Releases -->
+    <div class="home-category-section">
+        <div class="home-category-header">
+            <h2>🔥 Latest Releases</h2>
+            <button class="show-all-btn">Show All &#9662;</button>
+        </div>
+        <div id="latest-grid" class="movie-grid limited"></div>
+    </div>
+
+    <!-- Section 2: Trending -->
+    <div class="home-category-section">
+        <div class="home-category-header">
+            <h2>🔥 Trending</h2>
+            <button class="show-all-btn">Show All &#9662;</button>
+        </div>
+        <div id="trending-grid" class="movie-grid limited"></div>
+    </div>
+    
+    <!-- Section 3: Movies -->
+    <div class="home-category-section">
+        <div class="home-category-header">
+            <h2>🎬 Movies</h2>
+            <button class="show-all-btn">Show All &#9662;</button>
+        </div>
+        <div id="movies-grid" class="movie-grid limited"></div>
+    </div>
+
+    <!-- Section 4: Webseries -->
+    <div class="home-category-section">
+        <div class="home-category-header">
+            <h2>📺 Webseries</h2>
+            <button class="show-all-btn">Show All &#9662;</button>
+        </div>
+        <div id="webseries-grid" class="movie-grid limited"></div>
+    </div>
+
         </div>
 
         <div id="filtered-results-container" style="display: none;">
