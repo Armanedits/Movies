@@ -131,5 +131,185 @@
       { "quality": "720p", "size": "8 GB", "link": "https://your-server.com/download/family-man-s3/720p" },
       { "quality": "1080p", "size": "16 GB", "link": "https://your-server.com/download/family-man-s3/1080p" }
     ]
+  },
+  {
+    "id": "housefull-5",
+    "title": "Housefull 5",
+    "poster": "...",
+    "category": ["bollywood", "movies"],
+    "home_section": "movies",
+    "display_order": 1,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "game-changer",
+    "title": "Game Changer",
+    "poster": "...",
+    "category": ["bollywood", "movies"],
+    "home_section": "movies",
+    "display_order": 2,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "tehran",
+    "title": "Tehran",
+    "poster": "...",
+    "category": ["movies"],
+    "home_section": "movies",
+    "display_order": 3,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "coolie",
+    "title": "Coolie",
+    "poster": "...",
+    "category": ["movies"],
+    "home_section": "movies",
+    "display_order": 4,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "sitaare-zameen-par",
+    "title": "Sitaare Zameen Par",
+    "poster": "...",
+    "category": ["movies"],
+    "home_section": "movies",
+    "display_order": 5,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "sky-force",
+    "title": "Sky Force",
+    "poster": "...",
+    "category": ["movies"],
+    "home_section": "movies",
+    "display_order": 6,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "kuberaa",
+    "title": "Kuberaa",
+    "poster": "...",
+    "category": ["movies"],
+    "home_section": "movies",
+    "display_order": 7,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "songs-of-paradise",
+    "title": "Songs of Paradise",
+    "poster": "...",
+    "category": ["movies"],
+    "home_section": "movies",
+    "display_order": 8,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "ace",
+    "title": "Ace",
+    "poster": "...",
+    "category": ["movies"],
+    "home_section": "movies",
+    "display_order": 9,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "hari-hara-veera-mallu",
+    "title": "Hari Hara Veera Mallu",
+    "poster": "...",
+    "category": ["movies"],
+    "home_section": "movies",
+    "display_order": 10,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "thudarum",
+    "title": "Thudarum",
+    "poster": "...",
+    "category": ["movies"],
+    "home_section": "movies",
+    "display_order": 11,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
+  },
+  {
+    "id": "l2-empuraan",
+    "title": "L2: Empuraan",
+    "poster": "...",
+    "category": ["movies"],
+    "home_section": "movies",
+    "display_order": 12,
+    "overlay_text": "Coming Soon",
+    "suggestedIds": [],
+    "downloadLinks": [
+      { "quality": "480p", "size": "...", "link": "..." },
+      { "quality": "720p", "size": "...", "link": "..." },
+      { "quality": "1080p", "size": "...", "link": "..." }
+     ]
   }
 ]
