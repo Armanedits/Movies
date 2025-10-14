@@ -109,17 +109,127 @@
         </div>
     </div>
 
-    <!-- === JAVASCRIPT LOGIC (Major Update) === -->
+    <!-- === JAVASCRIPT LOGIC === -->
     <script>
     document.addEventListener('DOMContentLoaded', () => {
 
         let allMovies = []; 
 
-        const movieDetailsView = document.getElementById('movie-details-view');
-        const searchResultsView = document.getElementById('search-results-view');
-        const searchResultsTitle = document.getElementById('search-results-title');
-        const searchResultsGrid = document.getElementById('search-results-grid');
+        // Baaki ke saare variables waise hi rahenge...
 
+        // --- PAGE LOAD LOGIC ---
+        fetch('movies.json')
+            .then(response => response.json())
+            .then(movies => {
+                allMovies = movies;
+                
+                const urlParams = new URLSearchParams(window.location.search);
+                // Text ID (slug) system waise hi kaam kar raha hai
+                const movieId = urlParams.get('id');
+
+                if (!movieId) { document.querySelector('main.container').innerHTML = `<h1>Error: Movie ID not found.</h1>`; return; }
+                const currentMovie = movies.find(m => m.id === movieId);
+                if (!currentMovie) { document.querySelector('main.container').innerHTML = `<h1>Error: Movie not found.</h1>`; return; }
+
+                document.title = `Download: ${currentMovie.title}`;
+                document.getElementById('main-poster').src = currentMovie.poster;
+                document.getElementById('main-poster').alt = currentMovie.title;
+                document.getElementById('movie-title').textContent = currentMovie.title;
+                document.getElementById('movie-description').textContent = currentMovie.details || '';
+
+                // Cast, Download links, etc. ka code waise hi rahega
+
+                const castContainer = document.getElementById('cast-list');
+                const castTitle = document.getElementById('cast-title');
+                castContainer.innerHTML = '';
+                if (currentMovie.cast && currentMovie.cast.length > 0) {
+                    castTitle.style.display = 'block';
+                    currentMovie.cast.forEach(actor => {
+                        const castElement = document.createElement('span');
+                        castElement.className = 'cast-member';
+                        castElement.textContent = actor;
+                        castContainer.appendChild(castElement);
+                    });
+                } else {
+                    castTitle.style.display = 'none';
+                }
+
+                const downloadsContainer = document.getElementById('download-links');
+                downloadsContainer.innerHTML = '';
+                const qualitiesToShow = ["480p", "720p", "1080p"];
+
+                if (currentMovie.downloadLinks && Array.isArray(currentMovie.downloadLinks)) {
+                    qualitiesToShow.forEach(qualityValue => {
+                        const linkObject = currentMovie.downloadLinks.find(item => item.quality === qualityValue);
+                        const button = document.createElement('a');
+                        button.className = 'download-btn';
+                        let buttonText = qualityValue; 
+                        if (linkObject && linkObject.size) {
+                            buttonText += ` (${linkObject.size})`;
+                        }
+                        if (linkObject && linkObject.link && !linkObject.link.includes('your-server.com')) {
+                            button.href = linkObject.link;
+                            button.setAttribute('download', '');
+                        } else {
+                            button.href = '#';
+                            button.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                showCustomPopup(`Sorry, the ${qualityValue} download link is not available yet!`);
+                            });
+                        }
+                        button.innerHTML = `<svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> ${buttonText}`;
+                        downloadsContainer.appendChild(button);
+                    });
+                } else {
+                    downloadsContainer.innerHTML = '<p>Download links are not available for this title.</p>';
+                }
+
+                // =======================================================================
+                // === SIRF YEH HISSA BADLA GAYA HAI (MANUAL SUGGESTIONS LOGIC) ===
+                // =======================================================================
+                
+                const relatedGrid = document.getElementById('related-movies-grid');
+                const relatedMoviesSection = document.querySelector('.related-movies');
+                let relatedMovies = [];
+
+                // Sirf tabhi movies dhoondho jab 'suggestedIds' maujood ho aur khaali na ho
+                if (currentMovie.suggestedIds && currentMovie.suggestedIds.length > 0) {
+                    relatedMovies = currentMovie.suggestedIds
+                        .map(id => movies.find(m => m.id === id)) // Text ID ke liye strict check (===)
+                        .filter(movie => movie != null); 
+                }
+                
+                // Ab check karo ki relatedMovies mein kuch hai ya nahi
+                if (relatedMovies.length > 0) {
+                    relatedMoviesSection.style.display = 'block'; // Section ko dikhao
+                    displayMovies(relatedMovies.slice(0, 12), relatedGrid);
+                } else {
+                    relatedMoviesSection.style.display = 'none'; // Section ko chhipa do
+                }
+
+                // =======================================================================
+                // === CODE UPDATE YAHAN KHATM HOTA HAI ===
+                // =======================================================================
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.querySelector('main.container').innerHTML = `<h2 style="color: red;">Error loading movie data.</h2>`;
+            });
+        
+        // --- Baaki ka JS (SEARCH, SIDEMENU etc.) ---
+        // Ismein koi badlav nahi kiya gaya hai
+        function displayMovies(movieArray, gridElement) {
+            gridElement.innerHTML = '';
+            if (movieArray.length === 0) { gridElement.innerHTML = `<p>No movies found.</p>`; return; }
+            movieArray.forEach(movie => {
+                const link = document.createElement('a');
+                link.href = `player.html?id=${movie.id}`;
+                link.innerHTML = `<div class="movie-card"><img src="${movie.poster}" alt="${movie.title}"><div class="movie-info"><h3>${movie.title}</h3></div></div>`;
+                gridElement.appendChild(link);
+            });
+        }
+        
         const popup = document.getElementById('custom-popup');
         const popupMessage = document.getElementById('popup-message');
         const popupCloseBtn = document.getElementById('popup-close-btn');
@@ -158,30 +268,10 @@
             }
         });
 
-        function showDetailsView() {
-            searchResultsView.style.display = 'none';
-            movieDetailsView.style.display = 'block';
-        }
-        function showSearchView() {
-            movieDetailsView.style.display = 'none';
-            searchResultsView.style.display = 'block';
-        }
-
-        function displayMovies(movieArray, gridElement) {
-            gridElement.innerHTML = '';
-            if (movieArray.length === 0) {
-                gridElement.innerHTML = `<p>No movies found.</p>`;
-                return;
-            }
-            movieArray.forEach(movie => {
-                const link = document.createElement('a');
-                link.href = `player.html?id=${movie.id}`;
-                link.innerHTML = `<div class="movie-card"><img src="${movie.poster}" alt="${movie.title}"><div class="movie-info"><h3>${movie.title}</h3></div></div>`;
-                gridElement.appendChild(link);
-            });
-        }
+        function showDetailsView() { searchResultsView.style.display = 'none'; movieDetailsView.style.display = 'block'; }
+        function showSearchView() { movieDetailsView.style.display = 'none'; searchResultsView.style.display = 'block'; }
         
-        const categories = [ { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
+        const categories = [ { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', 'text': 'Tollywood' } ];
         sideMenu.innerHTML = '';
         categories.forEach(cat => {
             const item = document.createElement('a');
@@ -190,102 +280,6 @@
             item.textContent = cat.text;
             sideMenu.appendChild(item);
         });
-
-        // --- PAGE LOAD LOGIC ---
-        fetch('movies.json')
-            .then(response => response.json())
-            .then(movies => {
-                allMovies = movies;
-                
-                const urlParams = new URLSearchParams(window.location.search);
-                const movieId = urlParams.get('id');
-
-                if (!movieId) { document.querySelector('main.container').innerHTML = `<h1>Error: Movie ID not found.</h1>`; return; }
-                const currentMovie = movies.find(m => m.id == movieId);
-                if (!currentMovie) { document.querySelector('main.container').innerHTML = `<h1>Error: Movie not found.</h1>`; return; }
-
-                document.title = `Download: ${currentMovie.title}`;
-                document.getElementById('main-poster').src = currentMovie.poster;
-                document.getElementById('main-poster').alt = currentMovie.title;
-                document.getElementById('movie-title').textContent = currentMovie.title;
-                document.getElementById('movie-description').textContent = currentMovie.details || '';
-
-                const castContainer = document.getElementById('cast-list');
-                const castTitle = document.getElementById('cast-title');
-                castContainer.innerHTML = '';
-                if (currentMovie.cast && currentMovie.cast.length > 0) {
-                    castTitle.style.display = 'block';
-                    currentMovie.cast.forEach(actor => {
-                        const castElement = document.createElement('span');
-                        castElement.className = 'cast-member';
-                        castElement.textContent = actor;
-                        castContainer.appendChild(castElement);
-                    });
-                } else {
-                    castTitle.style.display = 'none';
-                }
-
-                // =======================================================================
-                // === YAHAN SE CODE UPDATE KIYA GAYA HAI (Final Version) ===
-                // =======================================================================
-
-                const downloadsContainer = document.getElementById('download-links');
-                downloadsContainer.innerHTML = '';
-                const qualitiesToShow = ["480p", "720p", "1080p"];
-
-                if (currentMovie.downloadLinks && Array.isArray(currentMovie.downloadLinks)) {
-                    qualitiesToShow.forEach(qualityValue => {
-                        const linkObject = currentMovie.downloadLinks.find(item => item.quality === qualityValue);
-                        
-                        const button = document.createElement('a');
-                        button.className = 'download-btn';
-                        
-                        let buttonText = qualityValue; 
-                        if (linkObject && linkObject.size) {
-                            buttonText += ` (${linkObject.size})`;
-                        }
-
-                        // Condition: Kya link asli hai ya demo/missing hai?
-                        if (linkObject && linkObject.link && !linkObject.link.includes('your-server.com')) {
-                            // Asli link - download karega
-                            button.href = linkObject.link;
-                            button.setAttribute('download', '');
-                        } else {
-                            // Demo ya missing link - popup dikhayega
-                            button.href = '#';
-                            button.addEventListener('click', (e) => {
-                                e.preventDefault();
-                                showCustomPopup(`Sorry, the ${qualityValue} download link is not available yet!`);
-                            });
-                        }
-                        
-                        button.innerHTML = `<svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg> ${buttonText}`;
-                        downloadsContainer.appendChild(button);
-                    });
-                } else {
-                    downloadsContainer.innerHTML = '<p>Download links are not available for this title.</p>';
-                }
-                
-                // =======================================================================
-                // === CODE UPDATE ENDS HERE ===
-                // =======================================================================
-
-
-                // Related movies
-                let relatedMovies = [];
-                if (currentMovie.suggestedIds && currentMovie.suggestedIds.length > 0) {
-                    relatedMovies = currentMovie.suggestedIds.map(id => movies.find(m => m.id == id)).filter(movie => movie != null);
-                } else {
-                    const firstCategory = Array.isArray(currentMovie.category) ? currentMovie.category[0] : currentMovie.category;
-                    relatedMovies = movies.filter(m => m.id != currentMovie.id && (Array.isArray(m.category) ? m.category.includes(firstCategory) : m.category === firstCategory));
-                }
-                const relatedGrid = document.getElementById('related-movies-grid');
-                displayMovies(relatedMovies.slice(0, 12), relatedGrid);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.querySelector('main.container').innerHTML = `<h2 style="color: red;">Error loading movie data.</h2>`;
-            });
     });
     </script>
 </body>
