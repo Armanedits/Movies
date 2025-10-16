@@ -10,7 +10,15 @@
     "overlay_text": "Must Watch",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "slide_overlay_text": "New Release",
-    "slide_overlay_color": "#e74c3c"
+    "slide_overlay_color": "#e74c3c",
+    "details": "Kalki 2898 AD is an epic science-fiction dystopian film directed by Nag Ashwin. The film is set in a post-apocalyptic world and follows the journey of a hero who rises to protect humanity.",
+    "cast": ["Prabhas", "Amitabh Bachchan", "Kamal Haasan", "Deepika Padukone", "Disha Patani"],
+    "downloadLinks": [
+      { "quality": "1080p", "size": "2.5GB", "link": "#" },
+      { "quality": "720p", "size": "1.2GB", "link": "#" },
+      { "quality": "480p", "size": "450MB", "link": "#" }
+    ],
+    "suggestedIds": ["pushpa-2-the-rule", "singham-again", "deadpool-and-wolverine"]
   },
   {
     "id": "pushpa-2-the-rule",
@@ -23,7 +31,13 @@
     "overlay_text": "Full HD",
     "slide_poster": "https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg",
     "slide_overlay_text": "Highly Awaited",
-    "slide_overlay_color": "#e74c3c"
+    "slide_overlay_color": "#e74c3c",
+    "details": "The saga continues as Pushpa Raj's dominance is challenged by his enemies. This sequel follows his journey to maintain his rule over the red sandalwood smuggling syndicate.",
+    "cast": ["Allu Arjun", "Rashmika Mandanna", "Fahadh Faasil", "Jagapathi Babu"],
+    "downloadLinks": [
+      { "quality": "1080p", "size": "2.8GB", "link": "#" }
+    ],
+    "suggestedIds": ["kalki-2898-ad", "indian-2", "war-2"]
   },
   {
     "id": "singham-again",
@@ -36,7 +50,13 @@
     "overlay_text": "Multi-Starrer",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
+    "slide_overlay_color": "#e74c3c",
+    "details": "Bajirao Singham is back with his team to fight a new threat against the nation. This installment in Rohit Shetty's cop universe features a massive star cast and high-octane action.",
+    "cast": ["Ajay Devgn", "Akshay Kumar", "Ranveer Singh", "Deepika Padukone", "Tiger Shroff"],
+    "downloadLinks": [
+      { "quality": "720p", "size": "1.1GB", "link": "#" }
+    ],
+    "suggestedIds": ["war-2", "don-3", "border-2"]
   },
   {
     "id": "mirzapur-season-3",
@@ -49,7 +69,14 @@
     "overlay_text": "S03",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "slide_overlay_text": "New Season",
-    "slide_overlay_color": "#2ecc71"
+    "slide_overlay_color": "#2ecc71",
+    "details": "The fight for the throne of Mirzapur becomes bloodier and more intense. New players emerge, and old rivalries deepen as Kaleen Bhaiya and Guddu Pandit's paths cross again.",
+    "cast": ["Pankaj Tripathi", "Ali Fazal", "Shweta Tripathi", "Rasika Dugal", "Vijay Varma"],
+    "downloadLinks": [
+      { "quality": "1080p", "size": "3.5GB", "link": "#" },
+      { "quality": "720p", "size": "1.5GB", "link": "#" }
+    ],
+    "suggestedIds": ["panchayat-season-3", "kota-factory-season-3", "the-great-indian-kapil-show"]
   },
   {
     "id": "deadpool-and-wolverine",
@@ -62,240 +89,13 @@
     "overlay_text": "HD Print",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "slide_overlay_text": "Must Watch",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "stree-2",
-    "title": "Stree 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-08-15",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies", "trending"],
-    "display_orders": { "movies": 4, "trending": 4 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "panchayat-season-3",
-    "title": "Panchayat Season 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-05-28",
-    "category": ["webseries", "hindi", "trending"],
-    "home_section": ["webseries"],
-    "display_orders": { "webseries": 2 },
-    "overlay_text": "S03",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "jigra",
-    "title": "Jigra",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-10-11",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 6 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "bhool-bhulaiyaa-3",
-    "title": "Bhool Bhulaiyaa 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-11-01",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 7 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "welcome-to-the-jungle",
-    "title": "Welcome To The Jungle",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-12-20",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 8 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "joker-folie-a-deux",
-    "title": "Joker: Folie à Deux",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-10-04",
-    "category": ["hollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 9 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "chandu-champion",
-    "title": "Chandu Champion",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-06-14",
-    "category": ["bollywood", "trending"],
-    "home_section": ["latest", "movies"],
-    "display_orders": { "latest": 4, "movies": 10 },
-    "overlay_text": "HD",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "don-3",
-    "title": "Don 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2025-01-01",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 11 },
-    "overlay_text": "Announced",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "war-2",
-    "title": "War 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2025-08-14",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 12 },
-    "overlay_text": "Announced",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "indian-2",
-    "title": "Indian 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-07-12",
-    "category": ["trending"],
-    "home_section": ["latest", "movies"],
-    "display_orders": { "latest": 5, "movies": 13 },
-    "overlay_text": "HD",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "kota-factory-season-3",
-    "title": "Kota Factory Season 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-06-20",
-    "category": ["webseries", "hindi", "trending"],
-    "home_section": ["webseries"],
-    "display_orders": { "webseries": 3 },
-    "overlay_text": "S03",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "gladiator-2",
-    "title": "Gladiator 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-11-22",
-    "category": ["hollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 14 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "border-2",
-    "title": "Border 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2026-01-23",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 15 },
-    "overlay_text": "Announced",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "vedaa",
-    "title": "Vedaa",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-08-15",
-    "category": ["bollywood", "trending"],
-    "home_section": ["trending"],
-    "display_orders": { "trending": 5 },
-    "overlay_text": "HD",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "khel-khel-mein",
-    "title": "Khel Khel Mein",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-08-15",
-    "category": ["bollywood", "trending"],
-    "home_section": ["trending"],
-    "display_orders": { "trending": 6 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "mr-and-mrs-mahi",
-    "title": "Mr. And Mrs. Mahi",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-05-31",
-    "category": ["bollywood", "trending"],
-    "home_section": ["latest"],
-    "display_orders": { "latest": 6 },
-    "overlay_text": "HD",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "the-great-indian-kapil-show",
-    "title": "The Great Indian Kapil Show",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-03-30",
-    "category": ["webseries", "trending"],
-    "home_section": ["webseries"],
-    "display_orders": { "webseries": 4 },
-    "overlay_text": "New Ep",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
-  },
-  {
-    "id": "raid-2",
-    "title": "Raid 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-11-15",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 16 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c"
+    "slide_overlay_color": "#e74c3c",
+    "details": "The Merc with a Mouth joins forces with the clawed mutant in a multiverse-shattering adventure. Deadpool is recruited by the Time Variance Authority to save the sacred timeline.",
+    "cast": ["Ryan Reynolds", "Hugh Jackman", "Emma Corrin", "Morena Baccarin"],
+    "downloadLinks": [
+      { "quality": "1080p", "size": "2.1GB", "link": "#" },
+      { "quality": "720p", "size": "950MB", "link": "#" }
+    ],
+    "suggestedIds": ["joker-folie-a-deux", "gladiator-2", "kalki-2898-ad"]
   }
 ]
