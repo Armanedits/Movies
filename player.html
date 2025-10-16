@@ -31,6 +31,12 @@
         .movie-info h3 { font-size: 14px; margin: 8px 0 0 0; }
         .loading-error { text-align: center; font-size: 20px; margin-top: 50px; }
         .movie-card-overlay { position: absolute; top: 5px; left: 5px; background-color: var(--theme-color); color: white; padding: 3px 8px; font-size: 10px; font-weight: bold; border-radius: 4px; z-index: 2; }
+        /* NEW: Modal Styles */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.7); }
+        .modal-content { background-color: var(--light-bg); margin: 15% auto; padding: 25px; border-top: 4px solid var(--theme-color); border-radius: 8px; width: 80%; max-width: 400px; text-align: center; animation-name: zoomIn; animation-duration: 0.3s; }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+        .close-btn:hover, .close-btn:focus { color: white; }
+        @keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -56,64 +62,87 @@
             <div id="related-movies-section" style="display: none;"><h2 class="section-title">You might also like</h2><div id="related-movies-grid" class="movie-grid"></div></div>
         </div>
     </main>
+
+    <!-- NEW: Modal HTML -->
+    <div id="link-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <p style="font-size: 18px;">Download link will be updated soon!</p>
+        </div>
+    </div>
+
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const MOVIES_JSON_URL = "movies.json";
-    const loader = document.getElementById('loader');
-    const movieDetailsView = document.getElementById('movie-details-view');
+    // NEW: Modal Functions
+    const modal = document.getElementById('link-modal');
+    const closeBtn = document.querySelector('.close-btn');
+    function showModal() { modal.style.display = 'block'; }
+    function closeModal() { modal.style.display = 'none'; }
+    closeBtn.onclick = closeModal;
+    window.onclick = function(event) { if (event.target == modal) { closeModal(); } }
 
-    async function loadMovie() {
-        try {
-            const urlParams = new URLSearchParams(window.location.search);
-            const movieId = urlParams.get('id');
-            if (!movieId) throw new Error('Movie ID not found in URL.');
-            const response = await fetch(MOVIES_JSON_URL);
-            if (!response.ok) throw new Error(`Could not load movies.json.`);
-            const allMovies = await response.json();
-            const currentMovie = allMovies.find(m => m.id === movieId);
-            if (!currentMovie) throw new Error('Movie with this ID not found.');
-            displayMovieDetails(currentMovie, allMovies);
-            loader.style.display = 'none';
-            movieDetailsView.style.display = 'block';
-        } catch (error) { loader.textContent = `Error: ${error.message}`; }
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const MOVIES_JSON_URL = "movies.json";
+        const loader = document.getElementById('loader');
+        const movieDetailsView = document.getElementById('movie-details-view');
 
-    function displayMovieDetails(movie, allMovies) {
-        document.title = movie.title;
-        document.getElementById('main-poster').src = movie.poster;
-        document.getElementById('movie-title').textContent = movie.title;
-        const descriptionEl = document.getElementById('movie-description');
-        if (movie.details) { descriptionEl.textContent = movie.details; } else { descriptionEl.style.display = 'none'; }
-        const castSection = document.getElementById('cast-section');
-        if (movie.cast && movie.cast.length > 0) {
-            castSection.style.display = 'block';
-            document.getElementById('cast-list').innerHTML = movie.cast.map(actor => `<span class="cast-member">${actor}</span>`).join('');
+        async function loadMovie() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const movieId = urlParams.get('id');
+                if (!movieId) throw new Error('Movie ID not found in URL.');
+                const response = await fetch(MOVIES_JSON_URL);
+                if (!response.ok) throw new Error(`Could not load movies.json.`);
+                const allMovies = await response.json();
+                const currentMovie = allMovies.find(m => m.id === movieId);
+                if (!currentMovie) throw new Error('Movie with this ID not found.');
+                displayMovieDetails(currentMovie, allMovies);
+                loader.style.display = 'none';
+                movieDetailsView.style.display = 'block';
+            } catch (error) { loader.textContent = `Error: ${error.message}`; }
         }
-        const downloadsContainer = document.getElementById('download-links');
-        if (movie.downloadLinks && movie.downloadLinks.length > 0) {
-            downloadsContainer.innerHTML = movie.downloadLinks.map(linkInfo => {
-                let buttonText = linkInfo.quality || 'Download';
-                if (linkInfo.size) buttonText += ` (${linkInfo.size})`;
-                return `<a href="${linkInfo.link || '#'}" class="download-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>${buttonText}</a>`;
-            }).join('');
-        } else {
-            downloadsContainer.innerHTML = '<p>No download links available.</p>';
-        }
-        const relatedSection = document.getElementById('related-movies-section');
-        if (movie.suggestedIds && movie.suggestedIds.length > 0) {
-            const relatedMovies = movie.suggestedIds.map(id => allMovies.find(m => m.id === id)).filter(Boolean);
-            if (relatedMovies.length > 0) {
-                relatedSection.style.display = 'block';
-                document.getElementById('related-movies-grid').innerHTML = relatedMovies.map(relMovie => {
-                    const overlayStyle = relMovie.overlay_text_color ? `style="background-color: ${relMovie.overlay_text_color};"` : '';
-                    const overlayHTML = relMovie.overlay_text ? `<div class="movie-card-overlay" ${overlayStyle}>${relMovie.overlay_text}</div>` : '';
-                    return `<a href="player.html?id=${relMovie.id}"><div class="movie-card">${overlayHTML}<img src="${relMovie.poster}" alt="${relMovie.title}"><div class="movie-info"><h3>${relMovie.title}</h3></div></div></a>`;
+
+        function displayMovieDetails(movie, allMovies) {
+            document.title = movie.title;
+            document.getElementById('main-poster').src = movie.poster;
+            document.getElementById('movie-title').textContent = movie.title;
+            const descriptionEl = document.getElementById('movie-description');
+            if (movie.details) { descriptionEl.textContent = movie.details; } else { descriptionEl.style.display = 'none'; }
+            const castSection = document.getElementById('cast-section');
+            if (movie.cast && movie.cast.length > 0) {
+                castSection.style.display = 'block';
+                document.getElementById('cast-list').innerHTML = movie.cast.map(actor => `<span class="cast-member">${actor}</span>`).join('');
+            }
+            const downloadsContainer = document.getElementById('download-links');
+            if (movie.downloadLinks && movie.downloadLinks.length > 0) {
+                downloadsContainer.innerHTML = movie.downloadLinks.map(linkInfo => {
+                    let buttonText = linkInfo.quality || 'Download';
+                    if (linkInfo.size) buttonText += ` (${linkInfo.size})`;
+                    
+                    // UPDATED: Logic for Modal Popup
+                    if (linkInfo.link === '#') {
+                        return `<a href="javascript:void(0);" onclick="showModal()" class="download-btn"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>${buttonText}</a>`;
+                    } else {
+                        return `<a href="${linkInfo.link}" class="download-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>${buttonText}</a>`;
+                    }
                 }).join('');
+            } else {
+                downloadsContainer.innerHTML = '<p>No download links available.</p>';
+            }
+            const relatedSection = document.getElementById('related-movies-section');
+            if (movie.suggestedIds && movie.suggestedIds.length > 0) {
+                const relatedMovies = movie.suggestedIds.map(id => allMovies.find(m => m.id === id)).filter(Boolean);
+                if (relatedMovies.length > 0) {
+                    relatedSection.style.display = 'block';
+                    document.getElementById('related-movies-grid').innerHTML = relatedMovies.map(relMovie => {
+                        const overlayStyle = relMovie.overlay_text_color ? `style="background-color: ${relMovie.overlay_text_color};"` : '';
+                        const overlayHTML = relMovie.overlay_text ? `<div class="movie-card-overlay" ${overlayStyle}>${relMovie.overlay_text}</div>` : '';
+                        return `<a href="player.html?id=${relMovie.id}"><div class="movie-card">${overlayHTML}<img src="${relMovie.poster}" alt="${relMovie.title}"><div class="movie-info"><h3>${relMovie.title}</h3></div></div></a>`;
+                    }).join('');
+                }
             }
         }
-    }
-    loadMovie();
-});
+        loadMovie();
+    });
 </script>
 </body>
 </html>
