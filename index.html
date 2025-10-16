@@ -25,48 +25,38 @@
         #side-menu { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background-color: #181818; z-index: 1002; transform: translateX(-100%); transition: transform 0.3s ease-in-out; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         #side-menu.open { transform: translateX(0); }
         #side-menu .menu-item { display: flex; justify-content: space-between; align-items: center; color: #fff; padding: 15px 25px; font-size: 18px; border-bottom: 1px solid #2a2a2a; cursor: pointer; transition: background-color 0.2s ease; }
-        /* NEW: Side Menu Active State Style */
         #side-menu .menu-item.active { background-color: var(--theme-color); }
         #side-menu .submenu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; background-color: #202020; }
         #side-menu .submenu.open { max-height: 500px; }
         #side-menu .submenu .menu-item { font-size: 16px; padding-left: 40px; }
         #menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1001; display: none; }
         .slider-container { position: relative; width: 100%; margin: 20px auto; overflow: hidden; border-radius: 8px; }
-        .slider-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .slider-track { display: flex; }
         .slide { min-width: 100%; box-sizing: border-box; position: relative; }
         .slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; }
         .slide-title { position: absolute; bottom: 15px; left: 15px; color: #fff; padding: 8px 12px; font-size: 18px; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); }
-        /* UPDATED: Slider Buttons always visible */
         .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.4); border: none; color: white; font-size: 28px; cursor: pointer; padding: 10px 15px; z-index: 10; border-radius: 50%; line-height: 1; }
-        #prev-slide { left: 10px; }
-        #next-slide { right: 10px; }
+        #prev-slide { left: 10px; } #next-slide { right: 10px; }
         .home-category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .home-category-header h2 { font-size: 20px; margin: 0; }
         .show-all-btn { background-color: #2a2a2a; color: var(--text-primary); border: 1px solid #444; border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 500; }
+        .show-all-btn .arrow { transition: transform 0.3s ease; display: inline-block; }
+        .home-category-section.expanded .show-all-btn .arrow { transform: rotate(180deg); }
         .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
+        .home-category-section .movie-grid { max-height: 320px; overflow: hidden; transition: max-height 0.6s ease-in-out; }
+        .home-category-section.expanded .movie-grid { max-height: 2000px; }
         .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
         .movie-info h3 { font-size: 12px; font-weight: 500; margin: 8px 0 4px 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        /* UPDATED: Years Section Smooth Animation */
         #years-section-container { margin-top: 40px; }
-        .year-section { margin-bottom: 10px; }
         .year-header { background-color: var(--light-bg); padding: 12px 15px; font-size: 18px; font-weight: 600; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid var(--theme-color); }
         .year-header .arrow { transition: transform 0.4s ease; }
         .year-header.open .arrow { transform: rotate(180deg); }
         .year-movie-list { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1); padding: 0 10px; }
-        .year-movie-list.open { max-height: 1000px; /* A reasonable max height */ padding-top: 15px; }
+        .year-movie-list.open { max-height: 1000px; padding-top: 15px; }
         .year-movie-item { display: flex; align-items: center; margin-bottom: 15px; }
         .year-movie-item img { width: 80px; height: 120px; object-fit: cover; border-radius: 6px; margin-right: 15px; }
         .year-movie-info h3 { font-size: 16px; margin: 0 0 5px 0; }
         .year-movie-info .movie-date { font-size: 14px; color: var(--text-secondary); }
-        /* NEW: Home Category Smooth "Dropdown" Animation */
-        .home-category-section .movie-grid {
-            max-height: 320px; /* Approx height for 2 rows */
-            overflow: hidden;
-            transition: max-height 0.6s ease-in-out;
-        }
-        .home-category-section.expanded .movie-grid {
-            max-height: 2000px; /* Large value to show all movies */
-        }
     </style>
 </head>
 <body>
@@ -74,22 +64,14 @@
         <nav class="nav-bar" id="main-nav">
             <div class="nav-left"><button class="icon-btn" id="menu-btn">☰</button></div>
             <div class="logo-container"><a href="index.html"><img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Logo" class="logo"></a></div>
-            <div class="nav-right">
-                <button class="icon-btn" id="search-btn">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCj29GTwC6fyDqJQfPCNuhJu2tVUv5-Gi3zDCIz0rlQQ&s=10" alt="Search">
-                </button>
-            </div>
+            <div class="nav-right"><button class="icon-btn" id="search-btn"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCj29GTwC6fyDqJQfPCNuhJu2tVUv5-Gi3zDCIz0rlQQ&s=10" alt="Search"></button></div>
             <div id="search-container"><input type="text" id="searchInput" placeholder="Search..."><button class="icon-btn" id="close-search-btn">×</button></div>
         </nav>
     </header>
     <div id="side-menu"></div>
     <div id="menu-overlay"></div>
     <main class="container">
-        <div class="slider-container">
-            <div class="slider-track"></div>
-            <button class="slider-btn" id="prev-slide">&#10094;</button>
-            <button class="slider-btn" id="next-slide">&#10095;</button>
-        </div>
+        <div class="slider-container"><div class="slider-track"></div><button class="slider-btn" id="prev-slide">&#10094;</button><button class="slider-btn" id="next-slide">&#10095;</button></div>
         <div id="home-page-content"></div>
         <div id="filtered-results-container" style="display: none;"><h2 id="filtered-title"></h2><div id="filtered-grid" class="movie-grid"></div></div>
         <div id="years-section-container"></div>
@@ -98,6 +80,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const MOVIES_JSON_URL = "movies.json";
     const YEARS_JSON_URL = "years.json";
+    const INITIAL_ITEM_LIMIT = 6;
     let allMovies = [];
     let autoSlideInterval;
 
@@ -114,100 +97,91 @@ document.addEventListener('DOMContentLoaded', () => {
             populateYearsSection(yearsData);
             setupEventListeners();
             setupSideMenu();
-        } catch (error) {
-            document.querySelector('main.container').innerHTML = `<h2 style="text-align:center; color:red;">${error.message}</h2>`;
-        }
+        } catch (error) { document.querySelector('main.container').innerHTML = `<h2 style="text-align:center; color:red;">${error.message}</h2>`; }
     }
 
     function populateHomePage() {
         const homeContent = document.getElementById('home-page-content');
-        const sections = [
-            { id: 'latest', title: '🔥 Latest Releases' }, { id: 'trending', title: '📈 Trending' },
-            { id: 'movies', title: '🎬 Movies' }, { id: 'webseries', title: '📺 Webseries' }
-        ];
-        homeContent.innerHTML = sections.map(sec => `
-            <div class="home-category-section" data-section="${sec.id}">
-                <div class="home-category-header">
-                    <h2>${sec.title}</h2>
-                    <button class="show-all-btn">Show All <span class="arrow">&#9662;</span></button>
-                </div>
-                <div class="movie-grid"></div>
-            </div>`).join('');
-
+        const sections = [ { id: 'latest', title: '🔥 Latest Releases' }, { id: 'trending', title: '📈 Trending' }, { id: 'movies', title: '🎬 Movies' }, { id: 'webseries', title: '📺 Webseries' }];
+        homeContent.innerHTML = sections.map(sec => `<div class="home-category-section" data-section="${sec.id}"><div class="home-category-header"><h2>${sec.title}</h2><button class="show-all-btn">Show All <span class="arrow">&#9662;</span></button></div><div class="movie-grid"></div></div>`).join('');
         document.querySelectorAll('.home-category-section').forEach(sectionElement => {
             const sectionName = sectionElement.dataset.section;
             const moviesForSection = allMovies.filter(m => m.home_section?.includes(sectionName)).sort((a, b) => (a.display_orders?.[sectionName] || 999) - (b.display_orders?.[sectionName] || 999));
             const grid = sectionElement.querySelector('.movie-grid');
             const showAllBtn = sectionElement.querySelector('.show-all-btn');
-            
             if (!moviesForSection.length) { sectionElement.style.display = 'none'; return; }
-
-            // UPDATED: Render all movies at once for smooth animation
             displayMovies(moviesForSection, grid);
-            
-            if (moviesForSection.length <= 6) {
+            if (moviesForSection.length <= INITIAL_ITEM_LIMIT) {
                 showAllBtn.style.display = 'none';
-                sectionElement.classList.add('expanded'); // Show all if <= 6
+                sectionElement.classList.add('expanded');
             } else {
                 showAllBtn.addEventListener('click', () => {
                     sectionElement.classList.toggle('expanded');
                     const isExpanded = sectionElement.classList.contains('expanded');
-                    showAllBtn.innerHTML = isExpanded ? 'Show Less <span class="arrow">&#9652;</span>' : 'Show All <span class="arrow">&#9662;</span>';
+                    showAllBtn.innerHTML = isExpanded ? 'Show Less <span class="arrow" style="transform: rotate(180deg);"></span>' : 'Show All <span class="arrow"></span>';
                 });
             }
         });
     }
 
-    function displayMovies(movieList, container) {
-        container.innerHTML = movieList.map(movie => `
-            <a href="player.html?id=${movie.id}">
-                <div class="movie-card">
-                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                    <div class="movie-info"><h3>${movie.title}</h3></div>
-                </div>
-            </a>`).join('');
-    }
+    function displayMovies(movieList, container) { container.innerHTML = movieList.map(movie => `<a href="player.html?id=${movie.id}"><div class="movie-card"><img src="${movie.poster}" alt="${movie.title}" loading="lazy"><div class="movie-info"><h3>${movie.title}</h3></div></div></a>`).join(''); }
     
     function populateSlider() {
         const sliderTrack = document.querySelector('.slider-track');
         const sliderMovies = allMovies.filter(m => m.display_orders?.slider).sort((a, b) => a.display_orders.slider - b.display_orders.slider);
-        if (sliderTrack && sliderMovies.length > 0) {
-            sliderTrack.innerHTML = sliderMovies.map(movie => `<a href="player.html?id=${movie.id}" class="slide"><img src="${movie.slide_poster || movie.poster}" alt="${movie.title}"><h3 class="slide-title">${movie.title}</h3></a>`).join('');
-            setupSlider(sliderMovies.length);
-        }
+        if (!sliderTrack || sliderMovies.length === 0) return;
+        sliderTrack.innerHTML = sliderMovies.map(movie => `<a href="player.html?id=${movie.id}" class="slide"><img src="${movie.slide_poster || movie.poster}" alt="${movie.title}"><h3 class="slide-title">${movie.title}</h3></a>`).join('');
+        setupSlider();
     }
 
-    function setupSlider(slideCount) {
+    function setupSlider() {
         const track = document.querySelector('.slider-track');
+        const slides = Array.from(track.children);
         const nextButton = document.getElementById('next-slide');
         const prevButton = document.getElementById('prev-slide');
-        let currentIndex = 0;
-        const updateSlide = () => { track.style.transform = `translateX(-${currentIndex * 100}%)`; };
+        if (slides.length <= 1) { nextButton.style.display = 'none'; prevButton.style.display = 'none'; return; }
+
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
+        track.appendChild(firstClone);
+        track.insertBefore(lastClone, slides[0]);
+
+        let currentIndex = 1;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        const moveToSlide = () => {
+            track.style.transition = "transform 0.5s ease-in-out";
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        };
+
         const resetAutoSlide = () => {
             clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(() => { currentIndex = (currentIndex + 1) % slideCount; updateSlide(); }, 4000);
+            autoSlideInterval = setInterval(() => nextButton.click(), 4000);
         };
-        nextButton.addEventListener('click', () => { currentIndex = (currentIndex + 1) % slideCount; updateSlide(); resetAutoSlide(); });
-        prevButton.addEventListener('click', () => { currentIndex = (currentIndex - 1 + slideCount) % slideCount; updateSlide(); resetAutoSlide(); });
+
+        track.addEventListener('transitionend', () => {
+            const allSlidesWithClones = track.querySelectorAll('.slide');
+            if (currentIndex >= allSlidesWithClones.length - 1) {
+                track.style.transition = "none";
+                currentIndex = 1;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+            if (currentIndex <= 0) {
+                track.style.transition = "none";
+                currentIndex = allSlidesWithClones.length - 2;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+        });
+
+        nextButton.addEventListener('click', () => { currentIndex++; moveToSlide(); resetAutoSlide(); });
+        prevButton.addEventListener('click', () => { currentIndex--; moveToSlide(); resetAutoSlide(); });
         resetAutoSlide();
     }
 
     function populateYearsSection(yearsData) {
         const container = document.getElementById('years-section-container');
         if (!container || !yearsData) return;
-        container.innerHTML = yearsData.map(yearObj => `
-            <div class="year-section">
-                <div class="year-header"><span>${yearObj.year} Movies</span><span class="arrow">&#9662;</span></div>
-                <div class="year-movie-list">
-                    ${yearObj.movies.map(movie => `
-                        <a href="player.html?id=${movie.id}">
-                            <div class="year-movie-item">
-                                <img src="${movie.poster}" alt="${movie.title}">
-                                <div class="year-movie-info"><h3>${movie.title}</h3><p class="movie-date">${movie.date}</p></div>
-                            </div>
-                        </a>`).join('')}
-                </div>
-            </div>`).join('');
+        container.innerHTML = yearsData.map(yearObj => `<div class="year-section"><div class="year-header"><span>${yearObj.year} Movies</span><span class="arrow">&#9662;</span></div><div class="year-movie-list">${yearObj.movies.map(movie => `<a href="player.html?id=${movie.id}"><div class="year-movie-item"><img src="${movie.poster}" alt="${movie.title}"><div class="year-movie-info"><h3>${movie.title}</h3><p class="movie-date">${movie.date}</p></div></div></a>`).join('')}</div></div>`).join('');
         container.querySelectorAll('.year-header').forEach(header => {
             header.addEventListener('click', () => {
                 header.classList.toggle('open');
@@ -219,24 +193,35 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupSideMenu() {
         const menu = document.getElementById('side-menu');
         menu.innerHTML = `<a href="index.html" class="menu-item">Home</a><div class="submenu-container"><div class="menu-item has-submenu"><span>All Categories</span><span class="arrow">&#9662;</span></div><div class="submenu"><a href="#" class="menu-item" data-category="trending">Trending</a><a href="#" class="menu-item" data-category="bollywood">Bollywood</a><a href="#" class="menu-item" data-category="hollywood">Hollywood</a><a href="#" class="menu-item" data-category="tollywood">Tollywood</a><a href="#" class="menu-item" data-category="webseries">Webseries</a></div></div>`;
-        menu.querySelector('.has-submenu').addEventListener('click', (e) => e.currentTarget.nextElementSibling.classList.toggle('open'));
+        menu.querySelector('.has-submenu').addEventListener('click', e => e.currentTarget.nextElementSibling.classList.toggle('open'));
         
         const allMenuItems = menu.querySelectorAll('.submenu .menu-item');
         allMenuItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-                // NEW: Logic for active state
                 allMenuItems.forEach(i => i.classList.remove('active'));
                 e.currentTarget.classList.add('active');
                 
                 const category = item.dataset.category;
-                // ... (filtering logic is the same)
+                const homeContent = document.getElementById('home-page-content'), slider = document.querySelector('.slider-container'), years = document.getElementById('years-section-container');
+                const filteredContainer = document.getElementById('filtered-results-container'), filteredTitle = document.getElementById('filtered-title'), filteredGrid = document.getElementById('filtered-grid');
+                
+                const filteredMovies = allMovies.filter(m => m.category?.includes(category));
+                homeContent.style.display = 'none'; slider.style.display = 'none'; years.style.display = 'none';
+                filteredContainer.style.display = 'block'; filteredTitle.textContent = item.textContent;
+                displayMovies(filteredMovies, filteredGrid);
+                document.getElementById('side-menu').classList.remove('open'); document.getElementById('menu-overlay').style.display = 'none';
             });
         });
     }
 
     function setupEventListeners() {
-        // ... (Event listeners code is the same)
+        const menuBtn = document.getElementById('menu-btn'), sideMenu = document.getElementById('side-menu'), overlay = document.getElementById('menu-overlay');
+        const searchBtn = document.getElementById('search-btn'), closeSearchBtn = document.getElementById('close-search-btn'), navBar = document.getElementById('main-nav');
+        menuBtn.addEventListener('click', () => { sideMenu.classList.add('open'); overlay.style.display = 'block'; });
+        overlay.addEventListener('click', () => { sideMenu.classList.remove('open'); overlay.style.display = 'none'; });
+        searchBtn.addEventListener('click', () => navBar.classList.add('search-active'));
+        closeSearchBtn.addEventListener('click', () => navBar.classList.remove('search-active'));
     }
 
     initializeApp();
