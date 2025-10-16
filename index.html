@@ -16,141 +16,288 @@
         .nav-right { text-align: right; }
         header img.logo { max-width: 120px; vertical-align: middle; }
         .icon-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; transition: opacity 0.2s ease; }
-        .icon-btn img { width: 28px; height: 28px; vertical-align: middle; }
         #search-container { display: none; flex-grow: 1; position: relative; }
         #searchInput { width: 100%; height: 40px; padding: 0 45px 0 15px; border-radius: 8px; border: 1px solid var(--theme-color); font-size: 16px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
         #close-search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); font-size: 28px; }
         .nav-bar.search-active .logo-container, .nav-bar.search-active .nav-left, .nav-bar.search-active .nav-right { display: none; }
-        .nav-bar.search-active #search-container { display: flex; align-items: center; }
+        .nav-bar.search-active #search-container { display: flex; align-items: center; width: 100%; }
         #side-menu { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background-color: #181818; z-index: 1002; transform: translateX(-100%); transition: transform 0.3s ease-in-out; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         #side-menu.open { transform: translateX(0); }
         #side-menu .menu-item { display: block; color: #fff; padding: 15px 25px; font-size: 18px; border-bottom: 1px solid #2a2a2a; cursor: pointer; }
-        #side-menu .submenu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; background-color: #202020; }
-        #side-menu .submenu.open { max-height: 500px; }
-        #side-menu .submenu .menu-item { font-size: 16px; padding-left: 40px; }
         #menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1001; display: none; }
         .slider-container { position: relative; width: 100%; margin: 20px auto; overflow: hidden; border-radius: 8px; }
-        .slider-track { display: flex; }
-        .slide { min-width: 100%; padding: 0 5px; box-sizing: border-box; position: relative; }
+        .slider-track { display: flex; transition: transform 0.5s ease-in-out; }
+        .slide { min-width: 100%; box-sizing: border-box; position: relative; }
         .slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; }
-        .slide-title { position: absolute; bottom: 15px; left: 15px; background-color: transparent; color: #fff; padding: 8px 12px; border-radius: 5px; font-size: 18px; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); }
-        .slider-btn { display: none; }
+        .slide-title { position: absolute; bottom: 15px; left: 15px; color: #fff; padding: 8px 12px; font-size: 18px; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); }
+        .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.5); color: white; border: none; font-size: 24px; cursor: pointer; padding: 10px; z-index: 10; display: none; }
+        @media (min-width: 768px) { .slider-btn { display: block; } }
+        #prev-slide { left: 10px; }
+        #next-slide { right: 10px; }
         .slide-overlay-text { position: absolute; top: 10px; left: 10px; color: white; padding: 5px 10px; font-size: 12px; font-weight: bold; border-radius: 5px; z-index: 5; }
-        @media (min-width: 600px) { .slide { min-width: 50%; } }
-        @media (min-width: 992px) { .slide { min-width: 33.33%; } }
         .home-category-section { margin-bottom: 20px; }
         .home-category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .home-category-header h2 { font-size: 20px; font-weight: 600; margin: 0; margin-top: 30px; }
         .show-all-btn { background-color: #2a2a2a; color: var(--text-primary); border: 1px solid #444; border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 500; }
         .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
-        .movie-card { cursor: pointer; transition: transform 0.2s ease; }
+        .movie-card { cursor: pointer; transition: transform 0.2s ease; position: relative; }
         .movie-card:hover { transform: scale(1.05); }
         .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
         .movie-info { padding: 0 4px; }
         .movie-info h3 { font-size: 12px; font-weight: 500; margin: 8px 0 4px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .movie-info .movie-date { font-size: 11px; color: var(--text-secondary); }
-        .movie-card-overlay { position: absolute; top: 5px; left: 5px; color: white; padding: 3px 6px; font-size: 10px; font-weight: bold; border-radius: 4px; z-index: 2; }
-        #years-section-container { margin-top: 40px; }
-        .year-section { margin-bottom: 20px; }
-        .year-header { background-color: var(--light-bg); padding: 12px 15px; font-size: 18px; font-weight: 600; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid var(--theme-color); }
-        .year-movie-list { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; }
-        .year-movie-list.open { max-height: 2000px; padding-top: 15px; }
-        .year-movie-item { display: flex; align-items: center; margin-bottom: 15px; }
-        .year-movie-item img { width: 80px; height: 120px; object-fit: cover; border-radius: 6px; margin-right: 15px; }
-        .year-movie-info h3 { font-size: 16px; margin: 0 0 5px 0; }
-        .year-movie-info .movie-date { font-size: 14px; color: var(--text-secondary); }
+        .movie-card-overlay { position: absolute; top: 5px; left: 5px; color: white; background-color: var(--theme-color); padding: 3px 6px; font-size: 10px; font-weight: bold; border-radius: 4px; z-index: 2; }
     </style>
 </head>
 <body>
-    <header><!-- ...Header HTML waisa hi hai... --></header>
-    <div id="side-menu"></div> <div id="menu-overlay"></div>
+    <header>
+        <nav class="nav-bar" id="main-nav">
+            <div class="nav-left">
+                <button class="icon-btn" id="menu-btn">☰</button>
+            </div>
+            <div class="logo-container">
+                <a href="index.html"><img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Logo" class="logo"></a>
+            </div>
+            <div class="nav-right">
+                <button class="icon-btn" id="search-btn">🔍</button>
+            </div>
+            <div id="search-container">
+                <input type="text" id="searchInput" placeholder="Search for movies...">
+                <button class="icon-btn" id="close-search-btn">×</button>
+            </div>
+        </nav>
+    </header>
+    
+    <div id="side-menu"></div> 
+    <div id="menu-overlay"></div>
+
     <main class="container">
-        <div class="slider-container"><!-- ...Slider HTML waisa hi hai... --></div>
-        <div id="home-page-content">
-            <div class="home-category-section" data-section="latest"><div class="home-category-header"><h2>🔥 Latest Releases</h2><button class="show-all-btn">Show All &#9662;</button></div><div id="latest-grid" class="movie-grid"></div></div>
-            <div class="home-category-section" data-section="trending"><div class="home-category-header"><h2>🔥 Trending</h2><button class="show-all-btn">Show All &#9662;</button></div><div id="trending-grid" class="movie-grid"></div></div>
-            <div class="home-category-section" data-section="movies"><div class="home-category-header"><h2>🎬 Movies</h2><button class="show-all-btn">Show All &#9662;</button></div><div id="movies-grid" class="movie-grid"></div></div>
-            <div class="home-category-section" data-section="webseries"><div class="home-category-header"><h2>📺 Webseries</h2><button class="show-all-btn">Show All &#9662;</button></div><div id="webseries-grid" class="movie-grid"></div></div>
+        <div class="slider-container">
+            <div class="slider-track"></div>
+            <button class="slider-btn" id="prev-slide">&#10094;</button>
+            <button class="slider-btn" id="next-slide">&#10095;</button>
         </div>
-        <div id="filtered-results-container" style="display: none;"><h2 id="filtered-title"></h2><div id="filtered-grid" class="movie-grid"></div></div>
-        <div id="years-section-container"></div>
+
+        <div id="home-page-content">
+            <div class="home-category-section" data-section="latest"><div class="home-category-header"><h2>🔥 Latest Releases</h2><button class="show-all-btn">Show All &#9662;</button></div><div class="movie-grid"></div></div>
+            <div class="home-category-section" data-section="trending"><div class="home-category-header"><h2>📈 Trending</h2><button class="show-all-btn">Show All &#9662;</button></div><div class="movie-grid"></div></div>
+            <div class="home-category-section" data-section="movies"><div class="home-category-header"><h2>🎬 Movies</h2><button class="show-all-btn">Show All &#9662;</button></div><div class="movie-grid"></div></div>
+            <div class="home-category-section" data-section="webseries"><div class="home-category-header"><h2>📺 Webseries</h2><button class="show-all-btn">Show All &#9662;</button></div><div class="movie-grid"></div></div>
+        </div>
+        
+        <div id="filtered-results-container" style="display: none;">
+             <h2 id="filtered-title"></h2>
+             <div id="filtered-grid" class="movie-grid"></div>
+        </div>
     </main>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const MOVIES_JSON_URL = "movies.json";
-    const YEARS_JSON_URL = "years.json";
-    const ITEMS_PER_ROW = 3; // Mobile par 3 item per line
+    // --- STEP 1: YAHAN APNA REPOSITORY NAAM DAALEIN ---
+    const REPO_NAME = "repository-name"; // ❗ IMPORTANT: Ise apne GitHub repo ke naam se badlein!
+    
+    const MOVIES_JSON_URL = `/${REPO_NAME}/movies.json`;
+    // const YEARS_JSON_URL = `/${REPO_NAME}/years.json`; // Ise comment kar diya hai kyunki is page par iski zaroorat nahi hai
+
+    const ITEMS_PER_ROW = 3; 
     const INITIAL_ROWS = 2;
     const INITIAL_ITEM_LIMIT = ITEMS_PER_ROW * INITIAL_ROWS;
 
-    const categories = [ { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
-    let sliderInterval;
     let allMovies = [];
     
-    // Sabhi elements ke references
     const homePageContent = document.getElementById('home-page-content');
     const filteredResultsContainer = document.getElementById('filtered-results-container');
-    const sliderContainer = document.querySelector('.slider-container');
-    const yearsContainer = document.getElementById('years-section-container');
-    // ... baaki ke sabhi element references ...
-
+    const filteredTitle = document.getElementById('filtered-title');
+    const filteredGrid = document.getElementById('filtered-grid');
+    
     async function initializeApp() {
         try {
-            const [moviesResponse, yearsResponse] = await Promise.all([ fetch(MOVIES_JSON_URL), fetch(YEARS_JSON_URL) ]);
-            if (!moviesResponse.ok || !yearsResponse.ok) throw new Error('JSON files not found.');
+            const moviesResponse = await fetch(MOVIES_JSON_URL);
+            if (!moviesResponse.ok) throw new Error('Could not load movies.json. Check file path and name.');
             allMovies = await moviesResponse.json();
-            const yearsData = await yearsResponse.json();
             
             populateAllHomeSections();
-            populateSlider(allMovies);
-            populateYearsSection(yearsData);
+            populateSlider();
             setupEventListeners();
-        } catch (error) { console.error('Initialization failed:', error); }
+            setupSideMenu();
+        } catch (error) { 
+            console.error('Initialization failed:', error); 
+            document.querySelector('main.container').innerHTML = `<h2 style="text-align:center; color:red;">Error: ${error.message}</h2><p style="text-align:center;">Please check if the repository name in the script is correct and the 'movies.json' file exists.</p>`;
+        }
     }
 
-    function setupEventListeners() {
-        // ... sabhi event listeners (menu, search, logo) ...
+    function displayMovies(movieList, container) {
+        container.innerHTML = movieList.map(movie => `
+            <a href="player.html?id=${movie.id}">
+                <div class="movie-card">
+                    ${movie.overlay_text ? `<div class="movie-card-overlay">${movie.overlay_text}</div>` : ''}
+                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
+                    <div class="movie-info">
+                        <h3>${movie.title}</h3>
+                        <p class="movie-date">${movie.release_date}</p>
+                    </div>
+                </div>
+            </a>
+        `).join('');
     }
-    
-    // === YAHAN BADLAV KIYA GAYA HAI ===
+
     function populateAllHomeSections() {
         const sections = ['latest', 'trending', 'movies', 'webseries'];
         sections.forEach(sectionName => {
             const sectionElement = document.querySelector(`.home-category-section[data-section="${sectionName}"]`);
-            if (sectionElement) {
-                const moviesForSection = allMovies.filter(m => m.home_section?.includes(sectionName)).sort(createSorter(sectionName));
-                const grid = sectionElement.querySelector('.movie-grid');
-                const showAllBtn = sectionElement.querySelector('.show-all-btn');
-                
-                if (moviesForSection.length === 0) {
-                    sectionElement.style.display = 'none';
-                    return;
-                }
-                
-                // Shuru mein sirf limited movies dikhana
-                displayMovies(moviesForSection.slice(0, INITIAL_ITEM_LIMIT), grid);
-                
-                // Button ka logic
-                let isShowingAll = false;
-                showAllBtn.addEventListener('click', () => {
-                    isShowingAll = !isShowingAll;
-                    if (isShowingAll) {
-                        displayMovies(moviesForSection, grid);
-                        showAllBtn.innerHTML = 'Show Less &#9652;';
-                    } else {
-                        displayMovies(moviesForSection.slice(0, INITIAL_ITEM_LIMIT), grid);
-                        showAllBtn.innerHTML = 'Show All &#9662;';
-                    }
-                });
+            if (!sectionElement) return;
+
+            const moviesForSection = allMovies
+                .filter(m => m.home_section?.includes(sectionName))
+                .sort((a, b) => (a.display_orders?.[sectionName] || 999) - (b.display_orders?.[sectionName] || 999));
+            
+            const grid = sectionElement.querySelector('.movie-grid');
+            const showAllBtn = sectionElement.querySelector('.show-all-btn');
+            
+            if (moviesForSection.length === 0) {
+                sectionElement.style.display = 'none';
+                return;
             }
+            
+            displayMovies(moviesForSection.slice(0, INITIAL_ITEM_LIMIT), grid);
+            
+            let isShowingAll = false;
+            showAllBtn.addEventListener('click', () => {
+                isShowingAll = !isShowingAll;
+                if (isShowingAll) {
+                    displayMovies(moviesForSection, grid);
+                    showAllBtn.innerHTML = 'Show Less &#9652;';
+                } else {
+                    displayMovies(moviesForSection.slice(0, INITIAL_ITEM_LIMIT), grid);
+                    showAllBtn.innerHTML = 'Show All &#9662;';
+                }
+            });
         });
     }
+
+    function populateSlider() {
+        const sliderTrack = document.querySelector('.slider-track');
+        const sliderMovies = allMovies
+            .filter(m => m.display_orders?.slider)
+            .sort((a, b) => a.display_orders.slider - b.display_orders.slider);
+
+        if (sliderTrack && sliderMovies.length > 0) {
+            sliderTrack.innerHTML = sliderMovies.map(movie => `
+                <a href="player.html?id=${movie.id}" class="slide">
+                    ${movie.slide_overlay_text ? `<div class="slide-overlay-text" style="background-color:${movie.slide_overlay_color || '#e74c3c'}">${movie.slide_overlay_text}</div>` : ''}
+                    <img src="${movie.slide_poster || movie.poster}" alt="${movie.title}">
+                    <h3 class="slide-title">${movie.title}</h3>
+                </a>
+            `).join('');
+            setupSlider();
+        }
+    }
+
+    function setupSlider() {
+        const track = document.querySelector('.slider-track');
+        const slides = Array.from(track.children);
+        const nextButton = document.getElementById('next-slide');
+        const prevButton = document.getElementById('prev-slide');
+        if (slides.length <= 1) return;
+
+        let currentIndex = 0;
+        const slideWidth = slides[0].getBoundingClientRect().width;
+
+        const setSlidePosition = () => {
+            track.style.transform = 'translateX(-' + slideWidth * currentIndex + 'px)';
+        };
+
+        nextButton.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            setSlidePosition();
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            setSlidePosition();
+        });
+        
+        setInterval(() => {
+             nextButton.click();
+        }, 3000);
+    }
     
-    const createSorter = (sectionName) => (a, b) => (a.display_orders?.[sectionName] || 999) - (b.display_orders?.[sectionName] || 999);
-    
-    // displayMovies, populateSlider, setupSideMenu, etc. sabhi functions waise hi hain
-    // ... pichhle response ke sabhi baaki ke JavaScript functions yahan aayenge ...
+    function setupSideMenu() {
+        const menu = document.getElementById('side-menu');
+        const categories = [ 
+            { value: 'trending', text: 'Trending' }, 
+            { value: 'webseries', text: 'Webseries' }, 
+            { value: 'bollywood', text: 'Bollywood Movies' }, 
+            { value: 'hollywood', text: 'Hollywood Movies' } 
+        ];
+        
+        menu.innerHTML = categories.map(cat => `<a href="#" class="menu-item" data-category="${cat.value}">${cat.text}</a>`).join('');
+        
+        menu.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = item.dataset.category;
+                const filteredMovies = allMovies.filter(m => m.category?.includes(category));
+                
+                homePageContent.style.display = 'none';
+                document.querySelector('.slider-container').style.display = 'none';
+                filteredResultsContainer.style.display = 'block';
+                filteredTitle.textContent = item.textContent;
+                displayMovies(filteredMovies, filteredGrid);
+                
+                // Close menu after clicking
+                document.getElementById('side-menu').classList.remove('open');
+                document.getElementById('menu-overlay').style.display = 'none';
+            });
+        });
+    }
+
+    function setupEventListeners() {
+        const menuBtn = document.getElementById('menu-btn');
+        const sideMenu = document.getElementById('side-menu');
+        const overlay = document.getElementById('menu-overlay');
+        const searchBtn = document.getElementById('search-btn');
+        const closeSearchBtn = document.getElementById('close-search-btn');
+        const navBar = document.getElementById('main-nav');
+        const searchInput = document.getElementById('searchInput');
+        const logoLink = document.querySelector('.logo-container a');
+        
+        menuBtn.addEventListener('click', () => {
+            sideMenu.classList.add('open');
+            overlay.style.display = 'block';
+        });
+
+        const closeMenu = () => {
+            sideMenu.classList.remove('open');
+            overlay.style.display = 'none';
+        };
+        overlay.addEventListener('click', closeMenu);
+
+        searchBtn.addEventListener('click', () => navBar.classList.add('search-active'));
+        closeSearchBtn.addEventListener('click', () => navBar.classList.remove('search-active'));
+        
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            if (searchTerm.length > 2) {
+                const filtered = allMovies.filter(m => m.title.toLowerCase().includes(searchTerm));
+                homePageContent.style.display = 'none';
+                document.querySelector('.slider-container').style.display = 'none';
+                filteredResultsContainer.style.display = 'block';
+                filteredTitle.textContent = `Search results for: "${searchTerm}"`;
+                displayMovies(filtered, filteredGrid);
+            } else if (searchTerm.length === 0) {
+                 // show home page again
+                 homePageContent.style.display = 'block';
+                 document.querySelector('.slider-container').style.display = 'block';
+                 filteredResultsContainer.style.display = 'none';
+            }
+        });
+        
+        logoLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.reload(); // Reloads the page to go to home
+        });
+    }
 
     initializeApp();
 });
