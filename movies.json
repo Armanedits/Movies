@@ -8,13 +8,13 @@
     "home_section": ["latest", "movies", "trending"],
     "display_orders": { "slider": 1, "latest": 1, "trending": 2, "movies": 5 },
     "overlay_text": "Must Watch",
+    "overlay_text_color": "#e74c3c",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "details": "In a post-apocalyptic world, a hero emerges to protect humanity from dark forces. This sci-fi epic blends mythology with futuristic action.",
-    "cast": ["Prabhas", "Amitabh Bachchan", "Kamal Haasan", "Deepika Padukone", "Disha Patani"],
-    "downloadLinks": [
-      { "quality": "1080p", "size": "2.5GB", "link": "#" },
-      { "quality": "720p", "size": "1.2GB", "link": "#" }
-    ],
+    "slide_overlay_text": "New Release",
+    "slide_overlay_color": "#2980b9",
+    "details": "In a post-apocalyptic world, a hero emerges to protect humanity from dark forces.",
+    "cast": ["Prabhas", "Amitabh Bachchan", "Deepika Padukone"],
+    "downloadLinks": [{ "quality": "1080p", "size": "2.5GB", "link": "#" }],
     "suggestedIds": ["pushpa-2-the-rule", "singham-again", "deadpool-and-wolverine"]
   },
   {
@@ -25,27 +25,13 @@
     "category": ["trending", "movies", "tollywood", "bollywood"],
     "home_section": ["latest", "movies"],
     "display_orders": { "slider": 2, "latest": 2, "movies": 1 },
-    "overlay_text": "Full HD",
+    "overlay_text": "Awaited",
     "slide_poster": "https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg",
-    "details": "The saga continues as Pushpa's dominance is challenged by his foes. He must fight to maintain his rule over the red sandalwood smuggling syndicate.",
+    "slide_overlay_text": "Highly Awaited",
+    "details": "The saga continues as Pushpa's dominance is challenged by his foes.",
     "cast": ["Allu Arjun", "Rashmika Mandanna", "Fahadh Faasil"],
     "downloadLinks": [],
     "suggestedIds": ["kalki-2898-ad", "singham-again", "war-2"]
-  },
-  {
-    "id": "singham-again",
-    "title": "Singham Again",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-11-01",
-    "category": ["bollywood", "trending", "movies"],
-    "home_section": ["movies", "trending"],
-    "display_orders": { "slider": 3, "movies": 2, "trending": 1 },
-    "overlay_text": "Multi-Starrer",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "details": "DCP Bajirao Singham returns to take on a new threat against the nation in this action-packed installment of Rohit Shetty's cop universe.",
-    "cast": ["Ajay Devgn", "Akshay Kumar", "Ranveer Singh", "Deepika Padukone", "Tiger Shroff"],
-    "downloadLinks": [],
-    "suggestedIds": ["war-2", "don-3", "pushpa-2-the-rule"]
   },
   {
     "id": "mirzapur-season-3",
@@ -56,29 +42,13 @@
     "home_section": ["webseries", "trending"],
     "display_orders": { "slider": 4, "webseries": 1, "trending": 3 },
     "overlay_text": "S03",
+    "overlay_text_color": "#27ae60",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "details": "The game of power and revenge for the throne of Mirzapur continues. New alliances are formed and old scores are settled in this highly anticipated new season.",
-    "cast": ["Pankaj Tripathi", "Ali Fazal", "Shweta Tripathi", "Rasika Dugal"],
-    "downloadLinks": [
-      { "quality": "E01-E10", "size": "3.5GB", "link": "#" }
-    ],
-    "suggestedIds": ["panchayat-season-3", "kota-factory-season-3", "the-great-indian-kapil-show"]
-  },
-  {
-    "id": "deadpool-and-wolverine",
-    "title": "Deadpool & Wolverine",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "release_date": "2024-07-26",
-    "category": ["hollywood", "trending", "movies"],
-    "home_section": ["latest", "movies"],
-    "display_orders": { "slider": 5, "latest": 3, "movies": 3 },
-    "overlay_text": "HD Print",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "details": "The Merc with a Mouth, Deadpool, teams up with the brooding Wolverine in a multiverse-spanning adventure to save their worlds.",
-    "cast": ["Ryan Reynolds", "Hugh Jackman", "Emma Corrin"],
-    "downloadLinks": [
-      { "quality": "1080p", "size": "2.1GB", "link": "#" }
-    ],
-    "suggestedIds": ["joker-folie-a-deux", "gladiator-2", "kalki-2898-ad"]
+    "slide_overlay_text": "New Season",
+    "slide_overlay_color": "#27ae60",
+    "details": "The game of power and revenge for the throne of Mirzapur continues.",
+    "cast": ["Pankaj Tripathi", "Ali Fazal", "Shweta Tripathi"],
+    "downloadLinks": [{ "quality": "E01-E10", "size": "3.5GB", "link": "#" }],
+    "suggestedIds": ["panchayat-season-3", "kota-factory-season-3"]
   }
 ]
