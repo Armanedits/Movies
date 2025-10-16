@@ -35,6 +35,8 @@
         .slide { min-width: 100%; box-sizing: border-box; position: relative; }
         .slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; }
         .slide-title { position: absolute; bottom: 15px; left: 15px; color: #fff; padding: 8px 12px; font-size: 18px; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); }
+        /* NEW: Slider Overlay Style */
+        .slide-overlay-text { position: absolute; top: 10px; left: 10px; color: white; padding: 5px 10px; font-size: 12px; font-weight: bold; border-radius: 5px; z-index: 5; }
         .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0,0,0,0.4); border: none; color: white; font-size: 28px; cursor: pointer; padding: 10px 15px; z-index: 10; border-radius: 50%; line-height: 1; }
         #prev-slide { left: 10px; } #next-slide { right: 10px; }
         .home-category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
@@ -59,7 +61,9 @@
         .year-movie-item img { width: 80px; height: 120px; object-fit: cover; border-radius: 6px; margin-right: 15px; }
         .year-movie-info h3 { font-size: 16px; margin: 0 0 5px 0; }
         .year-movie-info .movie-date { font-size: 14px; color: var(--text-secondary); }
-        .no-results { text-align: center; color: var(--text-secondary); font-size: 18px; padding: 40px 0; }
+        /* NEW: Big "Not Found" Message Style */
+        .no-results-container { min-height: 30vh; display: flex; justify-content: center; align-items: center; }
+        .no-results-message { text-align: center; color: var(--text-secondary); font-size: 1.2em; }
     </style>
 </head>
 <body>
@@ -139,7 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const sliderTrack = document.querySelector('.slider-track');
         const sliderMovies = allMovies.filter(m => m.display_orders?.slider).sort((a, b) => a.display_orders.slider - b.display_orders.slider);
         if (!sliderTrack || sliderMovies.length === 0) return;
-        sliderTrack.innerHTML = sliderMovies.map(movie => `<a href="player.html?id=${movie.id}" class="slide"><img src="${movie.slide_poster || movie.poster}" alt="${movie.title}"><h3 class="slide-title">${movie.title}</h3></a>`).join('');
+        sliderTrack.innerHTML = sliderMovies.map(movie => {
+            const overlayStyle = movie.slide_overlay_color ? `style="background-color: ${movie.slide_overlay_color};"` : '';
+            const overlayHTML = movie.slide_overlay_text ? `<div class="slide-overlay-text" ${overlayStyle}>${movie.slide_overlay_text}</div>` : '';
+            return `<a href="player.html?id=${movie.id}" class="slide">${overlayHTML}<img src="${movie.slide_poster || movie.poster}" alt="${movie.title}"><h3 class="slide-title">${movie.title}</h3></a>`
+        }).join('');
         setupSlider();
     }
 
@@ -149,39 +157,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextButton = document.getElementById('next-slide');
         const prevButton = document.getElementById('prev-slide');
         if (slides.length <= 1) { nextButton.style.display = 'none'; prevButton.style.display = 'none'; return; }
-
         const firstClone = slides[0].cloneNode(true);
         const lastClone = slides[slides.length - 1].cloneNode(true);
         track.appendChild(firstClone);
         track.insertBefore(lastClone, slides[0]);
-
         let currentIndex = 1;
         track.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-        const moveToSlide = () => {
-            track.style.transition = "transform 0.5s ease-in-out";
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        };
-
-        const resetAutoSlide = () => {
-            clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(() => nextButton.click(), 4000);
-        };
-
+        const moveToSlide = () => { track.style.transition = "transform 0.5s ease-in-out"; track.style.transform = `translateX(-${currentIndex * 100}%)`; };
+        const resetAutoSlide = () => { clearInterval(autoSlideInterval); autoSlideInterval = setInterval(() => nextButton.click(), 4000); };
         track.addEventListener('transitionend', () => {
             const allSlidesWithClones = track.querySelectorAll('.slide');
-            if (currentIndex >= allSlidesWithClones.length - 1) {
-                track.style.transition = "none";
-                currentIndex = 1;
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
-            if (currentIndex <= 0) {
-                track.style.transition = "none";
-                currentIndex = allSlidesWithClones.length - 2;
-                track.style.transform = `translateX(-${currentIndex * 100}%)`;
-            }
+            if (currentIndex >= allSlidesWithClones.length - 1) { track.style.transition = "none"; currentIndex = 1; track.style.transform = `translateX(-${currentIndex * 100}%)`; }
+            if (currentIndex <= 0) { track.style.transition = "none"; currentIndex = allSlidesWithClones.length - 2; track.style.transform = `translateX(-${currentIndex * 100}%)`; }
         });
-
         nextButton.addEventListener('click', () => { currentIndex++; moveToSlide(); resetAutoSlide(); });
         prevButton.addEventListener('click', () => { currentIndex--; moveToSlide(); resetAutoSlide(); });
         resetAutoSlide();
@@ -190,35 +178,31 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateYearsSection(yearsData) {
         const container = document.getElementById('years-section-container');
         if (!container || !yearsData) return;
-        container.innerHTML = yearsData.map(yearObj => `<div class="year-section"><div class="year-header"><span>${yearObj.year} Movies</span><span class="arrow">&#9662;</span></div><div class="year-movie-list">${yearObj.movies.map(movie => `<a href="player.html?id=${movie.id}"><div class="year-movie-item"><img src="${movie.poster}" alt="${movie.title}"><div class="year-movie-info"><h3>${movie.title}</h3><p class="movie-date">${movie.date}</p></div></div></a>`).join('')}</div></div>`).join('');
-        container.querySelectorAll('.year-header').forEach(header => {
-            header.addEventListener('click', () => {
-                header.classList.toggle('open');
-                header.nextElementSibling.classList.toggle('open');
-            });
-        });
+        container.innerHTML = yearsData.map(yearObj => `<div class="year-section"><div class="year-header"><span>${yearObj.year} Movies</span><span class="arrow">&#9662;</span></div><div class="year-movie-list">${yearObj.movies.map(movie => {
+            const movieData = allMovies.find(m => m.id === movie.id) || movie;
+            const overlayStyle = movieData.overlay_text_color ? `style="background-color: ${movieData.overlay_text_color};"` : '';
+            const overlayHTML = movieData.overlay_text ? `<div class="movie-card-overlay" ${overlayStyle}>${movieData.overlay_text}</div>` : '';
+            return `<a href="player.html?id=${movie.id}"><div class="year-movie-item"><div class="movie-card">${overlayHTML}<img src="${movie.poster}" alt="${movie.title}"></div><div class="year-movie-info"><h3>${movie.title}</h3><p class="movie-date">${movie.date}</p></div></div></a>`}).join('')}</div></div>`).join('');
+        container.querySelectorAll('.year-header').forEach(header => { header.addEventListener('click', () => { header.classList.toggle('open'); header.nextElementSibling.classList.toggle('open'); }); });
     }
     
     function setupSideMenu() {
         const menu = document.getElementById('side-menu');
         menu.innerHTML = `<a href="index.html" class="menu-item">Home</a><div class="submenu-container"><div class="menu-item has-submenu"><span>All Categories</span><span class="arrow">&#9662;</span></div><div class="submenu"><a href="#" class="menu-item" data-category="trending">Trending</a><a href="#" class="menu-item" data-category="bollywood">Bollywood</a><a href="#" class="menu-item" data-category="hollywood">Hollywood</a><a href="#" class="menu-item" data-category="tollywood">Tollywood</a><a href="#" class="menu-item" data-category="webseries">Webseries</a></div></div>`;
         menu.querySelector('.has-submenu').addEventListener('click', e => e.currentTarget.nextElementSibling.classList.toggle('open'));
-        
         const allMenuItems = menu.querySelectorAll('.submenu .menu-item');
         allMenuItems.forEach(item => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 allMenuItems.forEach(i => i.classList.remove('active'));
                 e.currentTarget.classList.add('active');
-                
                 const category = item.dataset.category;
                 const homeContent = document.getElementById('home-page-content'), slider = document.querySelector('.slider-container'), years = document.getElementById('years-section-container');
                 const filteredContainer = document.getElementById('filtered-results-container'), filteredTitle = document.getElementById('filtered-title'), filteredGrid = document.getElementById('filtered-grid');
-                
                 const filteredMovies = allMovies.filter(m => m.category?.includes(category));
                 homeContent.style.display = 'none'; slider.style.display = 'none'; years.style.display = 'none';
                 filteredContainer.style.display = 'block'; filteredTitle.textContent = item.textContent;
-                displayMovies(filteredMovies, filteredGrid);
+                if (filteredMovies.length > 0) { displayMovies(filteredMovies, filteredGrid); } else { filteredGrid.innerHTML = `<div class="no-results-container"><p class="no-results-message">No movies found in this category.</p></div>`; }
                 document.getElementById('side-menu').classList.remove('open'); document.getElementById('menu-overlay').style.display = 'none';
             });
         });
@@ -252,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (filtered.length > 0) {
                     displayMovies(filtered, filteredGrid);
                 } else {
-                    filteredGrid.innerHTML = `<p class="no-results">No movies found matching your search.</p>`;
+                    filteredGrid.innerHTML = `<div class="no-results-container"><p class="no-results-message">No movies found matching your search.</p></div>`;
                 }
             } else if (searchTerm.length === 0) {
                  homeContent.style.display = 'block'; slider.style.display = 'block'; years.style.display = 'block';
