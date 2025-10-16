@@ -14,7 +14,11 @@
     "slide_overlay_color": "#2980b9",
     "details": "In a post-apocalyptic world, a hero emerges to protect humanity from dark forces.",
     "cast": ["Prabhas", "Amitabh Bachchan", "Deepika Padukone"],
-    "downloadLinks": [{ "quality": "1080p", "size": "2.5GB", "link": "#" }],
+    "downloadLinks": [
+        { "quality": "1080p", "size": "2.5GB", "link": "#" },
+        { "quality": "720p", "size": "1.2GB", "link": "#" },
+        { "quality": "480p", "size": "450MB", "link": "#" }
+    ],
     "suggestedIds": ["pushpa-2-the-rule", "singham-again", "deadpool-and-wolverine"]
   },
   {
