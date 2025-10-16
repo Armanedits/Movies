@@ -4,19 +4,16 @@
     "title": "Kalki 2898 AD",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "release_date": "2024-06-27",
-    "category": ["trending"],
+    "category": ["trending", "movies", "tollywood"],
     "home_section": ["latest", "movies", "trending"],
     "display_orders": { "slider": 1, "latest": 1, "trending": 2, "movies": 5 },
     "overlay_text": "Must Watch",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "New Release",
-    "slide_overlay_color": "#e74c3c",
-    "details": "Kalki 2898 AD is an epic science-fiction dystopian film directed by Nag Ashwin. The film is set in a post-apocalyptic world and follows the journey of a hero who rises to protect humanity.",
+    "details": "In a post-apocalyptic world, a hero emerges to protect humanity from dark forces. This sci-fi epic blends mythology with futuristic action.",
     "cast": ["Prabhas", "Amitabh Bachchan", "Kamal Haasan", "Deepika Padukone", "Disha Patani"],
     "downloadLinks": [
       { "quality": "1080p", "size": "2.5GB", "link": "#" },
-      { "quality": "720p", "size": "1.2GB", "link": "#" },
-      { "quality": "480p", "size": "450MB", "link": "#" }
+      { "quality": "720p", "size": "1.2GB", "link": "#" }
     ],
     "suggestedIds": ["pushpa-2-the-rule", "singham-again", "deadpool-and-wolverine"]
   },
@@ -25,18 +22,14 @@
     "title": "Pushpa 2: The Rule",
     "poster": "https://m.media-amazon.com/images/M/MV5BNDM3N2UzM2UtMjEwMC00NGUzLThmMmQtNGMyM2VmMDA0ZWEwXkEyXkFqcGc@._V1_.jpg",
     "release_date": "2024-12-05",
-    "category": ["trending"],
+    "category": ["trending", "movies", "tollywood"],
     "home_section": ["latest", "movies"],
     "display_orders": { "slider": 2, "latest": 2, "movies": 1 },
     "overlay_text": "Full HD",
     "slide_poster": "https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg",
-    "slide_overlay_text": "Highly Awaited",
-    "slide_overlay_color": "#e74c3c",
-    "details": "The saga continues as Pushpa Raj's dominance is challenged by his enemies. This sequel follows his journey to maintain his rule over the red sandalwood smuggling syndicate.",
-    "cast": ["Allu Arjun", "Rashmika Mandanna", "Fahadh Faasil", "Jagapathi Babu"],
-    "downloadLinks": [
-      { "quality": "1080p", "size": "2.8GB", "link": "#" }
-    ],
+    "details": "The saga continues as Pushpa's dominance is challenged by his foes. He must fight to maintain his rule over the red sandalwood smuggling syndicate.",
+    "cast": ["Allu Arjun", "Rashmika Mandanna", "Fahadh Faasil"],
+    "downloadLinks": [],
     "suggestedIds": ["kalki-2898-ad", "indian-2", "war-2"]
   },
   {
@@ -44,18 +37,14 @@
     "title": "Singham Again",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "release_date": "2024-11-01",
-    "category": ["bollywood", "trending"],
+    "category": ["bollywood", "trending", "movies"],
     "home_section": ["movies", "trending"],
     "display_orders": { "slider": 3, "movies": 2, "trending": 1 },
     "overlay_text": "Multi-Starrer",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "details": "Bajirao Singham is back with his team to fight a new threat against the nation. This installment in Rohit Shetty's cop universe features a massive star cast and high-octane action.",
+    "details": "DCP Bajirao Singham returns to take on a new threat against the nation in this action-packed installment of Rohit Shetty's cop universe.",
     "cast": ["Ajay Devgn", "Akshay Kumar", "Ranveer Singh", "Deepika Padukone", "Tiger Shroff"],
-    "downloadLinks": [
-      { "quality": "720p", "size": "1.1GB", "link": "#" }
-    ],
+    "downloadLinks": [],
     "suggestedIds": ["war-2", "don-3", "border-2"]
   },
   {
@@ -68,13 +57,10 @@
     "display_orders": { "slider": 4, "webseries": 1, "trending": 3 },
     "overlay_text": "S03",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "New Season",
-    "slide_overlay_color": "#2ecc71",
-    "details": "The fight for the throne of Mirzapur becomes bloodier and more intense. New players emerge, and old rivalries deepen as Kaleen Bhaiya and Guddu Pandit's paths cross again.",
-    "cast": ["Pankaj Tripathi", "Ali Fazal", "Shweta Tripathi", "Rasika Dugal", "Vijay Varma"],
+    "details": "The game of power and revenge for the throne of Mirzapur continues. New alliances are formed and old scores are settled in this highly anticipated new season.",
+    "cast": ["Pankaj Tripathi", "Ali Fazal", "Shweta Tripathi", "Rasika Dugal"],
     "downloadLinks": [
-      { "quality": "1080p", "size": "3.5GB", "link": "#" },
-      { "quality": "720p", "size": "1.5GB", "link": "#" }
+      { "quality": "E01-E10", "size": "3.5GB", "link": "#" }
     ],
     "suggestedIds": ["panchayat-season-3", "kota-factory-season-3", "the-great-indian-kapil-show"]
   },
@@ -83,19 +69,65 @@
     "title": "Deadpool & Wolverine",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
     "release_date": "2024-07-26",
-    "category": ["hollywood", "trending"],
+    "category": ["hollywood", "trending", "movies"],
     "home_section": ["latest", "movies"],
     "display_orders": { "slider": 5, "latest": 3, "movies": 3 },
     "overlay_text": "HD Print",
     "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Must Watch",
-    "slide_overlay_color": "#e74c3c",
-    "details": "The Merc with a Mouth joins forces with the clawed mutant in a multiverse-shattering adventure. Deadpool is recruited by the Time Variance Authority to save the sacred timeline.",
-    "cast": ["Ryan Reynolds", "Hugh Jackman", "Emma Corrin", "Morena Baccarin"],
+    "details": "The Merc with a Mouth, Deadpool, teams up with the brooding Wolverine in a multiverse-spanning adventure to save their worlds.",
+    "cast": ["Ryan Reynolds", "Hugh Jackman", "Emma Corrin"],
     "downloadLinks": [
-      { "quality": "1080p", "size": "2.1GB", "link": "#" },
-      { "quality": "720p", "size": "950MB", "link": "#" }
+      { "quality": "1080p", "size": "2.1GB", "link": "#" }
     ],
     "suggestedIds": ["joker-folie-a-deux", "gladiator-2", "kalki-2898-ad"]
+  },
+  {
+    "id": "stree-2",
+    "title": "Stree 2",
+    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+    "release_date": "2024-08-15",
+    "category": ["bollywood", "trending", "movies"],
+    "home_section": ["movies", "trending"],
+    "display_orders": { "movies": 4, "trending": 4 },
+    "overlay_text": "Coming Soon",
+    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+    "details": "The mysterious woman 'Stree' returns to haunt the town of Chanderi, and the gang must reunite to face the new horror.",
+    "cast": ["Shraddha Kapoor", "Rajkummar Rao", "Pankaj Tripathi", "Aparshakti Khurana"],
+    "downloadLinks": [],
+    "suggestedIds": ["bhool-bhulaiyaa-3", "vedaa", "khel-khel-mein"]
+  },
+  {
+    "id": "panchayat-season-3",
+    "title": "Panchayat Season 3",
+    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+    "release_date": "2024-05-28",
+    "category": ["webseries", "hindi", "trending"],
+    "home_section": ["webseries"],
+    "display_orders": { "webseries": 2 },
+    "overlay_text": "S03",
+    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+    "details": "Abhishek Tripathi's journey continues as he navigates the quirky and challenging life of a panchayat secretary in the village of Phulera.",
+    "cast": ["Jitendra Kumar", "Raghubir Yadav", "Neena Gupta", "Chandan Roy"],
+    "downloadLinks": [
+      { "quality": "Complete S03", "size": "2.8GB", "link": "#" }
+    ],
+    "suggestedIds": ["mirzapur-season-3", "kota-factory-season-3", "the-great-indian-kapil-show"]
+  },
+  {
+    "id": "chandu-champion",
+    "title": "Chandu Champion",
+    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+    "release_date": "2024-06-14",
+    "category": ["bollywood", "trending", "movies"],
+    "home_section": ["latest", "movies"],
+    "display_orders": { "latest": 4, "movies": 10 },
+    "overlay_text": "HD",
+    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+    "details": "The inspiring real-life story of Murlikant Petkar, India's first Paralympic gold medalist. It showcases his extraordinary journey of resilience and determination.",
+    "cast": ["Kartik Aaryan", "Vijay Raaz", "Bhuvan Arora"],
+    "downloadLinks": [
+      { "quality": "720p", "size": "1GB", "link": "#" }
+    ],
+    "suggestedIds": ["mr-and-mrs-mahi", "indian-2", "vedaa"]
   }
 ]
