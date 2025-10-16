@@ -10,6 +10,7 @@
             --dark-bg: #121212;
             --light-bg: #1f1f1f;
             --text-primary: #ffffff;
+            --text-secondary: #aaaaaa; /* Date ke liye grey colour */
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -25,7 +26,7 @@
         }
         a { color: inherit; text-decoration: none; }
 
-        /* Header, Side Menu CSS... */
+        /* Header CSS... (Koi badlav nahi) */
         header { background-color: var(--dark-bg); padding: 10px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #2a2a2a; }
         .nav-bar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; height: 50px; }
         .nav-left, .nav-right, .logo-container { flex: 1; }
@@ -34,48 +35,124 @@
         .nav-right { text-align: right; }
         header img.logo { max-width: 120px; vertical-align: middle; }
         .icon-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; }
-        
-        /* === YAHAN CSS ADD KI GAYI HAI === */
-        .icon-btn img {
-            width: 28px;
-            height: 28px;
-            vertical-align: middle;
-        }
-
+        .icon-btn img { width: 28px; height: 28px; vertical-align: middle; }
         #search-container { display: none; flex-grow: 1; position: relative; }
         #searchInput { width: 100%; height: 40px; padding: 0 45px 0 15px; border-radius: 8px; border: 1px solid var(--theme-color); font-size: 16px; background-color: var(--light-bg); color: #fff; box-sizing: border-box; }
         #close-search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); font-size: 28px; }
         .nav-bar.search-active .logo-container, .nav-bar.search-active .nav-left, .nav-bar.search-active .nav-right { display: none; }
         .nav-bar.search-active #search-container { display: flex; align-items: center; }
+
+        /* === SIDE MENU CSS BADLA GAYA HAI === */
         #side-menu { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background-color: #181818; z-index: 1002; transform: translateX(-100%); transition: transform 0.3s ease-in-out; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         #side-menu.open { transform: translateX(0); }
-        #side-menu .category-item { display: block; color: #fff; padding: 15px 25px; font-size: 18px; border-bottom: 1px solid #2a2a2a; }
-        #side-menu .category-item:hover { background-color: var(--theme-color); }
+        #side-menu .menu-item { display: block; color: #fff; padding: 15px 25px; font-size: 18px; border-bottom: 1px solid #2a2a2a; cursor: pointer; }
+        #side-menu .menu-item:hover { background-color: var(--theme-color); }
+        /* Dropdown ke liye naye styles */
+        #side-menu .submenu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; background-color: #202020; }
+        #side-menu .submenu.open { max-height: 500px; /* Zarurat ke hisab se adjust karein */ }
+        #side-menu .submenu .menu-item { font-size: 16px; padding-left: 40px; }
         #menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1001; display: none; }
 
-        /* Slider CSS... */
+        /* === SLIDER CSS BADLA GAYA HAI === */
         .slider-container { position: relative; width: 100%; margin: 20px auto; overflow: hidden; border-radius: 8px; }
         .slider-track { display: flex; }
         .slide { min-width: 100%; padding: 0 5px; box-sizing: border-box; position: relative; }
         .slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; }
-        .slide-title { position: absolute; bottom: 15px; left: 15px; background-color: rgba(0,0,0,0.7); color: #fff; padding: 8px 12px; border-radius: 5px; font-size: 18px; }
+        /* Title ka background hataya gaya hai */
+        .slide-title { 
+            position: absolute; 
+            bottom: 15px; 
+            left: 15px; 
+            background-color: transparent; /* Background hata diya */
+            color: #fff; 
+            padding: 8px 12px; 
+            border-radius: 5px; 
+            font-size: 18px; 
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8); /* Readability ke liye shadow add ki gayi hai */
+        }
         .slider-btn { display: none; }
         .slide-overlay-text { position: absolute; top: 10px; left: 10px; color: white; padding: 5px 10px; font-size: 12px; font-weight: bold; border-radius: 5px; z-index: 5; }
         @media (min-width: 600px) { .slide { min-width: 50%; } }
         @media (min-width: 992px) { .slide { min-width: 33.33%; } }
         
-        /* Movie Grid CSS... */
+        /* === MOVIE GRID CSS BADLA GAYA HAI === */
         .home-category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .home-category-header h2 { font-size: 20px; font-weight: 600; margin: 0; margin-top: 30px; }
         .show-all-btn { background-color: #2a2a2a; color: var(--text-primary); border: 1px solid #444; border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: background-color 0.2s ease; }
         .show-all-btn:hover { background-color: #3f3f3f; }
-        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 12px; transition: max-height 0.5s ease-in-out; }
+        /* Mobile ke liye 3 column grid */
+        .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; transition: max-height 0.5s ease-in-out; }
         .movie-grid.limited { max-height: 350px; overflow: hidden; }
         .movie-card { cursor: pointer; transition: transform 0.2s ease; position: relative; overflow: hidden; }
         .movie-card:hover { transform: scale(1.05); }
         .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
-        .movie-info h3 { font-size: 14px; font-weight: 500; margin: 8px 0 0 0; line-height: 1.3; }
-        .movie-card-overlay { position: absolute; top: 5px; left: 5px; color: white; padding: 3px 6px; font-size: 10px; font-weight: bold; border-radius: 4px; z-index: 2; }  
+        .movie-info { padding: 0 4px; }
+        /* Title chota kiya gaya hai */
+        .movie-info h3 { 
+            font-size: 12px;
+            font-weight: 500; 
+            margin: 8px 0 4px 0;
+            line-height: 1.3; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        /* Date ke liye naya style */
+        .movie-info .movie-date {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+        .movie-card-overlay { position: absolute; top: 5px; left: 5px; color: white; padding: 3px 6px; font-size: 10px; font-weight: bold; border-radius: 4px; z-index: 2; }
+
+        /* === YEARS SECTION KE LIYE NAYI CSS === */
+        #years-section-container {
+            margin-top: 40px;
+        }
+        .year-section {
+            margin-bottom: 20px;
+        }
+        .year-header {
+            background-color: var(--light-bg);
+            padding: 12px 15px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid var(--theme-color);
+        }
+        .year-movie-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .year-movie-list.open {
+            max-height: 2000px; /* Lambi lists ke liye isey badha sakte hain */
+            padding-top: 15px;
+        }
+        .year-movie-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .year-movie-item img {
+            width: 80px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 15px;
+        }
+        .year-movie-info h3 {
+            font-size: 16px;
+            margin: 0 0 5px 0;
+        }
+        .year-movie-info .movie-date {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
     </style>
 </head>
 <body>
@@ -83,14 +160,11 @@
         <nav class="nav-bar">
             <div class="nav-left"><button class="icon-btn" id="menu-btn">&#9776;</button></div>
             <div class="logo-container"><a href="#" id="logo-link"><img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Logo" class="logo"></a></div>
-            
-            <!-- === YAHAN HTML BADLA GAYA HAI === -->
             <div class="nav-right">
                 <button class="icon-btn" id="search-icon-btn">
                     <img src="https://img.icons8.com/ios11/512/FFFFFF/search.png" alt="Search Icon">
                 </button>
             </div>
-
             <div id="search-container">
                 <input type="text" id="searchInput" placeholder="Search for movies...">
                 <button class="icon-btn" id="close-search-btn">&times;</button>
@@ -102,12 +176,12 @@
     <div id="menu-overlay"></div>
 
     <main class="container">
-        <!-- Baaki ka code waisa hi hai, usmein koi badlav nahi hai -->
         <div class="slider-container">
             <div class="slider-track"></div>
             <button class="icon-btn slider-btn" id="prev-slide" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); z-index: 10; background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">&#10094;</button>
             <button class="icon-btn slider-btn" id="next-slide" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); z-index: 10; background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">&#10095;</button>
         </div>
+        
         <div id="home-page-content">
             <div class="home-category-section">
                 <div class="home-category-header"><h2>🔥 Latest Releases</h2><button class="show-all-btn">Show All &#9662;</button></div>
@@ -126,34 +200,54 @@
                 <div id="webseries-grid" class="movie-grid limited"></div>
             </div>
         </div>
+
         <div id="filtered-results-container" style="display: none;">
-            <h2 id="filtered-title"></h2><div id="filtered-grid" class="movie-grid"></div>
+            <h2 id="filtered-title"></h2>
+            <div id="filtered-grid" class="movie-grid"></div>
+        </div>
+
+        <!-- === YEARS SECTION KE LIYE NAYA CONTAINER === -->
+        <div id="years-section-container">
+            <!-- Year sections yahan JavaScript se add honge -->
         </div>
     </main>
+
 <script>
-// JavaScript code mein koi badlav nahi hai
 document.addEventListener('DOMContentLoaded', () => {
-    const categories = [ { value: 'all', text: 'All Categories' }, { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
+    // Side menu dropdown ke liye categories
+    const categories = [ { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
     let sliderInterval;
     let allMovies = [];
+    
+    // DOM Elements
     const homePageContent = document.getElementById('home-page-content');
     const filteredResultsContainer = document.getElementById('filtered-results-container');
     const filteredTitle = document.getElementById('filtered-title');
     const filteredGrid = document.getElementById('filtered-grid');
     const sliderContainer = document.querySelector('.slider-container');
-    
+    const yearsContainer = document.getElementById('years-section-container');
+
+    // Homepage sections ke liye movies fetch karein
     fetch('movies.json').then(res => res.json()).then(movies => {
         allMovies = movies;
         populateHomePage(allMovies);
         populateSlider(allMovies);
-        setupSideMenu();
+        setupSideMenu(); // Movies load hone ke baad menu setup karein
         document.getElementById('searchInput').addEventListener('input', handleSearch);
         document.getElementById('logo-link').addEventListener('click', (e) => { e.preventDefault(); showHomePage(); });
     }).catch(error => {
-        console.error('Error loading file:', error);
+        console.error('Error loading movies.json:', error);
         document.querySelector('main.container').innerHTML = `<h2 style="color:red;">Error: Movies load nahi ho payi. Invalid JSON format.</h2>`;
     });
+
+    // === NAYE SECTION KE LIYE years.json FETCH KAREIN ===
+    fetch('years.json').then(res => res.json()).then(data => {
+        populateYearsSection(data);
+    }).catch(error => {
+        console.error('Error loading years.json:', error);
+    });
     
+    // UI ke liye Event Listeners (Menu, Search)
     const sideMenu = document.getElementById('side-menu');
     const menuBtn = document.getElementById('menu-btn');
     const overlay = document.getElementById('menu-overlay');
@@ -172,11 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const createSorter = (sectionName) => {
-        return (a, b) => {
-            const orderA = a.display_orders?.[sectionName] || 999;
-            const orderB = b.display_orders?.[sectionName] || 999;
-            return orderA - orderB;
-        };
+        return (a, b) => (a.display_orders?.[sectionName] || 999) - (b.display_orders?.[sectionName] || 999);
     };
 
     function populateHomePage(movies) {
@@ -196,134 +286,70 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function populateSlider(movieArray) {
         const sliderTrack = document.querySelector('.slider-track');
-        const sliderMovies = movieArray
-            .filter(m => m.display_orders?.slider)
-            .sort(createSorter('slider'))
-            .slice(0, 5);
-        if (!sliderTrack || sliderMovies.length === 0) { 
-            sliderContainer.style.display = 'none'; 
-            return; 
-        }
+        const sliderMovies = movieArray.filter(m => m.display_orders?.slider).sort(createSorter('slider')).slice(0, 5);
+        if (!sliderTrack || sliderMovies.length === 0) { sliderContainer.style.display = 'none'; return; }
         sliderTrack.innerHTML = '';
         sliderMovies.forEach(movie => {
-            const slide = document.createElement('div');
-            slide.className = 'slide';
-            const posterUrl = movie.slide_poster || movie.poster; 
-            const overlayText = movie.slide_overlay_text || 'Featured';
+            const slide = document.createElement('div'); slide.className = 'slide';
+            const posterUrl = movie.slide_poster || movie.poster; const overlayText = movie.slide_overlay_text || 'Featured';
             const bgColor = movie.slide_overlay_color || 'var(--theme-color)';
-            slide.innerHTML = `
-                <a href="player.html?id=${movie.id}">
-                    <div class="slide-overlay-text" style="background-color: ${bgColor};">${overlayText}</div>
-                    <img src="${posterUrl}" alt="${movie.title}">
-                    <div class="slide-title">${movie.title}</div>
-                </a>`;
+            slide.innerHTML = `<a href="player.html?id=${movie.id}"><div class="slide-overlay-text" style="background-color: ${bgColor};">${overlayText}</div><img src="${posterUrl}" alt="${movie.title}"><div class="slide-title">${movie.title}</div></a>`;
             sliderTrack.appendChild(slide);
         });
-        const prevBtn = document.getElementById('prev-slide');
-        const nextBtn = document.getElementById('next-slide');
+        const prevBtn = document.getElementById('prev-slide'); const nextBtn = document.getElementById('next-slide');
         if (sliderMovies.length > 1) {
-            prevBtn.style.display = 'flex'; 
-            nextBtn.style.display = 'flex';
-            const slides = Array.from(sliderTrack.children);
-            const slideWidth = slides[0].offsetWidth;
-            const firstClone = slides[0].cloneNode(true);
-            const lastClone = slides[slides.length - 1].cloneNode(true);
-            sliderTrack.appendChild(firstClone);
-            sliderTrack.insertBefore(lastClone, slides[0]);
+            prevBtn.style.display = 'flex'; nextBtn.style.display = 'flex'; const slides = Array.from(sliderTrack.children);
+            const slideWidth = slides[0].offsetWidth; const firstClone = slides[0].cloneNode(true); const lastClone = slides[slides.length - 1].cloneNode(true);
+            sliderTrack.appendChild(firstClone); sliderTrack.insertBefore(lastClone, slides[0]);
             let currentIndex = 1; let isTransitioning = false;
             const setSliderPosition = () => { sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`; };
             sliderTrack.style.transition = 'none'; setSliderPosition();
-            const moveTo = (direction) => {
-                if (isTransitioning) return;
-                isTransitioning = true;
-                currentIndex += direction;
-                sliderTrack.style.transition = 'transform 0.5s ease-in-out';
-                setSliderPosition();
-            };
-            sliderTrack.addEventListener('transitionend', () => {
-                isTransitioning = false;
-                const allSlides = Array.from(sliderTrack.children);
-                if (currentIndex >= allSlides.length - 1) { sliderTrack.style.transition = 'none'; currentIndex = 1; setSliderPosition(); }
-                if (currentIndex <= 0) { sliderTrack.style.transition = 'none'; currentIndex = allSlides.length - 2; setSliderPosition(); }
-            });
-            const startSliderInterval = () => {
-                clearInterval(sliderInterval);
-                sliderInterval = setInterval(() => moveTo(1), 4000);
-            };
-            nextBtn.addEventListener('click', () => { moveTo(1); startSliderInterval(); });
-            prevBtn.addEventListener('click', () => { moveTo(-1); startSliderInterval(); });
-            startSliderInterval();
+            const moveTo = (direction) => { if (isTransitioning) return; isTransitioning = true; currentIndex += direction; sliderTrack.style.transition = 'transform 0.5s ease-in-out'; setSliderPosition(); };
+            sliderTrack.addEventListener('transitionend', () => { isTransitioning = false; const allSlides = Array.from(sliderTrack.children); if (currentIndex >= allSlides.length - 1) { sliderTrack.style.transition = 'none'; currentIndex = 1; setSliderPosition(); } if (currentIndex <= 0) { sliderTrack.style.transition = 'none'; currentIndex = allSlides.length - 2; setSliderPosition(); } });
+            const startSliderInterval = () => { clearInterval(sliderInterval); sliderInterval = setInterval(() => moveTo(1), 4000); };
+            nextBtn.addEventListener('click', () => { moveTo(1); startSliderInterval(); }); prevBtn.addEventListener('click', () => { moveTo(-1); startSliderInterval(); }); startSliderInterval();
         }
     }
+
+    // === SIDE MENU KA FUNCTION PURA BADLA GAYA HAI ===
     function setupSideMenu() {
-        sideMenu.innerHTML = '';
+        sideMenu.innerHTML = ''; // Pehle ka menu saaf karein
+
+        // 1. Home button add karein
+        const homeItem = document.createElement('a');
+        homeItem.href = '#'; homeItem.className = 'menu-item';
+        homeItem.textContent = 'Home';
+        homeItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            showHomePage();
+            sideMenu.classList.remove('open');
+            overlay.style.display = 'none';
+        });
+        sideMenu.appendChild(homeItem);
+        
+        // 2. Categories Dropdown add karein
+        const categoriesToggle = document.createElement('div');
+        categoriesToggle.className = 'menu-item';
+        categoriesToggle.textContent = 'All Categories ▼'; // Text badla gaya hai
+        sideMenu.appendChild(categoriesToggle);
+
+        const submenu = document.createElement('div');
+        submenu.className = 'submenu';
+        sideMenu.appendChild(submenu);
+        
         categories.forEach(cat => {
             const item = document.createElement('a');
-            item.href = '#'; item.className = 'category-item';
+            item.href = '#'; item.className = 'menu-item';
             item.dataset.value = cat.value; item.textContent = cat.text;
-            sideMenu.appendChild(item);
+            submenu.appendChild(item);
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const category = e.target.dataset.value;
-                if (category === 'all') { showHomePage(); } 
-                else {
-                    const filtered = allMovies.filter(m => (Array.isArray(m.category) && m.category.includes(category)) || m.category === category);
-                    showFilteredResults(filtered, e.target.textContent);
-                }
+                const filtered = allMovies.filter(m => (Array.isArray(m.category) && m.category.includes(category)) || m.category === category);
+                showFilteredResults(filtered, e.target.textContent);
                 sideMenu.classList.remove('open');
                 overlay.style.display = 'none';
             });
         });
-    }
-    function handleSearch(e) {
-        const term = e.target.value.toLowerCase();
-        if (term) {
-            const filtered = allMovies.filter(m => m.title.toLowerCase().includes(term));
-            showFilteredResults(filtered, `Results for "${term}"`);
-        } else { showHomePage(); }
-    }
-    function showFilteredResults(movieArray, title) {
-        homePageContent.style.display = 'none';
-        sliderContainer.style.display = 'none'; 
-        filteredResultsContainer.style.display = 'block';
-        filteredTitle.textContent = title;
-        displayMovies(movieArray, filteredGrid);
-    }
-    function showHomePage() {
-        filteredResultsContainer.style.display = 'none';
-        homePageContent.style.display = 'block';
-        sliderContainer.style.display = 'block'; 
-        document.getElementById('searchInput').value = ''; 
-    }
-    function displayMovies(movieArray, gridElement) {
-        if (!gridElement) return;
-        gridElement.innerHTML = '';
-        if(movieArray.length === 0) {
-            if(gridElement.closest('.home-category-section')) {
-                gridElement.closest('.home-category-section').style.display = 'none';
-            }
-            return;
-        }
-        movieArray.forEach(movie => {
-            const link = document.createElement('a');
-            link.href = `player.html?id=${movie.id}`;
-            let overlayHTML = '';
-            if (movie.overlay_text) {
-                const bgColor = movie.overlay_color || 'var(--theme-color)';
-                overlayHTML = `<div class="movie-card-overlay" style="background-color: ${bgColor};">${movie.overlay_text}</div>`;
-            }
-            link.innerHTML = `
-                <div class="movie-card">
-                    ${overlayHTML}
-                    <img src="${movie.poster}" alt="${movie.title}" loading="lazy">
-                    <div class="movie-info">
-                        <h3>${movie.title}</h3>
-                    </div>
-                </div>`;
-            gridElement.appendChild(link);
-        });
-    }
-});
-</script>
-</body>
-</html>
+
+    
