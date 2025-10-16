@@ -58,7 +58,7 @@
         .show-all-btn { background-color: #2a2a2a; color: var(--text-primary); border: 1px solid #444; border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: background-color 0.2s ease; }
         .show-all-btn:hover { background-color: #3a3a3a; }
         .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; transition: max-height 0.5s ease-in-out; }
-        .movie-grid.limited { max-height: 350px; overflow: hidden; }
+        .movie-grid.limited { max-height: 400px; overflow: hidden; }
         .movie-card { cursor: pointer; transition: transform 0.2s ease; position: relative; overflow: hidden; }
         .movie-card:hover { transform: scale(1.05); }
         .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
@@ -115,8 +115,6 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-    // === YAHAN JSON FILES KA NAAM LIKHA HAI ===
-    // Aapko yahan koi URL daalne ki zaroorat nahi hai, kyonki hum GitHub Pages use kar rahe hain.
     const MOVIES_JSON_URL = "movies.json";
     const YEARS_JSON_URL = "years.json";
 
