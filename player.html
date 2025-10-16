@@ -26,9 +26,11 @@
         .download-btn { background-color: var(--theme-color); color: white; padding: 12px 25px; border-radius: 5px; font-size: 16px; font-weight: bold; display: inline-flex; align-items: center; gap: 10px; }
         .download-btn svg { width: 20px; height: 20px; fill: white; }
         .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; margin-top: 20px; }
+        .movie-card { position: relative; }
         .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
         .movie-info h3 { font-size: 14px; margin: 8px 0 0 0; }
         .loading-error { text-align: center; font-size: 20px; margin-top: 50px; }
+        .movie-card-overlay { position: absolute; top: 5px; left: 5px; background-color: var(--theme-color); color: white; padding: 3px 8px; font-size: 10px; font-weight: bold; border-radius: 4px; z-index: 2; }
     </style>
 </head>
 <body>
@@ -56,9 +58,7 @@
     </main>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Isse galti ka chance hi khatam ho gaya. Browser apne aap sahi path dhoond lega.
     const MOVIES_JSON_URL = "movies.json";
-
     const loader = document.getElementById('loader');
     const movieDetailsView = document.getElementById('movie-details-view');
 
@@ -67,20 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const movieId = urlParams.get('id');
             if (!movieId) throw new Error('Movie ID not found in URL.');
-
             const response = await fetch(MOVIES_JSON_URL);
-            if (!response.ok) throw new Error(`Could not load movies.json. Status: ${response.status}.`);
-            
+            if (!response.ok) throw new Error(`Could not load movies.json.`);
             const allMovies = await response.json();
             const currentMovie = allMovies.find(m => m.id === movieId);
-            if (!currentMovie) throw new Error('Movie with this ID not found in JSON data.');
-            
+            if (!currentMovie) throw new Error('Movie with this ID not found.');
             displayMovieDetails(currentMovie, allMovies);
             loader.style.display = 'none';
             movieDetailsView.style.display = 'block';
-        } catch (error) {
-            loader.textContent = `Error: ${error.message}`;
-        }
+        } catch (error) { loader.textContent = `Error: ${error.message}`; }
     }
 
     function displayMovieDetails(movie, allMovies) {
@@ -109,13 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const relatedMovies = movie.suggestedIds.map(id => allMovies.find(m => m.id === id)).filter(Boolean);
             if (relatedMovies.length > 0) {
                 relatedSection.style.display = 'block';
-                document.getElementById('related-movies-grid').innerHTML = relatedMovies.map(relMovie => `
-                    <a href="player.html?id=${relMovie.id}">
-                        <div class="movie-card">
-                            <img src="${relMovie.poster}" alt="${relMovie.title}">
-                            <div class="movie-info"><h3>${relMovie.title}</h3></div>
-                        </div>
-                    </a>`).join('');
+                document.getElementById('related-movies-grid').innerHTML = relatedMovies.map(relMovie => {
+                    const overlayStyle = relMovie.overlay_text_color ? `style="background-color: ${relMovie.overlay_text_color};"` : '';
+                    const overlayHTML = relMovie.overlay_text ? `<div class="movie-card-overlay" ${overlayStyle}>${relMovie.overlay_text}</div>` : '';
+                    return `<a href="player.html?id=${relMovie.id}"><div class="movie-card">${overlayHTML}<img src="${relMovie.poster}" alt="${relMovie.title}"><div class="movie-info"><h3>${relMovie.title}</h3></div></div></a>`;
+                }).join('');
             }
         }
     }
