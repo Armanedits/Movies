@@ -52,7 +52,6 @@
         .slide-overlay-text { position: absolute; top: 10px; left: 10px; color: white; padding: 5px 10px; font-size: 12px; font-weight: bold; border-radius: 5px; z-index: 5; }
         @media (min-width: 600px) { .slide { min-width: 50%; } }
         @media (min-width: 992px) { .slide { min-width: 33.33%; } }
-        /* === CATEGORY OVERLAP KI PROBLEM THEEK KI GAYI === */
         .home-category-section { margin-bottom: 20px; }
         .home-category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .home-category-header h2 { font-size: 20px; font-weight: 600; margin: 0; margin-top: 30px; }
@@ -114,46 +113,16 @@
     </main>
 
 <script>
-// movies.json ka data
-const moviesData = [
-  { "id": "kalki-2898-ad", "title": "Kalki 2898 AD", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-06-27", "category": ["trending"], "home_section": ["latest", "movies", "trending"], "display_orders": { "slider": 1, "latest": 1, "trending": 2, "movies": 5 }, "overlay_text": "Must Watch", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "New Release", "slide_overlay_color": "#e74c3c" },
-  { "id": "pushpa-2-the-rule", "title": "Pushpa 2: The Rule", "poster": "https://m.media-amazon.com/images/M/MV5BNDM3N2UzM2UtMjEwMC00NGUzLThmMmQtNGMyM2VmMDA0ZWEwXkEyXkFqcGc@._V1_.jpg", "release_date": "2024-12-05", "category": ["trending"], "home_section": ["latest", "movies"], "display_orders": { "slider": 2, "latest": 2, "movies": 1 }, "overlay_text": "Full HD", "slide_poster": "https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg", "slide_overlay_text": "Highly Awaited", "slide_overlay_color": "#e74c3c" },
-  { "id": "singham-again", "title": "Singham Again", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-11-01", "category": ["bollywood", "trending"], "home_section": ["movies", "trending"], "display_orders": { "slider": 3, "movies": 2, "trending": 1 }, "overlay_text": "Multi-Starrer", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "mirzapur-season-3", "title": "Mirzapur Season 3", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-07-05", "category": ["webseries", "hindi", "trending"], "home_section": ["webseries", "trending"], "display_orders": { "slider": 4, "webseries": 1, "trending": 3 }, "overlay_text": "S03", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "New Season", "slide_overlay_color": "#2ecc71" },
-  { "id": "deadpool-and-wolverine", "title": "Deadpool & Wolverine", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-07-26", "category": ["hollywood", "trending"], "home_section": ["latest", "movies"], "display_orders": { "slider": 5, "latest": 3, "movies": 3 }, "overlay_text": "HD Print", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Must Watch", "slide_overlay_color": "#e74c3c" },
-  { "id": "stree-2", "title": "Stree 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-08-15", "category": ["bollywood", "trending"], "home_section": ["movies", "trending"], "display_orders": { "movies": 4, "trending": 4 }, "overlay_text": "Coming Soon", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "panchayat-season-3", "title": "Panchayat Season 3", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-05-28", "category": ["webseries", "hindi", "trending"], "home_section": ["webseries"], "display_orders": { "webseries": 2 }, "overlay_text": "S03", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "jigra", "title": "Jigra", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-10-11", "category": ["bollywood", "trending"], "home_section": ["movies"], "display_orders": { "movies": 6 }, "overlay_text": "Coming Soon", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "bhool-bhulaiyaa-3", "title": "Bhool Bhulaiyaa 3", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-11-01", "category": ["bollywood", "trending"], "home_section": ["movies"], "display_orders": { "movies": 7 }, "overlay_text": "Coming Soon", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "welcome-to-the-jungle", "title": "Welcome To The Jungle", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-12-20", "category": ["bollywood", "trending"], "home_section": ["movies"], "display_orders": { "movies": 8 }, "overlay_text": "Coming Soon", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "joker-folie-a-deux", "title": "Joker: Folie à Deux", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-10-04", "category": ["hollywood", "trending"], "home_section": ["movies"], "display_orders": { "movies": 9 }, "overlay_text": "Coming Soon", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "chandu-champion", "title": "Chandu Champion", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-06-14", "category": ["bollywood", "trending"], "home_section": ["latest", "movies"], "display_orders": { "latest": 4, "movies": 10 }, "overlay_text": "HD", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "don-3", "title": "Don 3", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2025-01-01", "category": ["bollywood", "trending"], "home_section": ["movies"], "display_orders": { "movies": 11 }, "overlay_text": "Announced", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "war-2", "title": "War 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2025-08-14", "category": ["bollywood", "trending"], "home_section": ["movies"], "display_orders": { "movies": 12 }, "overlay_text": "Announced", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "indian-2", "title": "Indian 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-07-12", "category": ["trending"], "home_section": ["latest", "movies"], "display_orders": { "latest": 5, "movies": 13 }, "overlay_text": "HD", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "kota-factory-season-3", "title": "Kota Factory Season 3", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-06-20", "category": ["webseries", "hindi", "trending"], "home_section": ["webseries"], "display_orders": { "webseries": 3 }, "overlay_text": "S03", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "gladiator-2", "title": "Gladiator 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-11-22", "category": ["hollywood", "trending"], "home_section": ["movies"], "display_orders": { "movies": 14 }, "overlay_text": "Coming Soon", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "border-2", "title": "Border 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2026-01-23", "category": ["bollywood", "trending"], "home_section": ["movies"], "display_orders": { "movies": 15 }, "overlay_text": "Announced", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "vedaa", "title": "Vedaa", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-08-15", "category": ["bollywood", "trending"], "home_section": ["trending"], "display_orders": { "trending": 5 }, "overlay_text": "HD", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "khel-khel-mein", "title": "Khel Khel Mein", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-08-15", "category": ["bollywood", "trending"], "home_section": ["trending"], "display_orders": { "trending": 6 }, "overlay_text": "Coming Soon", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "mr-and-mrs-mahi", "title": "Mr. And Mrs. Mahi", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-05-31", "category": ["bollywood", "trending"], "home_section": ["latest"], "display_orders": { "latest": 6 }, "overlay_text": "HD", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "the-great-indian-kapil-show", "title": "The Great Indian Kapil Show", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-03-30", "category": ["webseries", "trending"], "home_section": ["webseries"], "display_orders": { "webseries": 4 }, "overlay_text": "New Ep", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" },
-  { "id": "raid-2", "title": "Raid 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-11-15", "category": ["bollywood", "trending"], "home_section": ["movies"], "display_orders": { "movies": 16 }, "overlay_text": "Coming Soon", "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "slide_overlay_text": "Featured", "slide_overlay_color": "#e74c3c" }
-];
-
-// years.json ka data
-const yearsData = [
-  { "year": 2026, "display_order": 1, "movies": [ { "id": "border-2", "title": "Border 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2026-01-23" } ] },
-  { "year": 2025, "display_order": 2, "movies": [ { "id": "don-3", "title": "Don 3", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2025-01-01" }, { "id": "war-2", "title": "War 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2025-08-14" } ] },
-  { "year": 2024, "display_order": 3, "movies": [ { "id": "kalki-2898-ad", "title": "Kalki 2898 AD", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-06-27" }, { "id": "pushpa-2-the-rule", "title": "Pushpa 2: The Rule", "poster": "https://m.media-amazon.com/images/M/MV5BNDM3N2UzM2UtMjEwMC00NGUzLThmMmQtNGMyM2VmMDA0ZWEwXkEyXkFqcGc@._V1_.jpg", "release_date": "2024-12-05" }, { "id": "singham-again", "title": "Singham Again", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-11-01" }, { "id": "mirzapur-season-3", "title": "Mirzapur Season 3", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-07-05" }, { "id": "deadpool-and-wolverine", "title": "Deadpool & Wolverine", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-07-26" }, { "id": "stree-2", "title": "Stree 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-08-15" }, { "id": "panchayat-season-3", "title": "Panchayat Season 3", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-05-28" }, { "id": "jigra", "title": "Jigra", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-10-11" }, { "id": "bhool-bhulaiyaa-3", "title": "Bhool Bhulaiyaa 3", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-11-01" }, { "id": "welcome-to-the-jungle", "title": "Welcome To The Jungle", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-12-20" }, { "id": "joker-folie-a-deux", "title": "Joker: Folie à Deux", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-10-04" }, { "id": "chandu-champion", "title": "Chandu Champion", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-06-14" }, { "id": "indian-2", "title": "Indian 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-07-12" }, { "id": "kota-factory-season-3", "title": "Kota Factory Season 3", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-06-20" }, { "id": "gladiator-2", "title": "Gladiator 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-11-22" }, { "id": "vedaa", "title": "Vedaa", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-08-15" }, { "id": "khel-khel-mein", "title": "Khel Khel Mein", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-08-15" }, { "id": "mr-and-mrs-mahi", "title": "Mr. And Mrs. Mahi", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-05-31" }, { "id": "the-great-indian-kapil-show", "title": "The Great Indian Kapil Show", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-03-30" }, { "id": "raid-2", "title": "Raid 2", "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg", "release_date": "2024-11-15" } ] }
-];
-
-
 document.addEventListener('DOMContentLoaded', () => {
-    
+
+    // === YAHAN JSON FILES KA NAAM LIKHA HAI ===
+    // Aapko yahan koi URL daalne ki zaroorat nahi hai, kyonki hum GitHub Pages use kar rahe hain.
+    const MOVIES_JSON_URL = "movies.json";
+    const YEARS_JSON_URL = "years.json";
+
     const categories = [ { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
-    let sliderInterval; // Slider interval ke liye variable
-    const allMovies = moviesData;
+    let sliderInterval;
+    let allMovies = [];
     
     const homePageContent = document.getElementById('home-page-content');
     const filteredResultsContainer = document.getElementById('filtered-results-container');
@@ -168,13 +137,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeSearchBtn = document.getElementById('close-search-btn');
     const navBar = document.querySelector('.nav-bar');
 
-    function initializeApp() {
-        setupSideMenu(); 
-        populateHomePage(allMovies);
-        populateSlider(allMovies);
-        populateYearsSection(yearsData);
-        document.getElementById('searchInput').addEventListener('input', handleSearch);
-        document.getElementById('logo-link').addEventListener('click', (e) => { e.preventDefault(); showHomePage(); });
+    async function initializeApp() {
+        try {
+            const [moviesResponse, yearsResponse] = await Promise.all([
+                fetch(MOVIES_JSON_URL),
+                fetch(YEARS_JSON_URL)
+            ]);
+            if (!moviesResponse.ok || !yearsResponse.ok) throw new Error('JSON files not found. Check file names and location in your GitHub repository.');
+            
+            allMovies = await moviesResponse.json();
+            const yearsData = await yearsResponse.json();
+
+            setupSideMenu();
+            populateHomePage(allMovies);
+            populateSlider(allMovies);
+            populateYearsSection(yearsData);
+            
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            document.getElementById('logo-link').addEventListener('click', (e) => { e.preventDefault(); showHomePage(); });
+
+        } catch (error) {
+            console.error('Initialization failed:', error);
+            document.querySelector('main.container').innerHTML = `<h2 style="color:red; text-align:center; margin-top: 50px;">Error: ${error.message}<br>Make sure movies.json and years.json exist in the root of your repository.</h2>`;
+        }
     }
     
     menuBtn.addEventListener('click', () => { sideMenu.classList.add('open'); overlay.style.display = 'block'; });
@@ -204,7 +189,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // === SLIDER KA PURANA AUR BEHTAR SCRIPT WAPAS ADD KIYA GAYA ===
     function populateSlider(movieArray) {
         const sliderTrack = document.querySelector('.slider-track');
         const sliderMovies = movieArray.filter(m => m.display_orders?.slider).sort(createSorter('slider')).slice(0, 5);
@@ -223,30 +207,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const slides = Array.from(sliderTrack.children);
             if (slides.length === 0) return;
             const slideWidth = slides[0].getBoundingClientRect().width;
-            const firstClone = slides[0].cloneNode(true);
-            const lastClone = slides[slides.length - 1].cloneNode(true);
-            sliderTrack.appendChild(firstClone);
-            sliderTrack.insertBefore(lastClone, slides[0]);
+            const firstClone = slides[0].cloneNode(true); const lastClone = slides[slides.length - 1].cloneNode(true);
+            sliderTrack.appendChild(firstClone); sliderTrack.insertBefore(lastClone, slides[0]);
             let currentIndex = 1; let isTransitioning = false;
             const setSliderPosition = () => { sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`; };
             sliderTrack.style.transition = 'none'; setSliderPosition();
-            const moveTo = (direction) => {
-                if (isTransitioning) return;
-                isTransitioning = true;
-                currentIndex += direction;
-                sliderTrack.style.transition = 'transform 0.5s ease-in-out';
-                setSliderPosition();
-            };
+            const moveTo = (direction) => { if (isTransitioning) return; isTransitioning = true; currentIndex += direction; sliderTrack.style.transition = 'transform 0.5s ease-in-out'; setSliderPosition(); };
             sliderTrack.addEventListener('transitionend', () => {
-                isTransitioning = false;
-                const allSlides = Array.from(sliderTrack.children);
+                isTransitioning = false; const allSlides = Array.from(sliderTrack.children);
                 if (currentIndex >= allSlides.length - 1) { sliderTrack.style.transition = 'none'; currentIndex = 1; setSliderPosition(); }
                 if (currentIndex <= 0) { sliderTrack.style.transition = 'none'; currentIndex = allSlides.length - 2; setSliderPosition(); }
             });
-            const startSliderInterval = () => {
-                clearInterval(sliderInterval);
-                sliderInterval = setInterval(() => moveTo(1), 4000);
-            };
+            const startSliderInterval = () => { clearInterval(sliderInterval); sliderInterval = setInterval(() => moveTo(1), 4000); };
             nextBtn.addEventListener('click', () => { moveTo(1); startSliderInterval(); });
             prevBtn.addEventListener('click', () => { moveTo(-1); startSliderInterval(); });
             startSliderInterval();
@@ -255,65 +227,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setupSideMenu() {
         sideMenu.innerHTML = '';
-        const homeItem = document.createElement('a');
-        homeItem.href = '#'; homeItem.className = 'menu-item';
-        homeItem.textContent = 'Home';
+        const homeItem = document.createElement('a'); homeItem.href = '#'; homeItem.className = 'menu-item'; homeItem.textContent = 'Home';
         homeItem.addEventListener('click', (e) => { e.preventDefault(); showHomePage(); sideMenu.classList.remove('open'); overlay.style.display = 'none'; });
         sideMenu.appendChild(homeItem);
-        const categoriesToggle = document.createElement('div');
-        categoriesToggle.className = 'menu-item';
-        categoriesToggle.textContent = 'All Categories ▼';
-        const submenu = document.createElement('div');
-        submenu.className = 'submenu';
+        const categoriesToggle = document.createElement('div'); categoriesToggle.className = 'menu-item'; categoriesToggle.textContent = 'All Categories ▼';
+        const submenu = document.createElement('div'); submenu.className = 'submenu';
         categories.forEach(cat => {
-            const item = document.createElement('a');
-            item.href = '#'; item.className = 'menu-item';
-            item.dataset.value = cat.value; item.textContent = cat.text;
+            const item = document.createElement('a'); item.href = '#'; item.className = 'menu-item'; item.dataset.value = cat.value; item.textContent = cat.text;
             item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const filtered = allMovies.filter(m => m.category?.includes(e.target.dataset.value));
-                showFilteredResults(filtered, e.target.textContent);
-                sideMenu.classList.remove('open'); overlay.style.display = 'none';
+                e.preventDefault(); const filtered = allMovies.filter(m => m.category?.includes(e.target.dataset.value));
+                showFilteredResults(filtered, e.target.textContent); sideMenu.classList.remove('open'); overlay.style.display = 'none';
             });
             submenu.appendChild(item);
         });
-        categoriesToggle.addEventListener('click', () => {
-            submenu.classList.toggle('open');
-            categoriesToggle.textContent = submenu.classList.contains('open') ? 'All Categories ▲' : 'All Categories ▼';
-        });
-        sideMenu.appendChild(categoriesToggle);
-        sideMenu.appendChild(submenu);
+        categoriesToggle.addEventListener('click', () => { submenu.classList.toggle('open'); categoriesToggle.textContent = submenu.classList.contains('open') ? 'All Categories ▲' : 'All Categories ▼'; });
+        sideMenu.appendChild(categoriesToggle); sideMenu.appendChild(submenu);
     }
 
     function handleSearch(e) {
         const term = e.target.value.toLowerCase();
-        if (term) {
-            const filtered = allMovies.filter(m => m.title.toLowerCase().includes(term));
-            showFilteredResults(filtered, `Results for "${term}"`);
-        } else { showHomePage(); }
+        if (term) { const filtered = allMovies.filter(m => m.title.toLowerCase().includes(term)); showFilteredResults(filtered, `Results for "${term}"`); } 
+        else { showHomePage(); }
     }
 
     function showFilteredResults(movieArray, title) {
-        homePageContent.style.display = 'none';
-        sliderContainer.style.display = 'none'; 
-        yearsContainer.style.display = 'none';
-        filteredResultsContainer.style.display = 'block';
-        filteredTitle.textContent = title;
+        homePageContent.style.display = 'none'; sliderContainer.style.display = 'none'; yearsContainer.style.display = 'none';
+        filteredResultsContainer.style.display = 'block'; filteredTitle.textContent = title;
         displayMovies(movieArray, filteredGrid);
     }
 
     function showHomePage() {
-        filteredResultsContainer.style.display = 'none';
-        homePageContent.style.display = 'block';
-        sliderContainer.style.display = 'block'; 
-        yearsContainer.style.display = 'block';
+        filteredResultsContainer.style.display = 'none'; homePageContent.style.display = 'block'; sliderContainer.style.display = 'block'; yearsContainer.style.display = 'block';
         document.getElementById('searchInput').value = ''; 
     }
 
     function formatDate(dateString) {
         if (!dateString) return '';
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        return new Date(dateString).toLocaleDateDateString('en-US', options);
+        return new Date(dateString).toLocaleDateString('en-US', options);
     }
 
     function displayMovies(movieArray, gridElement) {
@@ -327,7 +278,6 @@ document.addEventListener('DOMContentLoaded', () => {
         gridElement.innerHTML = movieArray.map(movie => {
             const overlayHTML = movie.overlay_text ? `<div class="movie-card-overlay" style="background-color: ${movie.overlay_color || 'var(--theme-color)'};">${movie.overlay_text}</div>` : '';
             const releaseDate = movie.release_date ? `<p class="movie-date">${formatDate(movie.release_date)}</p>` : '';
-            // === MOVIE LINK THEEK KIYA GAYA ===
             return `<a href="player.html?id=${movie.id}"><div class="movie-card">${overlayHTML}<img src="${movie.poster}" alt="${movie.title}" loading="lazy"><div class="movie-info"><h3>${movie.title}</h3>${releaseDate}</div></div></a>`;
         }).join('');
     }
@@ -336,29 +286,18 @@ document.addEventListener('DOMContentLoaded', () => {
         yearsContainer.innerHTML = '';
         yearsData.sort((a, b) => (a.display_order || 999) - (b.display_order || 999));
         yearsData.forEach(yearInfo => {
-            const yearSection = document.createElement('div');
-            yearSection.className = 'year-section';
-            const header = document.createElement('div');
-            header.className = 'year-header';
-            header.innerHTML = `<span>${yearInfo.year}</span><span class="arrow">&#9662;</span>`;
-            const movieList = document.createElement('div');
-            movieList.className = 'year-movie-list';
+            const yearSection = document.createElement('div'); yearSection.className = 'year-section';
+            const header = document.createElement('div'); header.className = 'year-header'; header.innerHTML = `<span>${yearInfo.year}</span><span class="arrow">&#9662;</span>`;
+            const movieList = document.createElement('div'); movieList.className = 'year-movie-list';
             movieList.innerHTML = yearInfo.movies.map(movie => {
                 const releaseDate = movie.release_date ? `<p class="movie-date">${formatDate(movie.release_date)}</p>` : '';
-                // === MOVIE LINK THEEK KIYA GAYA ===
                 return `<a href="player.html?id=${movie.id}" class="year-movie-item"><img src="${movie.poster}" alt="${movie.title}" loading="lazy"><div class="year-movie-info"><h3>${movie.title}</h3>${releaseDate}</div></a>`;
             }).join('');
-            header.addEventListener('click', () => {
-                movieList.classList.toggle('open');
-                header.querySelector('.arrow').innerHTML = movieList.classList.contains('open') ? '&#9652;' : '&#9662;';
-            });
-            yearSection.appendChild(header);
-            yearSection.appendChild(movieList);
-            yearsContainer.appendChild(yearSection);
+            header.addEventListener('click', () => { movieList.classList.toggle('open'); header.querySelector('.arrow').innerHTML = movieList.classList.contains('open') ? '&#9652;' : '&#9652;'; });
+            yearSection.appendChild(header); yearSection.appendChild(movieList); yearsContainer.appendChild(yearSection);
         });
     }
 
-    // App ko shuru karna
     initializeApp();
 });
 </script>
