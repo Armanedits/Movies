@@ -1,416 +1,158 @@
 [
   {
-    "id": "kalki-2898-ad",
-    "title": "Kalki 2898 AD",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["trending"],
-    "home_section": ["latest", "movies", "trending"],
-    "display_orders": { "slider": 1, "latest": 1, "trending": 2, "movies": 5 },
-    "overlay_text": "Must Watch",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "New Release",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
+    "year": 2026,
+    "display_order": 1,
+    "movies": [
+      {
+        "id": "border-2",
+        "title": "Border 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2026-01-23"
+      }
     ]
   },
   {
-    "id": "pushpa-2-the-rule",
-    "title": "Pushpa 2: The Rule",
-    "poster": "https://m.media-amazon.com/images/M/MV5BNDM3N2UzM2UtMjEwMC00NGUzLThmMmQtNGMyM2VmMDA0ZWEwXkEyXkFqcGc@._V1_.jpg",
-    "category": ["trending"],
-    "home_section": ["latest", "movies"],
-    "display_orders": { "slider": 2, "latest": 2, "movies": 1 },
-    "overlay_text": "Full HD",
-    "slide_poster": "https://cinetvartistcard.com/wp-content/uploads/2024/12/img_8803-1.jpg",
-    "slide_overlay_text": "Highly Awaited",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
+    "year": 2025,
+    "display_order": 2,
+    "movies": [
+      {
+        "id": "don-3",
+        "title": "Don 3",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2025-01-01"
+      },
+      {
+        "id": "war-2",
+        "title": "War 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2025-08-14"
+      }
     ]
   },
   {
-    "id": "singham-again",
-    "title": "Singham Again",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies", "trending"],
-    "display_orders": { "slider": 3, "movies": 2, "trending": 1 },
-    "overlay_text": "Multi-Starrer",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "mirzapur-season-3",
-    "title": "Mirzapur Season 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["webseries", "hindi", "trending"],
-    "home_section": ["webseries", "trending"],
-    "display_orders": { "slider": 4, "webseries": 1, "trending": 3 },
-    "overlay_text": "S03",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "New Season",
-    "slide_overlay_color": "#2ecc71",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "deadpool-and-wolverine",
-    "title": "Deadpool & Wolverine",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["hollywood", "trending"],
-    "home_section": ["latest", "movies"],
-    "display_orders": { "slider": 5, "latest": 3, "movies": 3 },
-    "overlay_text": "HD Print",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Must Watch",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "stree-2",
-    "title": "Stree 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies", "trending"],
-    "display_orders": { "movies": 4, "trending": 4 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "panchayat-season-3",
-    "title": "Panchayat Season 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["webseries", "hindi", "trending"],
-    "home_section": ["webseries"],
-    "display_orders": { "webseries": 2 },
-    "overlay_text": "S03",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "jigra",
-    "title": "Jigra",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 6 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "bhool-bhulaiyaa-3",
-    "title": "Bhool Bhulaiyaa 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 7 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "welcome-to-the-jungle",
-    "title": "Welcome To The Jungle",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 8 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "joker-folie-a-deux",
-    "title": "Joker: Folie à Deux",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["hollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 9 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "chandu-champion",
-    "title": "Chandu Champion",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["latest", "movies"],
-    "display_orders": { "latest": 4, "movies": 10 },
-    "overlay_text": "HD",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "don-3",
-    "title": "Don 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 11 },
-    "overlay_text": "Announced",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "war-2",
-    "title": "War 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 12 },
-    "overlay_text": "Announced",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "indian-2",
-    "title": "Indian 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["trending"],
-    "home_section": ["latest", "movies"],
-    "display_orders": { "latest": 5, "movies": 13 },
-    "overlay_text": "HD",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "kota-factory-season-3",
-    "title": "Kota Factory Season 3",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["webseries", "hindi", "trending"],
-    "home_section": ["webseries"],
-    "display_orders": { "webseries": 3 },
-    "overlay_text": "S03",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "gladiator-2",
-    "title": "Gladiator 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["hollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 14 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "border-2",
-    "title": "Border 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 15 },
-    "overlay_text": "Announced",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "vedaa",
-    "title": "Vedaa",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["trending"],
-    "display_orders": { "trending": 5 },
-    "overlay_text": "HD",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "khel-khel-mein",
-    "title": "Khel Khel Mein",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["trending"],
-    "display_orders": { "trending": 6 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "mr-and-mrs-mahi",
-    "title": "Mr. And Mrs. Mahi",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["latest"],
-    "display_orders": { "latest": 6 },
-    "overlay_text": "HD",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "the-great-indian-kapil-show",
-    "title": "The Great Indian Kapil Show",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["webseries", "trending"],
-    "home_section": ["webseries"],
-    "display_orders": { "webseries": 4 },
-    "overlay_text": "New Ep",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
-    ]
-  },
-  {
-    "id": "raid-2",
-    "title": "Raid 2",
-    "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "category": ["bollywood", "trending"],
-    "home_section": ["movies"],
-    "display_orders": { "movies": 16 },
-    "overlay_text": "Coming Soon",
-    "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
-    "slide_overlay_text": "Featured",
-    "slide_overlay_color": "#e74c3c",
-    "suggestedIds": [],
-    "downloadLinks": [
-      { "quality": "480p", "size": "...", "link": "..." },
-      { "quality": "720p", "size": "...", "link": "..." },
-      { "quality": "1080p", "size": "...", "link": "..." }
+    "year": 2024,
+    "display_order": 3,
+    "movies": [
+      {
+        "id": "kalki-2898-ad",
+        "title": "Kalki 2898 AD",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-06-27"
+      },
+      {
+        "id": "pushpa-2-the-rule",
+        "title": "Pushpa 2: The Rule",
+        "poster": "https://m.media-amazon.com/images/M/MV5BNDM3N2UzM2UtMjEwMC00NGUzLThmMmQtNGMyM2VmMDA0ZWEwXkEyXkFqcGc@._V1_.jpg",
+        "release_date": "2024-12-05"
+      },
+      {
+        "id": "singham-again",
+        "title": "Singham Again",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-11-01"
+      },
+      {
+        "id": "mirzapur-season-3",
+        "title": "Mirzapur Season 3",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-07-05"
+      },
+      {
+        "id": "deadpool-and-wolverine",
+        "title": "Deadpool & Wolverine",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-07-26"
+      },
+      {
+        "id": "stree-2",
+        "title": "Stree 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-08-15"
+      },
+      {
+        "id": "panchayat-season-3",
+        "title": "Panchayat Season 3",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-05-28"
+      },
+      {
+        "id": "jigra",
+        "title": "Jigra",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-10-11"
+      },
+      {
+        "id": "bhool-bhulaiyaa-3",
+        "title": "Bhool Bhulaiyaa 3",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-11-01"
+      },
+      {
+        "id": "welcome-to-the-jungle",
+        "title": "Welcome To The Jungle",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-12-20"
+      },
+      {
+        "id": "joker-folie-a-deux",
+        "title": "Joker: Folie à Deux",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-10-04"
+      },
+      {
+        "id": "chandu-champion",
+        "title": "Chandu Champion",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-06-14"
+      },
+      {
+        "id": "indian-2",
+        "title": "Indian 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-07-12"
+      },
+      {
+        "id": "kota-factory-season-3",
+        "title": "Kota Factory Season 3",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-06-20"
+      },
+      {
+        "id": "gladiator-2",
+        "title": "Gladiator 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-11-22"
+      },
+      {
+        "id": "vedaa",
+        "title": "Vedaa",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-08-15"
+      },
+      {
+        "id": "khel-khel-mein",
+        "title": "Khel Khel Mein",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-08-15"
+      },
+      {
+        "id": "mr-and-mrs-mahi",
+        "title": "Mr. And Mrs. Mahi",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-05-31"
+      },
+      {
+        "id": "the-great-indian-kapil-show",
+        "title": "The Great Indian Kapil Show",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-03-30"
+      },
+      {
+        "id": "raid-2",
+        "title": "Raid 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-11-15"
+      }
     ]
   }
 ]
