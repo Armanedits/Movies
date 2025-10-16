@@ -56,10 +56,8 @@
     </main>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Repository ka naam yahan set hai. Ab kuch badalne ki zaroorat nahi hai.
-    const REPO_NAME = "Movies";
-    
-    const MOVIES_JSON_URL = `/${REPO_NAME}/movies.json`;
+    // Isse galti ka chance hi khatam ho gaya. Browser apne aap sahi path dhoond lega.
+    const MOVIES_JSON_URL = "movies.json";
 
     const loader = document.getElementById('loader');
     const movieDetailsView = document.getElementById('movie-details-view');
@@ -89,16 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.title = movie.title;
         document.getElementById('main-poster').src = movie.poster;
         document.getElementById('movie-title').textContent = movie.title;
-
         const descriptionEl = document.getElementById('movie-description');
         if (movie.details) { descriptionEl.textContent = movie.details; } else { descriptionEl.style.display = 'none'; }
-        
         const castSection = document.getElementById('cast-section');
         if (movie.cast && movie.cast.length > 0) {
             castSection.style.display = 'block';
             document.getElementById('cast-list').innerHTML = movie.cast.map(actor => `<span class="cast-member">${actor}</span>`).join('');
         }
-
         const downloadsContainer = document.getElementById('download-links');
         if (movie.downloadLinks && movie.downloadLinks.length > 0) {
             downloadsContainer.innerHTML = movie.downloadLinks.map(linkInfo => {
@@ -109,7 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             downloadsContainer.innerHTML = '<p>No download links available.</p>';
         }
-
         const relatedSection = document.getElementById('related-movies-section');
         if (movie.suggestedIds && movie.suggestedIds.length > 0) {
             const relatedMovies = movie.suggestedIds.map(id => allMovies.find(m => m.id === id)).filter(Boolean);
