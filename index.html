@@ -6,11 +6,11 @@
     <title>Ultimate Movie Site</title>
     <style>
         :root {
-            --theme-color: #e74c3c; /* Default red color */
+            --theme-color: #e74c3c;
             --dark-bg: #121212;
             --light-bg: #1f1f1f;
             --text-primary: #ffffff;
-            --text-secondary: #aaaaaa; /* Date ke liye grey colour */
+            --text-secondary: #aaaaaa;
         }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -19,19 +19,12 @@
             margin: 0;
             overflow-x: hidden;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 10px;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 10px; }
         a { color: inherit; text-decoration: none; }
-
-        /* Header CSS... (Koi badlav nahi) */
         header { background-color: var(--dark-bg); padding: 10px; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #2a2a2a; }
         .nav-bar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; height: 50px; }
         .nav-left, .nav-right, .logo-container { flex: 1; }
-        .logo-container { text-align: center; display: flex; align-items: center; justify-content: center; height: 100%; }
-        .logo-container a { display: inline-block; line-height: 0; }
+        .logo-container { text-align: center; }
         .nav-right { text-align: right; }
         header img.logo { max-width: 120px; vertical-align: middle; }
         .icon-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; }
@@ -41,118 +34,44 @@
         #close-search-btn { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); font-size: 28px; }
         .nav-bar.search-active .logo-container, .nav-bar.search-active .nav-left, .nav-bar.search-active .nav-right { display: none; }
         .nav-bar.search-active #search-container { display: flex; align-items: center; }
-
-        /* === SIDE MENU CSS BADLA GAYA HAI === */
         #side-menu { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background-color: #181818; z-index: 1002; transform: translateX(-100%); transition: transform 0.3s ease-in-out; padding-top: 60px; box-shadow: 5px 0 15px rgba(0,0,0,0.5); }
         #side-menu.open { transform: translateX(0); }
         #side-menu .menu-item { display: block; color: #fff; padding: 15px 25px; font-size: 18px; border-bottom: 1px solid #2a2a2a; cursor: pointer; }
         #side-menu .menu-item:hover { background-color: var(--theme-color); }
-        /* Dropdown ke liye naye styles */
         #side-menu .submenu { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; background-color: #202020; }
-        #side-menu .submenu.open { max-height: 500px; /* Zarurat ke hisab se adjust karein */ }
+        #side-menu .submenu.open { max-height: 500px; }
         #side-menu .submenu .menu-item { font-size: 16px; padding-left: 40px; }
         #menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1001; display: none; }
-
-        /* === SLIDER CSS BADLA GAYA HAI === */
         .slider-container { position: relative; width: 100%; margin: 20px auto; overflow: hidden; border-radius: 8px; }
         .slider-track { display: flex; }
         .slide { min-width: 100%; padding: 0 5px; box-sizing: border-box; position: relative; }
         .slide img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; display: block; }
-        /* Title ka background hataya gaya hai */
-        .slide-title { 
-            position: absolute; 
-            bottom: 15px; 
-            left: 15px; 
-            background-color: transparent; /* Background hata diya */
-            color: #fff; 
-            padding: 8px 12px; 
-            border-radius: 5px; 
-            font-size: 18px; 
-            font-weight: bold;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.8); /* Readability ke liye shadow add ki gayi hai */
-        }
+        .slide-title { position: absolute; bottom: 15px; left: 15px; background-color: transparent; color: #fff; padding: 8px 12px; border-radius: 5px; font-size: 18px; font-weight: bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.8); }
         .slider-btn { display: none; }
         .slide-overlay-text { position: absolute; top: 10px; left: 10px; color: white; padding: 5px 10px; font-size: 12px; font-weight: bold; border-radius: 5px; z-index: 5; }
         @media (min-width: 600px) { .slide { min-width: 50%; } }
         @media (min-width: 992px) { .slide { min-width: 33.33%; } }
-        
-        /* === MOVIE GRID CSS BADLA GAYA HAI === */
         .home-category-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .home-category-header h2 { font-size: 20px; font-weight: 600; margin: 0; margin-top: 30px; }
-        .show-all-btn { background-color: #2a2a2a; color: var(--text-primary); border: 1px solid #444; border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 500; transition: background-color 0.2s ease; }
-        .show-all-btn:hover { background-color: #3f3f3f; }
-        /* Mobile ke liye 3 column grid */
+        .show-all-btn { background-color: #2a2a2a; color: var(--text-primary); border: 1px solid #444; border-radius: 6px; padding: 8px 14px; cursor: pointer; font-size: 13px; font-weight: 500; }
         .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; transition: max-height 0.5s ease-in-out; }
         .movie-grid.limited { max-height: 350px; overflow: hidden; }
         .movie-card { cursor: pointer; transition: transform 0.2s ease; position: relative; overflow: hidden; }
         .movie-card:hover { transform: scale(1.05); }
         .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
         .movie-info { padding: 0 4px; }
-        /* Title chota kiya gaya hai */
-        .movie-info h3 { 
-            font-size: 12px;
-            font-weight: 500; 
-            margin: 8px 0 4px 0;
-            line-height: 1.3; 
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        /* Date ke liye naya style */
-        .movie-info .movie-date {
-            font-size: 11px;
-            color: var(--text-secondary);
-        }
+        .movie-info h3 { font-size: 12px; font-weight: 500; margin: 8px 0 4px 0; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .movie-info .movie-date { font-size: 11px; color: var(--text-secondary); }
         .movie-card-overlay { position: absolute; top: 5px; left: 5px; color: white; padding: 3px 6px; font-size: 10px; font-weight: bold; border-radius: 4px; z-index: 2; }
-
-        /* === YEARS SECTION KE LIYE NAYI CSS === */
-        #years-section-container {
-            margin-top: 40px;
-        }
-        .year-section {
-            margin-bottom: 20px;
-        }
-        .year-header {
-            background-color: var(--light-bg);
-            padding: 12px 15px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-left: 4px solid var(--theme-color);
-        }
-        .year-movie-list {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-        }
-        .year-movie-list.open {
-            max-height: 2000px; /* Lambi lists ke liye isey badha sakte hain */
-            padding-top: 15px;
-        }
-        .year-movie-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .year-movie-item img {
-            width: 80px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-right: 15px;
-        }
-        .year-movie-info h3 {
-            font-size: 16px;
-            margin: 0 0 5px 0;
-        }
-        .year-movie-info .movie-date {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
+        #years-section-container { margin-top: 40px; }
+        .year-section { margin-bottom: 20px; }
+        .year-header { background-color: var(--light-bg); padding: 12px 15px; font-size: 18px; font-weight: 600; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-left: 4px solid var(--theme-color); }
+        .year-movie-list { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out; }
+        .year-movie-list.open { max-height: 2000px; padding-top: 15px; }
+        .year-movie-item { display: flex; align-items: center; margin-bottom: 15px; }
+        .year-movie-item img { width: 80px; height: 120px; object-fit: cover; border-radius: 6px; margin-right: 15px; }
+        .year-movie-info h3 { font-size: 16px; margin: 0 0 5px 0; }
+        .year-movie-info .movie-date { font-size: 14px; color: var(--text-secondary); }
     </style>
 </head>
 <body>
@@ -161,9 +80,7 @@
             <div class="nav-left"><button class="icon-btn" id="menu-btn">&#9776;</button></div>
             <div class="logo-container"><a href="#" id="logo-link"><img src="https://raw.githubusercontent.com/Armanedits/Movies/refs/heads/main/Picsart_25-10-11_05-15-44-256.jpg" alt="Logo" class="logo"></a></div>
             <div class="nav-right">
-                <button class="icon-btn" id="search-icon-btn">
-                    <img src="https://img.icons8.com/ios11/512/FFFFFF/search.png" alt="Search Icon">
-                </button>
+                <button class="icon-btn" id="search-icon-btn"><img src="https://img.icons8.com/ios11/512/FFFFFF/search.png" alt="Search Icon"></button>
             </div>
             <div id="search-container">
                 <input type="text" id="searchInput" placeholder="Search for movies...">
@@ -171,89 +88,86 @@
             </div>
         </nav>
     </header>
-
     <div id="side-menu"></div>
     <div id="menu-overlay"></div>
-
     <main class="container">
         <div class="slider-container">
             <div class="slider-track"></div>
             <button class="icon-btn slider-btn" id="prev-slide" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); z-index: 10; background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">&#10094;</button>
             <button class="icon-btn slider-btn" id="next-slide" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); z-index: 10; background-color: rgba(0,0,0,0.5); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">&#10095;</button>
         </div>
-        
         <div id="home-page-content">
-            <div class="home-category-section">
-                <div class="home-category-header"><h2>🔥 Latest Releases</h2><button class="show-all-btn">Show All &#9662;</button></div>
-                <div id="latest-grid" class="movie-grid limited"></div>
-            </div>
-            <div class="home-category-section">
-                <div class="home-category-header"><h2>🔥 Trending</h2><button class="show-all-btn">Show All &#9662;</button></div>
-                <div id="trending-grid" class="movie-grid limited"></div>
-            </div>
-            <div class="home-category-section">
-                <div class="home-category-header"><h2>🎬 Movies</h2><button class="show-all-btn">Show All &#9662;</button></div>
-                <div id="movies-grid" class="movie-grid limited"></div>
-            </div>
-            <div class="home-category-section">
-                <div class="home-category-header"><h2>📺 Webseries</h2><button class="show-all-btn">Show All &#9662;</button></div>
-                <div id="webseries-grid" class="movie-grid limited"></div>
-            </div>
+            <div class="home-category-section"><div class="home-category-header"><h2>🔥 Latest Releases</h2><button class="show-all-btn">Show All &#9662;</button></div><div id="latest-grid" class="movie-grid limited"></div></div>
+            <div class="home-category-section"><div class="home-category-header"><h2>🔥 Trending</h2><button class="show-all-btn">Show All &#9662;</button></div><div id="trending-grid" class="movie-grid limited"></div></div>
+            <div class="home-category-section"><div class="home-category-header"><h2>🎬 Movies</h2><button class="show-all-btn">Show All &#9662;</button></div><div id="movies-grid" class="movie-grid limited"></div></div>
+            <div class="home-category-section"><div class="home-category-header"><h2>📺 Webseries</h2><button class="show-all-btn">Show All &#9662;</button></div><div id="webseries-grid" class="movie-grid limited"></div></div>
         </div>
-
         <div id="filtered-results-container" style="display: none;">
             <h2 id="filtered-title"></h2>
             <div id="filtered-grid" class="movie-grid"></div>
         </div>
-
-        <!-- === YEARS SECTION KE LIYE NAYA CONTAINER === -->
-        <div id="years-section-container">
-            <!-- Year sections yahan JavaScript se add honge -->
-        </div>
+        <div id="years-section-container"></div>
     </main>
-
 <script>
+// === YAHAN SE SCRIPT SHURU HOTI HAI ===
+
+// DOMContentLoaded event listener yeh sunishchit karta hai ki HTML poori tarah load ho chuka hai
 document.addEventListener('DOMContentLoaded', () => {
-    // Side menu dropdown ke liye categories
+    
+    // Side menu ke liye categories ki list
     const categories = [ { value: 'trending', text: 'Trending' }, { value: 'webseries', text: 'Webseries' }, { value: 'bollywood', text: 'Bollywood' }, { value: 'hollywood', text: 'Hollywood' }, { value: 'tollywood', text: 'Tollywood' } ];
     let sliderInterval;
     let allMovies = [];
     
-    // DOM Elements
+    // Zaroori HTML elements ko select karna
     const homePageContent = document.getElementById('home-page-content');
     const filteredResultsContainer = document.getElementById('filtered-results-container');
     const filteredTitle = document.getElementById('filtered-title');
     const filteredGrid = document.getElementById('filtered-grid');
     const sliderContainer = document.querySelector('.slider-container');
     const yearsContainer = document.getElementById('years-section-container');
-
-    // Homepage sections ke liye movies fetch karein
-    fetch('movies.json').then(res => res.json()).then(movies => {
-        allMovies = movies;
-        populateHomePage(allMovies);
-        populateSlider(allMovies);
-        setupSideMenu(); // Movies load hone ke baad menu setup karein
-        document.getElementById('searchInput').addEventListener('input', handleSearch);
-        document.getElementById('logo-link').addEventListener('click', (e) => { e.preventDefault(); showHomePage(); });
-    }).catch(error => {
-        console.error('Error loading movies.json:', error);
-        document.querySelector('main.container').innerHTML = `<h2 style="color:red;">Error: Movies load nahi ho payi. Invalid JSON format.</h2>`;
-    });
-
-    // === NAYE SECTION KE LIYE years.json FETCH KAREIN ===
-    fetch('years.json').then(res => res.json()).then(data => {
-        populateYearsSection(data);
-    }).catch(error => {
-        console.error('Error loading years.json:', error);
-    });
-    
-    // UI ke liye Event Listeners (Menu, Search)
     const sideMenu = document.getElementById('side-menu');
     const menuBtn = document.getElementById('menu-btn');
     const overlay = document.getElementById('menu-overlay');
     const searchIconBtn = document.getElementById('search-icon-btn');
     const closeSearchBtn = document.getElementById('close-search-btn');
     const navBar = document.querySelector('.nav-bar');
+
+    // Mukhya function jo saare data ko load aur display karta hai
+    async function initializeApp() {
+        try {
+            // movies.json aur years.json, dono files ko ek saath fetch karna
+            const [moviesResponse, yearsResponse] = await Promise.all([
+                fetch('movies.json'),
+                fetch('years.json')
+            ]);
+
+            // Agar koi file nahi milti hai to error dikhana
+            if (!moviesResponse.ok || !yearsResponse.ok) {
+                throw new Error('Network response was not ok.');
+            }
+
+            allMovies = await moviesResponse.json();
+            const yearsData = await yearsResponse.json();
+
+            // Saare functions ko call karna jo data display karenge
+            setupSideMenu(); // Side menu banayega
+            populateHomePage(allMovies); // Homepage par grids bharega
+            populateSlider(allMovies); // Slider banayega
+            populateYearsSection(yearsData); // Years wala section banayega
+            
+            // Search aur logo click ke event listeners set karna
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            document.getElementById('logo-link').addEventListener('click', (e) => { e.preventDefault(); showHomePage(); });
+
+        } catch (error) {
+            console.error('Initialization failed:', error);
+            // Agar data load nahi hota to error message dikhana
+            document.querySelector('main.container').innerHTML = `<h2 style="color:red; text-align:center; margin-top: 50px;">Error: Movies data load nahi ho saka.<br>Kripya file names (movies.json, years.json) aur unka content check karein.</h2>`;
+        }
+    }
+    
+    // Menu (3-line) aur Search icon ke click events
     menuBtn.addEventListener('click', () => { sideMenu.classList.add('open'); overlay.style.display = 'block'; });
     overlay.addEventListener('click', () => { sideMenu.classList.remove('open'); overlay.style.display = 'none'; });
     searchIconBtn.addEventListener('click', () => navBar.classList.add('search-active'));
@@ -265,16 +179,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const createSorter = (sectionName) => {
-        return (a, b) => (a.display_orders?.[sectionName] || 999) - (b.display_orders?.[sectionName] || 999);
-    };
+    // Helper function jo display order ke hisab se sort karta hai
+    const createSorter = (sectionName) => (a, b) => (a.display_orders?.[sectionName] || 999) - (b.display_orders?.[sectionName] || 999);
 
     function populateHomePage(movies) {
         displayMovies(movies.filter(m => m.home_section?.includes('latest')).sort(createSorter('latest')), document.getElementById('latest-grid'));
         displayMovies(movies.filter(m => m.home_section?.includes('trending')).sort(createSorter('trending')), document.getElementById('trending-grid'));
         displayMovies(movies.filter(m => m.home_section?.includes('movies')).sort(createSorter('movies')), document.getElementById('movies-grid'));
         displayMovies(movies.filter(m => m.home_section?.includes('webseries')).sort(createSorter('webseries')), document.getElementById('webseries-grid'));
-        
         document.querySelectorAll('.show-all-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const grid = e.target.closest('.home-category-section').querySelector('.movie-grid');
@@ -288,68 +200,120 @@ document.addEventListener('DOMContentLoaded', () => {
         const sliderTrack = document.querySelector('.slider-track');
         const sliderMovies = movieArray.filter(m => m.display_orders?.slider).sort(createSorter('slider')).slice(0, 5);
         if (!sliderTrack || sliderMovies.length === 0) { sliderContainer.style.display = 'none'; return; }
-        sliderTrack.innerHTML = '';
-        sliderMovies.forEach(movie => {
-            const slide = document.createElement('div'); slide.className = 'slide';
-            const posterUrl = movie.slide_poster || movie.poster; const overlayText = movie.slide_overlay_text || 'Featured';
+        sliderTrack.innerHTML = sliderMovies.map(movie => {
+            const posterUrl = movie.slide_poster || movie.poster;
+            const overlayText = movie.slide_overlay_text || 'Featured';
             const bgColor = movie.slide_overlay_color || 'var(--theme-color)';
-            slide.innerHTML = `<a href="player.html?id=${movie.id}"><div class="slide-overlay-text" style="background-color: ${bgColor};">${overlayText}</div><img src="${posterUrl}" alt="${movie.title}"><div class="slide-title">${movie.title}</div></a>`;
-            sliderTrack.appendChild(slide);
-        });
-        const prevBtn = document.getElementById('prev-slide'); const nextBtn = document.getElementById('next-slide');
-        if (sliderMovies.length > 1) {
-            prevBtn.style.display = 'flex'; nextBtn.style.display = 'flex'; const slides = Array.from(sliderTrack.children);
-            const slideWidth = slides[0].offsetWidth; const firstClone = slides[0].cloneNode(true); const lastClone = slides[slides.length - 1].cloneNode(true);
-            sliderTrack.appendChild(firstClone); sliderTrack.insertBefore(lastClone, slides[0]);
-            let currentIndex = 1; let isTransitioning = false;
-            const setSliderPosition = () => { sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`; };
-            sliderTrack.style.transition = 'none'; setSliderPosition();
-            const moveTo = (direction) => { if (isTransitioning) return; isTransitioning = true; currentIndex += direction; sliderTrack.style.transition = 'transform 0.5s ease-in-out'; setSliderPosition(); };
-            sliderTrack.addEventListener('transitionend', () => { isTransitioning = false; const allSlides = Array.from(sliderTrack.children); if (currentIndex >= allSlides.length - 1) { sliderTrack.style.transition = 'none'; currentIndex = 1; setSliderPosition(); } if (currentIndex <= 0) { sliderTrack.style.transition = 'none'; currentIndex = allSlides.length - 2; setSliderPosition(); } });
-            const startSliderInterval = () => { clearInterval(sliderInterval); sliderInterval = setInterval(() => moveTo(1), 4000); };
-            nextBtn.addEventListener('click', () => { moveTo(1); startSliderInterval(); }); prevBtn.addEventListener('click', () => { moveTo(-1); startSliderInterval(); }); startSliderInterval();
-        }
+            return `<div class="slide"><a href="#"><div class="slide-overlay-text" style="background-color: ${bgColor};">${overlayText}</div><img src="${posterUrl}" alt="${movie.title}"><div class="slide-title">${movie.title}</div></a></div>`;
+        }).join('');
     }
 
-    // === SIDE MENU KA FUNCTION PURA BADLA GAYA HAI ===
     function setupSideMenu() {
-        sideMenu.innerHTML = ''; // Pehle ka menu saaf karein
-
-        // 1. Home button add karein
+        sideMenu.innerHTML = '';
         const homeItem = document.createElement('a');
         homeItem.href = '#'; homeItem.className = 'menu-item';
         homeItem.textContent = 'Home';
-        homeItem.addEventListener('click', (e) => {
-            e.preventDefault();
-            showHomePage();
-            sideMenu.classList.remove('open');
-            overlay.style.display = 'none';
-        });
+        homeItem.addEventListener('click', (e) => { e.preventDefault(); showHomePage(); sideMenu.classList.remove('open'); overlay.style.display = 'none'; });
         sideMenu.appendChild(homeItem);
-        
-        // 2. Categories Dropdown add karein
         const categoriesToggle = document.createElement('div');
         categoriesToggle.className = 'menu-item';
-        categoriesToggle.textContent = 'All Categories ▼'; // Text badla gaya hai
-        sideMenu.appendChild(categoriesToggle);
-
+        categoriesToggle.textContent = 'All Categories ▼';
         const submenu = document.createElement('div');
         submenu.className = 'submenu';
-        sideMenu.appendChild(submenu);
-        
         categories.forEach(cat => {
             const item = document.createElement('a');
             item.href = '#'; item.className = 'menu-item';
             item.dataset.value = cat.value; item.textContent = cat.text;
-            submenu.appendChild(item);
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-                const category = e.target.dataset.value;
-                const filtered = allMovies.filter(m => (Array.isArray(m.category) && m.category.includes(category)) || m.category === category);
+                const filtered = allMovies.filter(m => m.category?.includes(e.target.dataset.value));
                 showFilteredResults(filtered, e.target.textContent);
-                sideMenu.classList.remove('open');
-                overlay.style.display = 'none';
+                sideMenu.classList.remove('open'); overlay.style.display = 'none';
             });
+            submenu.appendChild(item);
         });
+        categoriesToggle.addEventListener('click', () => {
+            submenu.classList.toggle('open');
+            categoriesToggle.textContent = submenu.classList.contains('open') ? 'All Categories ▲' : 'All Categories ▼';
+        });
+        sideMenu.appendChild(categoriesToggle);
+        sideMenu.appendChild(submenu);
+    }
 
-    
+    function handleSearch(e) {
+        const term = e.target.value.toLowerCase();
+        if (term) {
+            const filtered = allMovies.filter(m => m.title.toLowerCase().includes(term));
+            showFilteredResults(filtered, `Results for "${term}"`);
+        } else { showHomePage(); }
+    }
+
+    function showFilteredResults(movieArray, title) {
+        homePageContent.style.display = 'none';
+        sliderContainer.style.display = 'none'; 
+        yearsContainer.style.display = 'none';
+        filteredResultsContainer.style.display = 'block';
+        filteredTitle.textContent = title;
+        displayMovies(movieArray, filteredGrid);
+    }
+
+    function showHomePage() {
+        filteredResultsContainer.style.display = 'none';
+        homePageContent.style.display = 'block';
+        sliderContainer.style.display = 'block'; 
+        yearsContainer.style.display = 'block';
+        document.getElementById('searchInput').value = ''; 
+    }
+
+    function formatDate(dateString) {
+        if (!dateString) return '';
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('en-US', options);
+    }
+
+    function displayMovies(movieArray, gridElement) {
+        if (!gridElement) return;
+        if(movieArray.length === 0) {
+            gridElement.innerHTML = (gridElement.id === 'filtered-grid') ? `<p>No results found.</p>` : '';
+            if(gridElement.closest('.home-category-section')) gridElement.closest('.home-category-section').style.display = 'none';
+            return;
+        }
+        if(gridElement.closest('.home-category-section')) gridElement.closest('.home-category-section').style.display = 'block';
+        gridElement.innerHTML = movieArray.map(movie => {
+            const overlayHTML = movie.overlay_text ? `<div class="movie-card-overlay" style="background-color: ${movie.overlay_color || 'var(--theme-color)'};">${movie.overlay_text}</div>` : '';
+            const releaseDate = movie.release_date ? `<p class="movie-date">${formatDate(movie.release_date)}</p>` : '';
+            return `<a href="#"><div class="movie-card">${overlayHTML}<img src="${movie.poster}" alt="${movie.title}" loading="lazy"><div class="movie-info"><h3>${movie.title}</h3>${releaseDate}</div></div></a>`;
+        }).join('');
+    }
+
+    function populateYearsSection(yearsData) {
+        yearsContainer.innerHTML = '';
+        yearsData.sort((a, b) => (a.display_order || 999) - (b.display_order || 999));
+        yearsData.forEach(yearInfo => {
+            const yearSection = document.createElement('div');
+            yearSection.className = 'year-section';
+            const header = document.createElement('div');
+            header.className = 'year-header';
+            header.innerHTML = `<span>${yearInfo.year}</span><span class="arrow">&#9662;</span>`;
+            const movieList = document.createElement('div');
+            movieList.className = 'year-movie-list';
+            movieList.innerHTML = yearInfo.movies.map(movie => {
+                const releaseDate = movie.release_date ? `<p class="movie-date">${formatDate(movie.release_date)}</p>` : '';
+                return `<a href="#" class="year-movie-item"><img src="${movie.poster}" alt="${movie.title}" loading="lazy"><div class="year-movie-info"><h3>${movie.title}</h3>${releaseDate}</div></a>`;
+            }).join('');
+            header.addEventListener('click', () => {
+                movieList.classList.toggle('open');
+                header.querySelector('.arrow').innerHTML = movieList.classList.contains('open') ? '&#9652;' : '&#9662;';
+            });
+            yearSection.appendChild(header);
+            yearSection.appendChild(movieList);
+            yearsContainer.appendChild(yearSection);
+        });
+    }
+
+    // App ko shuru karna
+    initializeApp();
+});
+</script>
+</body>
+</html>
