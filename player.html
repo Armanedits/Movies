@@ -77,12 +77,8 @@
     const closeBtn = document.querySelector('.close-btn');
     
     // === POPUP MESSAGE FIX IS HERE ===
-    function showModal(quality, type) {
-        let message = `${quality}`;
-        if (type) {
-            message += ` (${type})`;
-        }
-        message += ` download link is not available yet.`;
+    function showModal(movieTitle, quality) {
+        let message = `"${movieTitle}" (${quality}) download link is not available yet.`;
         document.getElementById('modal-quality-message').textContent = message;
         modal.style.display = 'flex';
     }
@@ -129,7 +125,8 @@
                     let buttonText = linkInfo.quality || 'Download';
                     if (linkInfo.size) buttonText += ` (${linkInfo.size})`;
                     if (linkInfo.link === '#') {
-                        return `<a href="javascript:void(0);" onclick="showModal('${linkInfo.quality || 'This'}', '${linkInfo.type || ''}')" class="download-btn"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>${buttonText}</a>`;
+                        // Pass movie title and quality to the modal function
+                        return `<a href="javascript:void(0);" onclick="showModal('${movie.title}', '${linkInfo.quality || 'This'}')" class="download-btn"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>${buttonText}</a>`;
                     } else {
                         return `<a href="${linkInfo.link}" class="download-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>${buttonText}</a>`;
                     }
