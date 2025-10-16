@@ -31,7 +31,6 @@
         .movie-info h3 { font-size: 14px; margin: 8px 0 0 0; }
         .loading-error { text-align: center; font-size: 20px; margin-top: 50px; }
         .movie-card-overlay { position: absolute; top: 5px; left: 5px; background-color: var(--theme-color); color: white; padding: 3px 8px; font-size: 10px; font-weight: bold; border-radius: 4px; z-index: 2; }
-        /* === POPUP CENTERING FIX IS HERE === */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center; }
         .modal-content { background-color: var(--light-bg); padding: 25px; border-top: 4px solid var(--theme-color); border-radius: 8px; width: 80%; max-width: 400px; text-align: center; animation-name: zoomIn; animation-duration: 0.3s; position: relative; }
         .close-btn { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
@@ -76,10 +75,18 @@
 <script>
     const modal = document.getElementById('link-modal');
     const closeBtn = document.querySelector('.close-btn');
-    function showModal(quality) {
-        document.getElementById('modal-quality-message').textContent = `${quality} quality download link is not available yet.`;
+    
+    // === POPUP MESSAGE FIX IS HERE ===
+    function showModal(quality, type) {
+        let message = `${quality}`;
+        if (type) {
+            message += ` (${type})`;
+        }
+        message += ` download link is not available yet.`;
+        document.getElementById('modal-quality-message').textContent = message;
         modal.style.display = 'flex';
     }
+
     function closeModal() { modal.style.display = 'none'; }
     closeBtn.onclick = closeModal;
     window.onclick = function(event) { if (event.target == modal) { closeModal(); } }
@@ -122,7 +129,7 @@
                     let buttonText = linkInfo.quality || 'Download';
                     if (linkInfo.size) buttonText += ` (${linkInfo.size})`;
                     if (linkInfo.link === '#') {
-                        return `<a href="javascript:void(0);" onclick="showModal('${linkInfo.quality || 'This'}')" class="download-btn"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>${buttonText}</a>`;
+                        return `<a href="javascript:void(0);" onclick="showModal('${linkInfo.quality || 'This'}', '${linkInfo.type || ''}')" class="download-btn"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>${buttonText}</a>`;
                     } else {
                         return `<a href="${linkInfo.link}" class="download-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>${buttonText}</a>`;
                     }
