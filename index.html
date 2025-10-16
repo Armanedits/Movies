@@ -62,10 +62,8 @@
     </main>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Repository ka naam yahan set hai. Ab kuch badalne ki zaroorat nahi hai.
-    const REPO_NAME = "Movies";
-    
-    const MOVIES_JSON_URL = `/${REPO_NAME}/movies.json`;
+    // Isse galti ka chance hi khatam ho gaya. Browser apne aap sahi path dhoond lega.
+    const MOVIES_JSON_URL = "movies.json";
 
     const INITIAL_ITEM_LIMIT = 6;
     let allMovies = [];
@@ -78,16 +76,15 @@ document.addEventListener('DOMContentLoaded', () => {
     async function initializeApp() {
         try {
             const moviesResponse = await fetch(MOVIES_JSON_URL);
-            if (!moviesResponse.ok) {
-                throw new Error(`Could not load movies.json. Status: ${moviesResponse.status}.`);
-            }
+            if (!moviesResponse.ok) throw new Error(`Could not load movies.json. Status: ${moviesResponse.status}.`);
+            
             allMovies = await moviesResponse.json();
             populateAllHomeSections();
             populateSlider();
             setupEventListeners();
             setupSideMenu();
         } catch (error) {
-            document.querySelector('main.container').innerHTML = `<h2 style="text-align:center; color:red;">Error loading content!</h2><p style="text-align:center;">Please check if the file 'movies.json' exists in the '${REPO_NAME}' repository.</p>`;
+            document.querySelector('main.container').innerHTML = `<h2 style="text-align:center; color:red;">Error: Content could not be loaded.</h2>`;
         }
     }
 
@@ -111,11 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const moviesForSection = allMovies.filter(m => m.home_section?.includes(sectionName)).sort((a, b) => (a.display_orders?.[sectionName] || 999) - (b.display_orders?.[sectionName] || 999));
             const grid = sectionElement.querySelector('.movie-grid');
             const showAllBtn = sectionElement.querySelector('.show-all-btn');
-            
             if (!moviesForSection.length) { sectionElement.style.display = 'none'; return; }
-            
             displayMovies(moviesForSection.slice(0, INITIAL_ITEM_LIMIT), grid);
-            
             let isShowingAll = false;
             showAllBtn.style.display = moviesForSection.length > INITIAL_ITEM_LIMIT ? 'block' : 'none';
             showAllBtn.addEventListener('click', () => {
@@ -157,12 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupEventListeners() {
         const menuBtn = document.getElementById('menu-btn'), sideMenu = document.getElementById('side-menu'), overlay = document.getElementById('menu-overlay');
         const searchBtn = document.getElementById('search-btn'), closeSearchBtn = document.getElementById('close-search-btn'), navBar = document.getElementById('main-nav'), searchInput = document.getElementById('searchInput');
-        
         menuBtn.addEventListener('click', () => { sideMenu.classList.add('open'); overlay.style.display = 'block'; });
         overlay.addEventListener('click', () => { sideMenu.classList.remove('open'); overlay.style.display = 'none'; });
         searchBtn.addEventListener('click', () => navBar.classList.add('search-active'));
         closeSearchBtn.addEventListener('click', () => navBar.classList.remove('search-active'));
-        
         searchInput.addEventListener('input', e => {
             const searchTerm = e.target.value.toLowerCase();
             if (searchTerm.length > 2) {
