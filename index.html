@@ -57,7 +57,7 @@
         .year-movie-list { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1); padding: 0 10px; }
         .year-movie-list.open { max-height: 3000px; padding-top: 15px; }
         .year-movie-item { display: flex; align-items: center; margin-bottom: 15px; }
-        .year-movie-item .movie-card { margin-right: 15px; flex-shrink: 0; width: 80px; } /* Updated for consistency */
+        .year-movie-item .movie-card { margin-right: 15px; flex-shrink: 0; width: 80px; }
         .year-movie-info h3 { font-size: 16px; margin: 0 0 5px 0; }
         .year-movie-info .movie-date { font-size: 14px; color: var(--text-secondary); }
         .no-results-container { min-height: 30vh; display: flex; justify-content: center; align-items: center; }
@@ -116,9 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const showAllBtn = sectionElement.querySelector('.show-all-btn');
             if (!moviesForSection.length) { sectionElement.style.display = 'none'; return; }
             displayMovies(moviesForSection, grid);
+            
+            showAllBtn.style.display = 'block';
             if (moviesForSection.length <= INITIAL_ITEM_LIMIT) {
-                showAllBtn.style.display = 'none';
                 sectionElement.classList.add('expanded');
+                showAllBtn.style.opacity = '0.5';
+                showAllBtn.style.pointerEvents = 'none';
             } else {
                 showAllBtn.addEventListener('click', () => {
                     sectionElement.classList.toggle('expanded');
