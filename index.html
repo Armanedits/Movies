@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF--8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Movie Site</title>
     <style>
@@ -44,7 +44,11 @@
         .show-all-btn .arrow { transition: transform 0.3s ease; display: inline-block; }
         .home-category-section.expanded .show-all-btn .arrow { transform: rotate(180deg); }
         .movie-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
-        .home-category-section .movie-grid { max-height: 320px; overflow: hidden; transition: max-height 0.6s ease-in-out; }
+        .home-category-section .movie-grid {
+            max-height: 370px; /* Changed from 320px to fit two full rows */
+            overflow: hidden;
+            transition: max-height 0.6s ease-in-out;
+        }
         .home-category-section.expanded .movie-grid { max-height: 2000px; }
         .movie-card { position: relative; }
         .movie-card img { width: 100%; height: auto; display: block; border-radius: 6px; aspect-ratio: 2/3; object-fit: cover; }
