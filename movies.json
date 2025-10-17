@@ -1,5 +1,692 @@
 [
   {
+    "year": 2026,
+    "display_order": 1,
+    "movies": [
+      {
+        "id": "border-2",
+        "title": "Border 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2026-01-23",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 1,
+          "latest": 1,
+          "trending": 1,
+          "movies": 1
+        },
+        "overlay_text": "Announced",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Coming Soon",
+        "slide_overlay_color": "#2980b9",
+        "details": "The film is a sequel to the 1997 blockbuster 'Border' and is expected to continue the story of the Indo-Pak war.",
+        "cast": ["Sunny Deol", "Ayushmann Khurrana"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["don-3", "war-2", "kalki-2898-ad"]
+      }
+    ]
+  },
+  {
+    "year": 2025,
+    "display_order": 2,
+    "movies": [
+      {
+        "id": "don-3",
+        "title": "Don 3",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2025-01-01",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 2,
+          "latest": 2,
+          "trending": 3,
+          "movies": 2
+        },
+        "overlay_text": "In Production",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Highly Anticipated",
+        "slide_overlay_color": "#2980b9",
+        "details": "The third installment in the 'Don' franchise, with Ranveer Singh taking over the iconic role.",
+        "cast": ["Ranveer Singh", "Kiara Advani"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["war-2", "border-2", "singham-again"]
+      },
+      {
+        "id": "war-2",
+        "title": "War 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2025-08-14",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 3,
+          "latest": 3,
+          "trending": 4,
+          "movies": 3
+        },
+        "overlay_text": "Must Watch",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Action-Packed",
+        "slide_overlay_color": "#2980b9",
+        "details": "A sequel to the 2019 action-thriller, this film sees Agent Kabir go on a new dangerous mission.",
+        "cast": ["Hrithik Roshan", "Jr. NTR", "Kiara Advani", "Anil Kapoor"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["don-3", "border-2", "pushpa-2-the-rule"]
+      }
+    ]
+  },
+  {
+    "year": 2024,
+    "display_order": 3,
+    "movies": [
+      {
+        "id": "kalki-2898-ad",
+        "title": "Kalki 2898 AD",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-06-27",
+        "category": ["trending", "movies", "tollywood", "hollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 1,
+          "latest": 1,
+          "trending": 2,
+          "movies": 5
+        },
+        "overlay_text": "Must Watch",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "New Release",
+        "slide_overlay_color": "#2980b9",
+        "details": "In a post-apocalyptic world, a hero emerges to protect humanity from dark forces.",
+        "cast": ["Prabhas", "Amitabh Bachchan", "Deepika Padukone"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "pushpa-2-the-rule",
+          "singham-again",
+          "deadpool-and-wolverine"
+        ]
+      },
+      {
+        "id": "pushpa-2-the-rule",
+        "title": "Pushpa 2: The Rule",
+        "poster": "https://m.media-amazon.com/images/M/MV5BNDM3N2UzM2UtMjEwMC00NGUzLThmMmQtNGMyM2VmMDA0ZWEwXkEyXkFqcGc@._V1_.jpg",
+        "release_date": "2024-12-05",
+        "category": ["trending", "movies", "tollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 4,
+          "latest": 4,
+          "trending": 5,
+          "movies": 4
+        },
+        "overlay_text": "Highly Awaited",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://m.media-amazon.com/images/M/MV5BNDM3N2UzM2UtMjEwMC00NGUzLThmMmQtNGMyM2VmMDA0ZWEwXkEyXkFqcGc@._V1_.jpg",
+        "slide_overlay_text": "Sequel",
+        "slide_overlay_color": "#2980b9",
+        "details": "The saga of Pushpa Raj continues as he expands his empire and faces new enemies.",
+        "cast": ["Allu Arjun", "Fahadh Faasil", "Rashmika Mandanna"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "kalki-2898-ad",
+          "singham-again",
+          "deadpool-and-wolverine"
+        ]
+      },
+      {
+        "id": "singham-again",
+        "title": "Singham Again",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-11-01",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 5,
+          "latest": 5,
+          "trending": 6,
+          "movies": 6
+        },
+        "overlay_text": "Action Packed",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Cop Universe",
+        "slide_overlay_color": "#2980b9",
+        "details": "The fifth installment in the Cop Universe, Singham is back to fight against a new threat.",
+        "cast": ["Ajay Devgn", "Akshay Kumar", "Ranveer Singh", "Deepika Padukone", "Tiger Shroff", "Kareena Kapoor Khan"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "kalki-2898-ad",
+          "pushpa-2-the-rule",
+          "deadpool-and-wolverine"
+        ]
+      },
+      {
+        "id": "mirzapur-season-3",
+        "title": "Mirzapur Season 3",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-07-05",
+        "category": ["trending", "series"],
+        "home_section": ["latest", "series", "trending"],
+        "display_orders": {
+          "slider": 6,
+          "latest": 6,
+          "trending": 7,
+          "series": 1
+        },
+        "overlay_text": "New Season",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Must Watch",
+        "slide_overlay_color": "#2980b9",
+        "details": "The battle for the throne of Mirzapur continues with more betrayals, rivalries, and violence.",
+        "cast": ["Pankaj Tripathi", "Ali Fazal", "Shweta Tripathi Sharma", "Rasika Dugal"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "panchayat-season-3",
+          "kota-factory-season-3",
+          "the-great-indian-kapil-show"
+        ]
+      },
+      {
+        "id": "deadpool-and-wolverine",
+        "title": "Deadpool & Wolverine",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-07-26",
+        "category": ["trending", "movies", "hollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 7,
+          "latest": 7,
+          "trending": 8,
+          "movies": 7
+        },
+        "overlay_text": "Blockbuster",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "MCU",
+        "slide_overlay_color": "#2980b9",
+        "details": "Deadpool joins forces with a reluctant Wolverine to save the multiverse.",
+        "cast": ["Ryan Reynolds", "Hugh Jackman", "Emma Corrin"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "joker-folie-a-deux",
+          "gladiator-2",
+          "kalki-2898-ad"
+        ]
+      },
+      {
+        "id": "stree-2",
+        "title": "Stree 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-08-15",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 8,
+          "latest": 8,
+          "trending": 9,
+          "movies": 8
+        },
+        "overlay_text": "Horror Comedy",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Sequel",
+        "slide_overlay_color": "#2980b9",
+        "details": "The gang from Chanderi is back to face a new supernatural threat.",
+        "cast": ["Shraddha Kapoor", "Rajkummar Rao", "Pankaj Tripathi", "Abhishek Banerjee", "Aparshakti Khurana"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "bhool-bhulaiyaa-3",
+          "vedaa",
+          "khel-khel-mein"
+        ]
+      },
+      {
+        "id": "panchayat-season-3",
+        "title": "Panchayat Season 3",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-05-28",
+        "category": ["trending", "series"],
+        "home_section": ["latest", "series", "trending"],
+        "display_orders": {
+          "slider": 9,
+          "latest": 9,
+          "trending": 10,
+          "series": 2
+        },
+        "overlay_text": "Critically Acclaimed",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "New Season",
+        "slide_overlay_color": "#2980b9",
+        "details": "Abhishek Tripathi's journey in Phulera continues as he navigates the challenges of village life and local politics.",
+        "cast": ["Jitendra Kumar", "Raghubir Yadav", "Neena Gupta", "Chandan Roy"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "mirzapur-season-3",
+          "kota-factory-season-3",
+          "the-great-indian-kapil-show"
+        ]
+      },
+      {
+        "id": "jigra",
+        "title": "Jigra",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-10-11",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 10,
+          "latest": 10,
+          "trending": 11,
+          "movies": 9
+        },
+        "overlay_text": "Action Thriller",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "New Release",
+        "slide_overlay_color": "#2980b9",
+        "details": "A woman embarks on a dangerous mission to rescue her brother from a foreign prison.",
+        "cast": ["Alia Bhatt", "Vedang Raina", "Manoj Pahwa", "Rahul Ravindran"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["vedaa", "chandu-champion", "mr-and-mrs-mahi"]
+      },
+      {
+        "id": "bhool-bhulaiyaa-3",
+        "title": "Bhool Bhulaiyaa 3",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-11-01",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 11,
+          "latest": 11,
+          "trending": 12,
+          "movies": 10
+        },
+        "overlay_text": "Horror Comedy",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Third Installment",
+        "slide_overlay_color": "#2980b9",
+        "details": "The third installment in the 'Bhool Bhulaiyaa' franchise, with Kartik Aaryan reprising his role.",
+        "cast": ["Kartik Aaryan", "Vidya Balan", "Madhuri Dixit", "Triptii Dimri"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["stree-2", "singham-again", "welcome-to-the-jungle"]
+      },
+      {
+        "id": "welcome-to-the-jungle",
+        "title": "Welcome To The Jungle",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-12-20",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 12,
+          "latest": 12,
+          "trending": 13,
+          "movies": 11
+        },
+        "overlay_text": "Comedy",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Star-Studded",
+        "slide_overlay_color": "#2980b9",
+        "details": "A group of quirky characters find themselves stuck in a jungle under unusual circumstances.",
+        "cast": ["Akshay Kumar", "Sanjay Dutt", "Suniel Shetty", "Arshad Warsi", "Paresh Rawal", "Jacqueline Fernandez", "Disha Patani", "Raveena Tandon"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "bhool-bhulaiyaa-3",
+          "singham-again",
+          "pushpa-2-the-rule"
+        ]
+      },
+      {
+        "id": "joker-folie-a-deux",
+        "title": "Joker: Folie à Deux",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-10-04",
+        "category": ["trending", "movies", "hollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 13,
+          "latest": 13,
+          "trending": 14,
+          "movies": 12
+        },
+        "overlay_text": "Musical Thriller",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Sequel",
+        "slide_overlay_color": "#2980b9",
+        "details": "The sequel to 'Joker' follows Arthur Fleck as he finds a companion in Harley Quinn at Arkham Asylum.",
+        "cast": ["Joaquin Phoenix", "Lady Gaga", "Zazie Beetz"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "deadpool-and-wolverine",
+          "gladiator-2",
+          "kalki-2898-ad"
+        ]
+      },
+      {
+        "id": "chandu-champion",
+        "title": "Chandu Champion",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-06-14",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 14,
+          "latest": 14,
+          "trending": 15,
+          "movies": 13
+        },
+        "overlay_text": "Biographical",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Inspirational",
+        "slide_overlay_color": "#2980b9",
+        "details": "The story of a man who refused to surrender to his circumstances and went on to become a national hero.",
+        "cast": ["Kartik Aaryan", "Vijay Raaz", "Bhuvan Arora"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["mr-and-mrs-mahi", "jigra", "indian-2"]
+      },
+      {
+        "id": "indian-2",
+        "title": "Indian 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-07-12",
+        "category": ["trending", "movies", "tollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 15,
+          "latest": 15,
+          "trending": 16,
+          "movies": 14
+        },
+        "overlay_text": "Vigilante Action",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Sequel",
+        "slide_overlay_color": "#2980b9",
+        "details": "Senapathy, an ex-freedom fighter turned vigilante, returns to fight corruption.",
+        "cast": ["Kamal Haasan", "Siddharth", "Kajal Aggarwal", "Rakul Preet Singh"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["kalki-2898-ad", "pushpa-2-the-rule", "chandu-champion"]
+      },
+      {
+        "id": "kota-factory-season-3",
+        "title": "Kota Factory Season 3",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-06-20",
+        "category": ["trending", "series"],
+        "home_section": ["latest", "series", "trending"],
+        "display_orders": {
+          "slider": 16,
+          "latest": 16,
+          "trending": 17,
+          "series": 3
+        },
+        "overlay_text": "New Season",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Student Life",
+        "slide_overlay_color": "#2980b9",
+        "details": "The students of Kota navigate the pressures of IIT-JEE preparation and adolescent life.",
+        "cast": ["Mayur More", "Jitendra Kumar", "Ranjan Raj", "Alam Khan"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "panchayat-season-3",
+          "mirzapur-season-3",
+          "the-great-indian-kapil-show"
+        ]
+      },
+      {
+        "id": "gladiator-2",
+        "title": "Gladiator 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-11-22",
+        "category": ["trending", "movies", "hollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 17,
+          "latest": 17,
+          "trending": 18,
+          "movies": 15
+        },
+        "overlay_text": "Epic Historical",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Sequel",
+        "slide_overlay_color": "#2980b9",
+        "details": "Lucius, the son of Lucilla, follows in the footsteps of Maximus to fight as a gladiator.",
+        "cast": ["Paul Mescal", "Denzel Washington", "Pedro Pascal", "Joseph Quinn"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "joker-folie-a-deux",
+          "deadpool-and-wolverine",
+          "kalki-2898-ad"
+        ]
+      },
+      {
+        "id": "vedaa",
+        "title": "Vedaa",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-08-15",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 18,
+          "latest": 18,
+          "trending": 19,
+          "movies": 16
+        },
+        "overlay_text": "Action Drama",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "New Release",
+        "slide_overlay_color": "#2980b9",
+        "details": "A man fights against the system to protect his daughter and seek justice.",
+        "cast": ["John Abraham", "Sharvari Wagh", "Abhishek Banerjee"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["jigra", "stree-2", "khel-khel-mein"]
+      },
+      {
+        "id": "khel-khel-mein",
+        "title": "Khel Khel Mein",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-08-15",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 19,
+          "latest": 19,
+          "trending": 20,
+          "movies": 17
+        },
+        "overlay_text": "Comedy Drama",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Remake",
+        "slide_overlay_color": "#2980b9",
+        "details": "A group of friends decides to play a game where they must share all their incoming calls and messages, leading to chaos and revelations.",
+        "cast": ["Akshay Kumar", "Taapsee Pannu", "Vaani Kapoor", "Fardeen Khan", "Ammy Virk"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["vedaa", "stree-2", "mr-and-mrs-mahi"]
+      },
+      {
+        "id": "mr-and-mrs-mahi",
+        "title": "Mr. And Mrs. Mahi",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-05-31",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 20,
+          "latest": 20,
+          "trending": 21,
+          "movies": 18
+        },
+        "overlay_text": "Sports Drama",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Inspirational",
+        "slide_overlay_color": "#2980b9",
+        "details": "A failed cricketer encourages his wife, a doctor, to pursue her dream of becoming a cricketer.",
+        "cast": ["Rajkummar Rao", "Janhvi Kapoor", "Kumud Mishra"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["chandu-champion", "jigra", "khel-khel-mein"]
+      },
+      {
+        "id": "the-great-indian-kapil-show",
+        "title": "The Great Indian Kapil Show",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-03-30",
+        "category": ["trending", "series"],
+        "home_section": ["latest", "series", "trending"],
+        "display_orders": {
+          "slider": 21,
+          "latest": 21,
+          "trending": 22,
+          "series": 4
+        },
+        "overlay_text": "Comedy Show",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Netflix Special",
+        "slide_overlay_color": "#2980b9",
+        "details": "Kapil Sharma hosts a laugh-out-loud variety talk show with celebrity guests and his signature supporting cast.",
+        "cast": ["Kapil Sharma", "Sunil Grover", "Archana Puran Singh", "Krushna Abhishek", "Kiku Sharda"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": [
+          "panchayat-season-3",
+          "mirzapur-season-3",
+          "kota-factory-season-3"
+        ]
+      },
+      {
+        "id": "raid-2",
+        "title": "Raid 2",
+        "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "release_date": "2024-11-15",
+        "category": ["trending", "movies", "bollywood"],
+        "home_section": ["latest", "movies", "trending"],
+        "display_orders": {
+          "slider": 22,
+          "latest": 22,
+          "trending": 23,
+          "movies": 19
+        },
+        "overlay_text": "Crime Thriller",
+        "overlay_text_color": "#e74c3c",
+        "slide_poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
+        "slide_overlay_text": "Sequel",
+        "slide_overlay_color": "#2980b9",
+        "details": "IRS officer Amay Patnaik is back to conduct another high-stakes raid against a powerful and corrupt individual.",
+        "cast": ["Ajay Devgn", "Riteish Deshmukh", "Vaani Kapoor"],
+        "downloadLinks": [
+          { "quality": "1080p", "size": "2.5GB", "link": "#" },
+          { "quality": "720p", "size": "1.2GB", "link": "#" },
+          { "quality": "480p", "size": "450MB", "link": "#" }
+        ],
+        "suggestedIds": ["singham-again", "bhool-bhulaiyaa-3", "don-3"]
+      }
+    ]
+  },  
+{
     "id": "kalki-2898-ad",
     "title": "Kalki 2898 AD",
     "poster": "https://i.postimg.cc/yNn1wfH5/boots.jpg",
